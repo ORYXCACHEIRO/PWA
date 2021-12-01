@@ -13,6 +13,9 @@ module.exports = {
         '-m10': '-10',
       }
     },
+    maxWidth:{
+      "mcontent": "max-content"
+    },
     borderWidth: {
       DEFAULT: '1px',
       '0': '0',
