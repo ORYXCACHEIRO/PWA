@@ -1,6 +1,7 @@
 module.exports = {
-  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
-  darkMode: false, // or 'media' or 'class'
+  content: [
+    "./src/**/*.{js,jsx}",
+  ],
   theme: {
     extend: {
       ringWidth: {
@@ -35,15 +36,21 @@ module.exports = {
       'lg': {'max': '1023px'},
       // => @media (max-width: 1023px) { ... }
 
-      'md': {'max': '817px'},
+      'md': {'max': '800px'},
       // => @media (max-width: 767px) { ... }
 
       'sm': {'max': '639px'},
       // => @media (max-width: 639px) { ... }
+    },
+    flex: {
+      '1': '1 1 0%',
+      auto: '1 1 auto',
+      initial: '0 1 auto',
+      inherit: 'inherit',
+      none: 'none',
+      '2': '2 2 0%',
+      '33': '4 0 25%'
     }
-  },
-  variants: {
-    extend: {},
   },
   plugins: [],
 }
