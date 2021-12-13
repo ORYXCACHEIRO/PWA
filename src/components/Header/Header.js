@@ -2,9 +2,9 @@
 import { Popover,Transition } from '@headlessui/react'
 import { Fragment } from 'react'
 
-import mainLogo from '../logo.svg';
-import Search from '../components/Header/Search';
-import UpperHeader from '../components/Header/UpperHeader';
+import mainLogo from '../../logo.svg';
+import Search from './Search';
+import UpperHeader from './UpperHeader';
 
 function Header() {
   
