@@ -8,13 +8,13 @@ function Footer() {
           <a className=" text-5xl font-bold text-white mr-auto ml-auto block w-max mt-2" href="#">
             Logo.
           </a>
-          <div className="flex mt-6 w-max ml-auto mr-auto gap-3">
+          <div className="flex mt-6 w-max ml-auto mr-auto gap-3 xl:pl-3 md:pl-0">
               <input
                 type="text"
-                className="h-auto p-2 text-smborder border-grey-lightroundtext-grey-dark rounded-lg"
+                className="p-2 h-auto text-smborder border-grey-lightroundtext-grey-dark rounded-lg"
                 placeholder="Your email address"
               />
-              <button className="h-auto p-3 text-xs text-white bg-purple-400 rounded-lg">
+              <button className="h-auto p-2 text-xs text-white bg-purple-400 rounded-lg">
                 Subscribe
               </button>
               
