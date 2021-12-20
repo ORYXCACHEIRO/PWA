@@ -5,6 +5,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        'check': "url('./assets/check.svg')",
+      },
       ringWidth: {
         'DEFAULT': '2px',
         '3': '3px',
@@ -53,5 +56,5 @@ module.exports = {
       '33': '4 0 25%'
     }
   },
-  plugins: [],
+  plugins: [require('tailwind-scrollbar')],
 }
