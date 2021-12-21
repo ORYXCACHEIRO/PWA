@@ -31,22 +31,22 @@ function Header() {
           <div className="md:hidden h-full">
             <div className='h-full'>
               <div className='flex justify-end items-center w-max space-x-2 pr-10 xl:pr-2 lg:pr-7 float-right gap-5 xl:gap-0 h-full'>
-                <button type="button" className="flex items-center justify-center w-max shadow-lg transition duration-300 ease-in-out bg-gray-900 font-bold text-lg p-3 pl-4 pr-4 lg:p-5  rounded-3xl text-white space-x-1 hover:bg-gray-700 lg:mr-2">
+                <Link to="/signin" className="flex items-center justify-center w-max shadow-lg transition duration-300 ease-in-out bg-gray-900 font-bold text-lg p-3 pl-4 pr-4 lg:p-5  rounded-3xl text-white space-x-1 hover:bg-gray-700 lg:mr-2">
                   <span className=" lg:text-sm lg:hidden">
                     Sign In
                   </span>
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 lg:text-sm md:mr-auto md:ml-auto md:block " viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M3 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1zm7.707 3.293a1 1 0 010 1.414L9.414 9H17a1 1 0 110 2H9.414l1.293 1.293a1 1 0 01-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg> 
-                </button>
-                <button type="button" className="flex items-center justify-center w-max shadow-lg transition duration-300 ease-in-out bg-gray-900 font-bold text-lg p-3 pl-4 pr-4 lg:p-5  rounded-3xl text-white space-x-1 hover:bg-gray-700 lg:mr-2">
+                </Link>
+                <Link to="/signup" className="flex items-center justify-center w-max shadow-lg transition duration-300 ease-in-out bg-gray-900 font-bold text-lg p-3 pl-4 pr-4 lg:p-5  rounded-3xl text-white space-x-1 hover:bg-gray-700 lg:mr-2">
                   <span className=" lg:text-sm lg:hidden">
                     Sign Up
                   </span>
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 lg:text-sm md:mr-auto md:ml-auto md:block" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z" clipRule="evenodd" />
                   </svg>
-                </button>
+                </Link>
               </div>
             </div>
             <div className="hidden h-full">
@@ -105,10 +105,10 @@ function Header() {
                       </div>
                       <div className=''>
                         <div className="flex ">
-                          <Link to="/signin" className="bg-purple-700 text-white mr-auto ml-auto block px-40 sm:px-24 m-4 p-3 text-lg font-medium rounded-full transition duration-100 ease-out hover:ease-in hover:bg-purple-400">
+                          <Link to="/signin" className="bg-purple-700 text-white mr-auto ml-auto block px-40 sm:px-16 m-4 p-3 text-lg font-medium rounded-full transition duration-100 ease-out hover:ease-in hover:bg-purple-400">
                             Sign In
                           </Link>
-                          <Link to="/signup" className="bg-purple-700 text-white mr-auto ml-auto block px-40 sm:px-24 m-4 p-3 text-lg font-medium rounded-full transition duration-100 ease-out hover:ease-in hover:bg-purple-400">
+                          <Link to="/signup" className="bg-purple-700 text-white mr-auto ml-auto block px-40 sm:px-16 m-4 p-3 text-lg font-medium rounded-full transition duration-100 ease-out hover:ease-in hover:bg-purple-400">
                             Sign Up
                           </Link>
                         </div>

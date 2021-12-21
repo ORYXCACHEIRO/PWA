@@ -32,7 +32,7 @@ const SignUp = () => {
                                 Sign Up
                             </button>
                             <div className='flex flex-col gap-1'>
-                                <p className='text-base font-medium text-center'>Already have an account? <Link to="/signin" className='text-purple-500'>Click here</Link></p>
+                                <p className='text-lg font-medium text-center'>Already have an account? <Link to="/signin" className='text-purple-500'>Click here</Link></p>
                             </div>
                         </form>
                     </div>

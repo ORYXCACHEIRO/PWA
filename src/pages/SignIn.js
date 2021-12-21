@@ -24,8 +24,8 @@ const SignIn = () => {
                                 Sign In
                             </button>
                             <div className='flex flex-col gap-1'>
-                                <p className='text-base font-medium text-center'>Don't have an account? <Link to="/signup" className='text-purple-500'>Sign up here</Link></p>
-                                <p className='text-base font-medium text-center'>Forgot your passoword? Click <Link to="" className='text-purple-500'>here</Link></p>
+                                <p className='text-lg font-medium text-center'>Don't have an account? Sign up <Link to="/signup" className='text-purple-500'>here</Link></p>
+                                <p className='text-lg font-medium text-center'>Forgot your passoword? Click <Link to="/forgotpass" className='text-purple-500'>here</Link></p>
                             </div>
                         </form>
                     </div>
