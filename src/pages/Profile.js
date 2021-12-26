@@ -1,8 +1,9 @@
 import mainLogo from '../logo.svg';
 import {FaEdit} from 'react-icons/fa';
-
 import {useForm} from 'react-hook-form';
-import { Link } from 'react-router-dom';
+
+import Reservations from '../components/Profile/Reservations';
+import Favorites from '../components/Profile/Favorites';
 
 const Profile = () => {
 
@@ -10,7 +11,7 @@ const Profile = () => {
 
     return(
         <>
-            <div className="w-full flex  items-center flex-col p-10 gap-6">
+            <div className="w-full flex  items-center flex-col p-10 gap-20">
                 <div className=" w-3/4 bg-gray-900 h-28 rounded-xl relative flex md:flex-col md:h-max md:items-center">
                     <div className='w-max'>
                         <div className="w-24 h-24 bg-purple-500 rounded-full mt-9 ml-8 md:ml-0 flex items-center justify-center relative">
@@ -25,7 +26,7 @@ const Profile = () => {
                 <div className=' h-max w-3/4 rounded-xl flex p-4 lg:flex-col relative flex-wrap lg:flex-nowrap'>
                     
                     <div className='w-2/4 p-4 flex flex-col items-center lg:w-full lg:p-7 '>
-                        <h1 className='text-center text-3xl font-medium p-1'>Details</h1>
+                        <h1 className='text-center text-3xl font-bold p-2'>Details</h1>
                         <form className="w-80 flex flex-col gap-6  ">
                             <div className=" flex flex-col gap-1">
                                 <label className="font-medium text-xl">Email:</label>
@@ -44,9 +45,9 @@ const Profile = () => {
                             </button>
                         </form>
                     </div>
-                    <div className='absolute border-l-2 border-l-purple-500 h-5/6 left-2/4 top-7 lg:border-l-0 lg:border-l-transparent lg:border-b-2 lg:border-b-purple-500 lg:h-0 lg:w-5/6 lg:top-[52%] lg:left-[10%]'></div>
+                    <div className='absolute border-l-2 border-l-purple-500 h-5/6 left-2/4 top-7 lg:border-l-0 lg:border-l-transparent lg:border-b-2 lg:border-b-purple-500 lg:h-0 lg:w-5/6 lg:top-[54%] lg:left-[10%]'></div>
                     <div className='w-2/4 p-4 flex flex-col items-center lg:w-full lg:p-7 '>
-                        <h1 className='text-center text-3xl font-medium p-1'>Password</h1>
+                        <h1 className='text-center text-3xl font-bold p-2'>Password</h1>
                         <form className="w-80 flex flex-col gap-7 pt-7">
                             <div className=" flex flex-col gap-1">
                                 <label className="font-medium text-xl">New password:</label>
@@ -61,6 +62,12 @@ const Profile = () => {
                             </button>
                         </form>
                     </div>
+                </div>
+                <div className='w-3/4'>
+                    <Reservations/>
+                </div>
+                <div className='w-3/4'>
+                    <Favorites/>
                 </div>
             </div>
         </>

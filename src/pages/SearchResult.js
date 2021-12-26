@@ -1,4 +1,4 @@
-import Filter from "../components/HotelList/Filter";
+import Filter from "../components/SearchResult/Filter";
 import Result from "../components/SearchResult/Results";
 
 const SearchResPage = () => {

@@ -10,6 +10,7 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import ForgotPass from "./pages/ForgotPass";
 import Profile from "./pages/Profile";
+import Hotel from "./pages/Hotel";
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route path="/signup" exact element={<SignUp/>}/>
           <Route path="/forgotpass" exact element={<ForgotPass/>}/>
           <Route path="/profile" exact element={<Profile/>}/>
+          <Route path="/hotel/:id" exact element={<Hotel/>}/>
         </Routes>
       <Footer/>
     </>
