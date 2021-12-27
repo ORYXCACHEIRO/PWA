@@ -4,6 +4,9 @@ import { Carousel } from 'react-responsive-carousel';
 import {FaMapMarked, FaBed, FaCheck} from 'react-icons/fa';
 import { starFilled, starNotFilled} from '../utils/icons';
 
+import Rooms from '../components/Hotel/Rooms';
+
+
 const Hotel = () => {
 
     let arrayStar = [starFilled, starFilled, starFilled, starFilled, starNotFilled];
@@ -12,22 +15,22 @@ const Hotel = () => {
         <div key={index}>{star}</div>
     );
 
+    let images = [teste, teste, teste];
+
     return(
         <>
-            <div>
+            <div >
 
                 <div className="flex px-5 lg:flex-col">
                     <div className="w-2/4 lg:w-full">
-                        <Carousel className='p-14'>
-                            <div>
-                                <img src={teste} />
-                            </div>
-                            <div>
-                                <img src={teste} />
-                            </div>
-                            <div>
-                                <img src={teste} />
-                            </div>
+                        <Carousel className='p-14' showArrows={true} showThumbs={true}>
+                            {
+                                images.map((url, index) => (
+                                    <div key={index}>
+                                        <img src={url} className='rounded-lg'/>
+                                    </div>
+                                ))
+                            }
                         </Carousel>
                     </div>
                     <div className='w-2/4 lg:w-full'>
@@ -58,7 +61,7 @@ const Hotel = () => {
                             </div>
                         </div>
                         <div className='p-5 mt-3'>
-                            <h1 className='font-bold text-2xl '>Small Information:</h1>
+                            <h1 className='font-bold text-2xl '>Small Information :</h1>
                             <p className='pt-5'>
                                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
                             </p>
@@ -68,7 +71,7 @@ const Hotel = () => {
 
                 <div className='flex px-5 md:flex-col'>
                     <div className=' w-2/4 px-5 md:w-full md:py-3'>
-                        <h1 className='text-4xl font-bold p-2 md:text-2xl text-center'>Comodities offered:</h1>
+                        <h1 className='text-4xl font-bold p-2 md:text-2xl text-center'>Comodities offered :</h1>
                         <div className='flex flex-wrap gap-6 md:gap-3 pt-4 justify-center'>
                             <div className='flex items-center gap-2 p-3 text-lg'>
                                 <FaCheck/>
@@ -87,7 +90,7 @@ const Hotel = () => {
                         </div>
                     </div>
                     <div className=' w-2/4 px-5 md:w-full md:py-3'>
-                        <h1 className='text-4xl font-bold p-2 md:text-2xl text-center'>Staff speaks:</h1>
+                        <h1 className='text-4xl font-bold p-2 md:text-2xl text-center'>Staff speaks :</h1>
                         <div className='flex flex-wrap gap-6 md:gap-3 pt-4 justify-center'>
                             <div className='flex items-center gap-2 p-3 text-lg'>
                                 <FaCheck/>
@@ -101,13 +104,11 @@ const Hotel = () => {
                     </div>
                 </div>
 
-                <div className='border-2 border-red-500 flex px-5 justify-center py-6'>
-                    <div className=' w-3/4 border-2'>
-                        <h1 className='text-4xl font-bold p-2 md:text-2xl text-center'>Rooms:</h1>
-                        <div className='pt-3 flex flex-col'>
-                            <div className='border-2 border-red-500'>
-
-                            </div>
+                <div className='flex px-5 justify-center pt-20 md:pt-10'>
+                    <div className=' w-3/4 '>
+                        <h1 className='text-4xl font-bold p-2 md:text-2xl text-center'>Rooms :</h1>
+                        <div className='pt-3 flex flex-col gap-6'>
+                            <Rooms/>
                         </div>
                     </div>
                 </div>

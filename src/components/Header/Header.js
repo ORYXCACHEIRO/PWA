@@ -15,7 +15,7 @@ function Header() {
       <div className="m-3 ml-4 mr-4 rounded-t-2xl flex bg-gray-900 h-12 relative">
         <UpperHeader/>
       </div>
-      <div className="m-3 ml-4 mr-4 rounded-b-3xl flex bg-gradient-to-r from-purple-600 to-purple-400 z-10 bottom-4 relative">  
+      <div className="m-3 ml-4 mr-4 rounded-b-3xl flex bg-gradient-to-r from-purple-600 to-purple-400  bottom-4 relative">  
           <div className=" p-px  w-2/12 md:w-5/6">
             <Link to="/">
                 <h1 className="text-white m-5 ml-8 font-extrabold text-5xl">LOGO.</h1>
@@ -23,7 +23,6 @@ function Header() {
           </div>
         <div className=" w-7/12 flex md:hidden items-center">
           <div className="ml-10 lg:hidden">
-            <label className="font-bold text-xl text-white">Search</label>
           </div>
           <Search/>
         </div>
