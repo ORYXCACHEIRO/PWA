@@ -5,25 +5,21 @@ import {fb, twitter, linkdin} from '../../utils/icons';
 function Footer() {
   return (
     <>
-      <div className="rounded-t-2xl flex bg-gray-900 h-52 relative mt-20 md:flex-col md:h-max">
-        <div className=" w-3/12 lg:w-max md:w-full md:p-3">
-          <Link className=" text-5xl font-bold text-white mr-auto ml-auto block w-max mt-2" to="/">
+      <div className="rounded-t-2xl flex bg-gray-900 h-52 relative mt-20 md:flex-col md:h-max md:items-center">
+        <div className=" w-3/12 md:w-max lg:pl-6 md:pl-0 flex flex-col justify-center gap-6">
+          <Link className=" text-5xl font-bold text-white mr-auto ml-auto block w-max" to="/">
             Logo.
           </Link>
-          <div className="flex mt-6 w-max ml-auto mr-auto gap-3 xl:pl-3 md:pl-0">
-              <input
-                type="text"
-                className="p-2 h-auto text-smborder border-grey-lightroundtext-grey-dark rounded-lg"
-                placeholder="Your email address"
-              />
-              <button className="h-auto p-2 text-xs text-white bg-purple-400 rounded-lg">
-                Subscribe
-              </button>
-          </div>
-          <div className="flex justify-center mt-10 lg:mt-6">
+          <div className="flex justify-center gap-6">
+            <button className="bg-white p-3 rounded-full transiton ease-out duration-100 hover:bg-slate-300">
               {fb}
+            </button>
+            <button className="bg-white p-3 rounded-full transiton ease-out duration-100 hover:bg-slate-300">
               {twitter}
+            </button>
+            <button className="bg-white p-3 rounded-full transiton ease-out duration-100 hover:bg-slate-300">
               {linkdin}
+            </button>
           </div>
         </div>
         <div className=" w-9/12 flex justify-center items-center md:w-full md:p-3">

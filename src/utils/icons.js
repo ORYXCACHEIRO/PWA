@@ -41,7 +41,7 @@ export const fb = (
 );
 
 export const twitter = (
-    <Link className="ml-3" to="www.twitter.com">
+    <Link  to="www.twitter.com">
         <svg
             fill="currentColor"
             strokeLinecap="round"
@@ -56,7 +56,7 @@ export const twitter = (
 );
 
 export const linkdin = (
-    <Link className="ml-3" to="www.linkdin.com">
+    <Link  to="www.linkdin.com">
         <svg
             fill="currentColor"
             stroke="currentColor"
