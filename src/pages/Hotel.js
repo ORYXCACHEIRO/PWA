@@ -5,6 +5,9 @@ import {FaMapMarked, FaBed, FaCheck} from 'react-icons/fa';
 import { starFilled, starNotFilled} from '../utils/icons';
 
 import Rooms from '../components/Hotel/Rooms';
+import Review from '../components/Hotel/Review';
+import ReviewForm from '../components/Hotel/ReviewForm';
+import AddFav from '../components/Hotel/AddFav';
 
 
 const Hotel = () => {
@@ -36,18 +39,14 @@ const Hotel = () => {
                     <div className='w-2/4 lg:w-full'>
                         <div>
                             <div className=' flex justify-end'>
-                                <button className='text-purple-400 rounded-full pr-3 pt-2'>
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-11  w-11" viewBox="0 0 20 20" fill="currentColor">
-                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                    </svg>
-                                </button>
+                                <AddFav/>
                             </div>
                             <div className='flex flex-col gap-4 p-3 ml-2 '>
                                 
                                 <h1 className='text-5xl font-bold  text-purple-500 xl:text-4xl lg:text-5xl sm:text-4xl'>Hotel Cidnayaaaaaaa</h1>
                                 <h1 className='text-3xl  text-gray-800 font-bold xl:text-2xl lg:text-3xl sm:text-2xl'>Santo Tirso</h1>
                             </div>
-                            <div className='flex ml-3 p-2'>
+                            <div className='flex ml-3 p-2 gap-3'>
                                 <div className='flex items-center'>
                                     {listItems}
                                 </div>
@@ -112,7 +111,16 @@ const Hotel = () => {
                         </div>
                     </div>
                 </div>
-
+                
+                <div className='flex flex-col items-center gap-5  px-5 mt-20'>
+                    <h1 className='text-4xl font-bold p-2 md:text-2xl text-center'>Reviews :</h1>
+                    <div className=' w-3/4 flex flex-col gap-10'>
+                        <div className='p-2  flex flex-col gap-8'>
+                            <Review/>
+                        </div>
+                        <ReviewForm/>
+                    </div>
+                </div>
             </div>
         </>
     )

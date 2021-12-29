@@ -4,6 +4,7 @@ import {useForm} from 'react-hook-form';
 
 import Reservations from '../components/Profile/Reservations';
 import Favorites from '../components/Profile/Favorites';
+import Reviews from '../components/Profile/Reviews';
 
 const Profile = () => {
 
@@ -68,6 +69,9 @@ const Profile = () => {
                 </div>
                 <div className='w-3/4'>
                     <Favorites/>
+                </div>
+                <div className='w-3/4'>
+                    <Reviews/>
                 </div>
             </div>
         </>
