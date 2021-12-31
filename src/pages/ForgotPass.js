@@ -1,4 +1,6 @@
 import {useForm} from 'react-hook-form';
+import Header from "../components/Header/Header";
+import Footer from "../components/Footer/Footer";
 
 const ForgotPass = () => {
 
@@ -6,6 +8,7 @@ const ForgotPass = () => {
 
     return(
         <>
+            <Header/>
             <div className="">
                 <div className=" p-28">
                     <h1 className=" text-center text-5xl  font-bold">Forgot Password.</h1>
@@ -25,6 +28,7 @@ const ForgotPass = () => {
                     </div>
                 </div>
             </div>
+            <Footer/>
         </>
     )
 }

@@ -22,8 +22,7 @@ const Hotel = () => {
 
     return(
         <>
-            <div >
-
+            <div>
                 <div className="flex px-5 lg:flex-col">
                     <div className="w-2/4 lg:w-full">
                         <Carousel className='p-14' showArrows={true} showThumbs={true}>
