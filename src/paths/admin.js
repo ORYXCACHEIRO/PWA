@@ -3,6 +3,8 @@ import {Route, Routes} from "react-router-dom";
 import FooterAdmin from "../components/Footer/FooterAdmin";
 import HeaderAdmin from "../components/Header/HeaderAdmin";
 import Homepage from "../pages/admin/Homepage";
+import Users from "../pages/admin/Users";
+
 
 
 const Admin = () => {
@@ -13,7 +15,8 @@ const Admin = () => {
         <>
             <HeaderAdmin/>
                 <Routes>
-                    <Route path="/"  element={<Homepage/>}/>
+                    <Route path="/" exact  element={<Homepage/>}/>
+                    <Route path="/users" exact  element={<Users/>}/>
                 </Routes>
             <FooterAdmin/>
         </>

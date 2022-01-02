@@ -1,10 +1,12 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { FaTimes, FaBars } from 'react-icons/fa';
+import { useLocation } from 'react-router-dom';
 
-var navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Users', href: '#', current: false },
+
+const navigation = [
+  { name: 'Dashboard', href: '/admin', current: false },
+  { name: 'Users', href: '/admin/users', current: false },
   { name: 'Hotels', href: '#', current: false },
   { name: 'Languages', href: '#', current: false },
   { name: 'Comodities', href: '#', current: false },
@@ -15,6 +17,18 @@ function classNames(...classes) {
 }
 
 const HeaderAdmin = () => {
+
+    const location = useLocation().pathname;
+
+    navigation.map((item) => ( 
+        actualPage(item)
+    ));
+
+    function actualPage(item){
+        if(item.href.toLocaleLowerCase().localeCompare(location.toLocaleLowerCase())==false ){
+            item.current = true;
+        }
+    }
 
     return(
         <>
@@ -50,6 +64,7 @@ const HeaderAdmin = () => {
                         <div className="md:hidden block md:ml-6">
                         <div className="flex space-x-4">
                             {navigation.map((item) => (
+                                
                             <a
                                 key={item.name}
                                 href={item.href}
@@ -133,34 +148,14 @@ const HeaderAdmin = () => {
                 </>
             )}
             </Disclosure>
-        </>
+            <header className="bg-white shadow">
+                <div className="max-w-7xl mx-auto py-5 px-4 sm:px-6 lg:px-8">
+                    <h1 className="text-4xl font-bold text-gray-900 pl-2">{navigation.filter(item => item.current==true).map((item) => (item.name))}</h1>
+                </div>
+            </header>
+        </> 
     )
 
 }
-
-/*
-
-<div className="border-2 border-red-500 w-60 bg-gray-800 flex flex-col gap-2">
-    <div className="border-2 p-6 flex flex-col gap-1">
-        <h1 className="text-center font-medium text-white text-3xl">Daniel</h1>
-        <h2 className="text-center text-1xl text-white font-bold">Administrator</h2>
-    </div>
-    <div className="border-2 border-blue-400 flex flex-col gap-2">
-        <div className="border-2 border-yellow-300 m-2 p-2 flex items-center gap-2 text-xl rounded-2xl text-white font-medium">
-            <FaHome/>
-            <span>Home</span>
-        </div>
-        <div className="border-2 border-yellow-300 m-2 p-2 flex items-center gap-2 text-xl rounded-2xl text-white font-medium">
-            <FaHome/>
-            <span>Home</span>
-        </div>
-        <div className="border-2 border-yellow-300 m-2 p-2 flex items-center gap-2 text-xl rounded-2xl text-white font-medium">
-            <FaHome/>
-            <span>Home</span>
-        </div>
-    </div>
-</div>
-
-*/
 
 export default HeaderAdmin;
