@@ -4,10 +4,10 @@
   "private": true,
   "dependencies": {
     "@headlessui/react": "^1.4.2",
-    "@mobiscroll/react": "https://npm.mobiscroll.com/@mobiscroll/react-trial/-/react-trial-5.13.2.tgz",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^13.5.0",
+    "antd": "^4.18.2",
     "postcss-loader": "^6.2.1",
     "rc-rate": "^2.9.1",
     "react": "^17.0.2",

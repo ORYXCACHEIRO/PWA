@@ -2,20 +2,17 @@ import img from '../../assets/exterior.jpg';
 import {FaTimes} from 'react-icons/fa';
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Calendar } from 'antd';
+import 'antd/dist/antd.css';
 
-//https://docs.mobiscroll.com/5-13-2/react/datepicker
-import '@mobiscroll/react/dist/css/mobiscroll.min.css';
-import { Datepicker, setOptions, localePtPT } from '@mobiscroll/react';
-
-setOptions({
-    locale: localePtPT,
-    theme: 'windows',
-    themeVariant: 'light'
-});
 
 const Reservation = ({closeModal}) =>  {
 
     let images = [img, img, img];
+
+    function onPanelChange(value, mode) {
+        console.log(value, mode);
+    }
 
     return(
         <>
@@ -93,12 +90,7 @@ const Reservation = ({closeModal}) =>  {
                         </form>
                     </div>
                     <div className='w-2/4 lg:w-full flex items-center p-20 md:p-5'>
-                        <Datepicker
-                            controls={['calendar']}
-                            display="inline"
-                            className='rounded-lg'
-                            disabled={true}
-                        />
+                        <Calendar fullscreen={false} onPanelChange={onPanelChange} />
                     </div>
                 </div>
             </div>
