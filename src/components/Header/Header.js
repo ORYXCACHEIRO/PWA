@@ -94,10 +94,12 @@ function Header() {
                         </svg>
                         </Popover.Button>
                       </div>
-                      <div className='border'>
-                        
-                          <h1 className="text-purple-600 m-4 ml-8 font-extrabold text-5xl text-center "><Link to="/" className=''>LOGO.</Link></h1>
-                        
+                      <div>
+                          <h1 className="text-purple-600 m-4 ml-8 font-extrabold text-5xl text-center ">
+                            <Link to="/" className='text-purple-600 hover:text-purple-500'>
+                              LOGO.
+                            </Link>
+                          </h1>
                       </div>
                       <div className="flex w-max mr-auto ml-auto pl-10">
                         <Search/>

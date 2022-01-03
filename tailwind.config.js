@@ -3,6 +3,7 @@ module.exports = {
     "./src/**/*.{js,jsx}",
     "./public/**/*.html"
   ],
+  important: true,
   theme: {
     extend: {
       backgroundImage: {

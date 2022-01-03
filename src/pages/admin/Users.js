@@ -10,7 +10,7 @@ const Users = () => {
         title: 'Name',
         dataIndex: 'name',
         key: 'name',
-        render: text => <a>{text}</a>,
+        render: (text, record) => <Link to={location+"/"+record.key}>{text}</Link>,
     },
     {
         title: 'Age',
@@ -55,8 +55,8 @@ const Users = () => {
                 Edit
             </Link>
         </Space>
-        ),
-    },
+        )
+    }
     ];
 
     const data = [

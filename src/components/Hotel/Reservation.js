@@ -3,8 +3,7 @@ import {FaTimes} from 'react-icons/fa';
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Calendar } from 'antd';
-import 'antd/dist/antd.css';
-
+import 'antd/dist/antd.variable.min.css';
 
 const Reservation = ({closeModal}) =>  {
 
