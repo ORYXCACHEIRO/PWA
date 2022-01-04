@@ -7,9 +7,9 @@ import { useLocation } from 'react-router-dom';
 const navigation = [
   { name: 'Dashboard', href: '/admin', current: false },
   { name: 'Users', href: '/admin/users', current: false },
-  { name: 'Hotels', href: '#', current: false },
-  { name: 'Languages', href: '#', current: false },
-  { name: 'Comodities', href: '#', current: false },
+  { name: 'Hotels', href: '/admin/hotels', current: false },
+  { name: 'Languages', href: '/admin/languages', current: false },
+  { name: 'Comodities', href: '/admin/comodities', current: false },
 ]
 
 function classNames(...classes) {
