@@ -1,28 +1,35 @@
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
-
+import React, { useState } from "react";
+import { Navigate } from 'react-router'
 const SignIn = () => {
 
     const { register, handleSubmit } = useForm();
-
-    const [loginSuccess, setLoginSuccess] = useState(false);
+    const [rt, setrt] = useState(false);
     const submit = data => login(data);
 
     const login = (data) => {
-        fetch('http://127.0.0.1:3000/auth/login', {
-            headers: {'Content-type': 'application/json'},
+        fetch('http://127.0.0.1:5000/auth/login', {
+            headers: { 'Content-type': 'application/json' },
             method: 'POST',
             body: JSON.stringify(data)
         })
-        .then( r => r.json())
-        .then((response) => {
-            console.log(response);
-            if(response.auth){
-                setLoginSuccess(true);
-            } else {
-                alert('Login Errado');
-            }
-        });
+            .then(r => r.json())
+            .then((response) => {
+                console.log(response);
+                if (response) {
+                    setrt(true);
+                }
+                else {
+                    alert("Ta dificil")
+                }
+            });
+
+
+    }
+
+    if (rt) {
+        return <Navigate to='/' />
     }
 
     return (
