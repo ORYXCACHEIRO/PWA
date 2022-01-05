@@ -14,7 +14,7 @@ const SearchResPage = () => {
     const [userData, setUserData] = useState([])
 
     useEffect(() => {
-        fetch('http://127.0.0.1:5000/search/hotel/' + query , {
+        fetch(`http://127.0.0.1:5000/search/hotel/${query}`  , {
             method: 'GET',
             headers: { 'Accept': 'application/json' }
         })
