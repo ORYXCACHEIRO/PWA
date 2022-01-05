@@ -9,11 +9,14 @@ import SignUp from "../pages/SignUp";
 import ForgotPass from "../pages/ForgotPass";
 import Profile from "../pages/Profile";
 import Hotel from "../pages/Hotel";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Frontend = () => {
 
     var location = useLocation().pathname;
+
+
+    const [roleResponse, setRoleRespose] = useState(false);
     
     useEffect(() => {
         fetch('/auth/me', {
@@ -25,15 +28,26 @@ const Frontend = () => {
                 console.log(response.decoded.role)
                 switch(response.decoded.role){
                     case 1:
-                        console.log("112")
-                        return <Navigate to="/employee/"/>
+                       setRoleRespose(1)
                     case 2:
-                        console.log("111")
-                        return <Navigate to="/admin/"/>
+                        setRoleRespose(2)
                 }
             }
         });
     }, [location]);
+
+    if(roleResponse){
+        switch(roleResponse){
+            case 1:
+                console.log("112")
+                return <Navigate to="/employee/"/>
+            case 2:
+                console.log("111")
+                return <Navigate to="/admin/"/>
+ 
+        }
+    }
+
     
 
     return(
