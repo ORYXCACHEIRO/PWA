@@ -14,8 +14,6 @@ const Result = ({ hoteis }) => {
     );
 
 
-    console.log(hoteis)
-
 
     return (
         <div className="ml-4 mr-4">

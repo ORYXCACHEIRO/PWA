@@ -28,7 +28,6 @@ const SearchResPage = () => {
 
 }, []);
 
-console.log(userData)
 
 
 return (
