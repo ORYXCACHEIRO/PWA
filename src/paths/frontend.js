@@ -18,6 +18,7 @@ const Frontend = () => {
 
 
     const [roleResponse, setRoleRespose] = useState(0);
+    const [userName, setuserName] = useState("");
     
     useEffect(() => {
         fetch('/auth/me', {
@@ -26,6 +27,7 @@ const Frontend = () => {
         .then((response) => response.json())
         .then((response) => {
             if(response.auth===true){
+                setuserName(response.decoded.name)
                 switch(response.decoded.role){
                     case 1:
                        setRoleRespose(1)
@@ -52,7 +54,7 @@ const Frontend = () => {
 
     return(
         <>
-            <Header />
+            <Header userName={userName} />
                 <Routes>
                     <Route path="/" exact element={<Homepage/>}/>
                     <Route path="/search/:query" exact element={<SearchResPage/>}/>
