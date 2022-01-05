@@ -22,8 +22,6 @@ import Hotels from "../pages/admin/Hotels";
 
 const Admin = () => {
 
-
-
     return(
         <>
             <HeaderAdmin/>
