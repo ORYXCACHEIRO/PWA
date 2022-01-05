@@ -8,7 +8,20 @@ import UpperHeader from './UpperHeader';
 import {Link} from "react-router-dom";
 
 function Header() {
+
+
+
+    const visible = true;
+    const notVisible = false;
   
+
+      <div>
+        {visible && <p>I am visible</p>}
+        {notVisible && <p>I am not visible</p>}
+      </div>
+
+
+
   return (
     <>
       <div className="m-3 ml-4 mr-4 rounded-t-2xl flex bg-gray-900 h-12 relative">
@@ -27,11 +40,14 @@ function Header() {
         </div>
         <div className=" w-3/12 ">
           <div className="md:hidden h-full">
+         
+
+            { visible &&
             <div className='h-full'>
               <div className='flex justify-end items-center w-max space-x-2 pr-10 xl:pr-2 lg:pr-7 float-right gap-5 xl:gap-0 h-full'>
                 <Link to="/signin" className="flex items-center justify-center w-max shadow-lg transition duration-300 ease-in-out bg-gray-900 font-bold text-lg p-3 pl-4 pr-4 lg:p-5  rounded-3xl text-white space-x-1 hover:bg-gray-700 lg:mr-2">
                   <span className=" lg:text-sm lg:hidden">
-                    Sign In
+                    Sign In 
                   </span>
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 lg:text-sm md:mr-auto md:ml-auto md:block " viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M3 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1zm7.707 3.293a1 1 0 010 1.414L9.414 9H17a1 1 0 110 2H9.414l1.293 1.293a1 1 0 01-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -47,6 +63,7 @@ function Header() {
                 </Link>
               </div>
             </div>
+          }
             <div className="hidden h-full">
               <div className="flex justify-end items-center w-max space-x-2 pr-10 xl:pr-2 lg:pr-8 float-right gap-5 xl:gap-0  h-full">
                 <button type="button" className="flex items-center justify-center w-max shadow-lg transition duration-300 ease-in-out bg-gray-900 font-bold text-lg p-3 pl-4 pr-4  rounded-3xl text-white space-x-1 hover:bg-gray-700 lg:mr-2">
@@ -62,6 +79,8 @@ function Header() {
                 </button>
               </div>
             </div>
+
+
           </div>
           <div className="md:contents hidden">
             <Popover>
