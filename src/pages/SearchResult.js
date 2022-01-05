@@ -9,7 +9,6 @@ const query = new URLSearchParams(search).get('s');
 
 
 
-
 const SearchResPage = () => {
 
     const [userData, setUserData] = useState([])

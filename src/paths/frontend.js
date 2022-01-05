@@ -7,6 +7,7 @@ import SearchResPage from "../pages/SearchResult";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
 import ForgotPass from "../pages/ForgotPass";
+import RecoverPass from "../pages/RecoverPass"
 import Profile from "../pages/Profile";
 import Hotel from "../pages/Hotel";
 import { useEffect, useState } from "react";
@@ -58,6 +59,7 @@ const Frontend = () => {
                     <Route path="/signin" exact element={<SignIn/>}/>
                     <Route path="/signup" exact element={<SignUp/>}/>
                     <Route path="/forgotpass" exact element={<ForgotPass/>}/>
+                    <Route path="/auth/recover/:key" exact element={<RecoverPass/>}/>
                     <Route path="/profile" exact element={<Profile/>}/>
                     <Route path="/hotel/:id" exact element={<Hotel/>}/>
                 </Routes>
