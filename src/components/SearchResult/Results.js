@@ -21,8 +21,11 @@ const Result = ({ hoteis }) => {
         <div className="ml-4 mr-4">
             <div className="inline-flex pt-12 mr-auto ml-auto flex-wrap w-full justify-center gap-16 pb-10 lg:gap-12">
 
-                {hoteis.map((hotel) => (
-                <div className="sm:ml-0 ">
+            <div className="ml-4 mr-4">
+            <div className="inline-flex pt-12 mr-auto ml-auto flex-wrap w-full justify-center gap-16 pb-10 lg:gap-12">
+
+            {hoteis.map((hotel) => (
+                <div key={hotel._id} className="sm:ml-0 ">
                 <div className="bg-purple-500 h-96 w-96 relative sm:right-2 rounded-lg ">
                     <div className="bg-gray-900 h-96 w-96 absolute left-7 top-7 rounded-lg ">
                         <div className='relative'>
@@ -52,6 +55,8 @@ const Result = ({ hoteis }) => {
                 </div>
             </div>
                 ))}
+            </div>
+        </div>
             </div>
         </div>
     );
