@@ -59,7 +59,7 @@ const Frontend = () => {
                     <Route path="/signin" exact element={<SignIn/>}/>
                     <Route path="/signup" exact element={<SignUp/>}/>
                     <Route path="/forgotpass" exact element={<ForgotPass/>}/>
-                    <Route path="/auth/recover/:key" exact element={<RecoverPass/>}/>
+                    <Route path="/recoverpass/:key" exact element={<RecoverPass/>}/>
                     <Route path="/profile" exact element={<Profile/>}/>
                     <Route path="/hotel/:id" exact element={<Hotel/>}/>
                 </Routes>
