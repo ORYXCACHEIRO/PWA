@@ -18,7 +18,13 @@ const SignIn = () => {
             .then((response) => {
                 console.log(response);
                 if (response) {
-                    setrt(true);
+                    fetch('http://127.0.0.1:5000/auth/me', {
+                        headers: { 'Accept': 'application/json' }
+                    })
+                    .then((r) => {
+                        console.log(r)
+                    })
+                    
                 }
                 else {
                     alert("Ta dificil")
@@ -27,6 +33,7 @@ const SignIn = () => {
 
 
     }
+
 
     if (rt) {
         return <Navigate to='/' />

@@ -11,7 +11,6 @@ function Header() {
   
   return (
     <>
-    
       <div className="m-3 ml-4 mr-4 rounded-t-2xl flex bg-gray-900 h-12 relative">
         <UpperHeader/>
       </div>

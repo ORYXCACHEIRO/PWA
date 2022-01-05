@@ -18,8 +18,8 @@ const SignUp = () => {
         })
             .then(r => r.json())
             .then((response) => {
-                console.log(response);
-                if (response) {
+                console.log(response.auth);
+                if (response.auth) {
                     setrt(true);
                 }
                 else {
