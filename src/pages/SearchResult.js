@@ -12,10 +12,7 @@ const query = new URLSearchParams(search).get('s');
 
 const SearchResPage = () => {
 
-
     const [userData, setUserData] = useState([])
-
-
 
     useEffect(() => {
         fetch('http://127.0.0.1:5000/search/hotel/' + query , {
@@ -25,8 +22,7 @@ const SearchResPage = () => {
         .then(response => response.json())
         .then(data => setUserData(data))
 
-
-}, []);
+    }, []);
 
 
 
@@ -41,7 +37,7 @@ return (
                 <Filter />
             </div>
             <div className=" w-3/4 md:w-full">
-                <Result hoteis = {userData}  />
+                <Result hoteis={userData}  />
             </div>
         </div>
     </>

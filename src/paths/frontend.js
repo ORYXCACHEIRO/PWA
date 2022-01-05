@@ -1,6 +1,6 @@
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
-import {Route, Routes} from "react-router-dom";
+import {Route, Routes, useLocation, Navigate} from "react-router-dom";
 
 import Homepage from "../pages/Homepage";
 import SearchResPage from "../pages/SearchResult";
@@ -9,12 +9,36 @@ import SignUp from "../pages/SignUp";
 import ForgotPass from "../pages/ForgotPass";
 import Profile from "../pages/Profile";
 import Hotel from "../pages/Hotel";
+import { useEffect } from "react";
 
 const Frontend = () => {
 
+    var location = useLocation().pathname;
+    
+    useEffect(() => {
+        fetch('/auth/me', {
+            headers: {'Accept': 'application/json'}
+        })
+        .then((response) => response.json())
+        .then((response) => {
+            if(response.auth===true){
+                console.log(response.decoded.role)
+                switch(response.decoded.role){
+                    case 1:
+                        console.log("112")
+                        return <Navigate to="/employee/"/>
+                    case 2:
+                        console.log("111")
+                        return <Navigate to="/admin/"/>
+                }
+            }
+        });
+    }, [location]);
+    
+
     return(
         <>
-            <Header/>
+            <Header />
                 <Routes>
                     <Route path="/" exact element={<Homepage/>}/>
                     <Route path="/search/:query" exact element={<SearchResPage/>}/>

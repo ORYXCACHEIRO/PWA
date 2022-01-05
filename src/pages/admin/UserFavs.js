@@ -1,4 +1,4 @@
-import { Table, Tag, Space, Popconfirm } from 'antd';
+import { Table, Space, Popconfirm } from 'antd';
 import { Link } from 'react-router-dom';
 
 const UserFavs = () => {

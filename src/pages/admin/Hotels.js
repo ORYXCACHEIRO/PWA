@@ -1,4 +1,4 @@
-import { Table, Tag, Space, Popconfirm } from 'antd';
+import { Table, Space, Popconfirm } from 'antd';
 import { Link, useLocation } from 'react-router-dom';
 import ReactStars from "react-rating-stars-component";
 import { FaPlus } from 'react-icons/fa';
