@@ -16,7 +16,7 @@ const Frontend = () => {
     var location = useLocation().pathname;
 
 
-    const [roleResponse, setRoleRespose] = useState(false);
+    const [roleResponse, setRoleRespose] = useState(0);
     
     useEffect(() => {
         fetch('/auth/me', {
@@ -25,7 +25,6 @@ const Frontend = () => {
         .then((response) => response.json())
         .then((response) => {
             if(response.auth===true){
-                console.log(response.decoded.role)
                 switch(response.decoded.role){
                     case 1:
                        setRoleRespose(1)
@@ -33,16 +32,16 @@ const Frontend = () => {
                         setRoleRespose(2)
                 }
             }
+        }).catch((err) => {
+            
         });
     }, [location]);
 
     if(roleResponse){
         switch(roleResponse){
             case 1:
-                console.log("112")
                 return <Navigate to="/employee/"/>
             case 2:
-                console.log("111")
                 return <Navigate to="/admin/"/>
  
         }

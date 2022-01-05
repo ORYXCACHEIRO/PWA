@@ -22,7 +22,7 @@ const Languages = () => {
                 <Popconfirm size="middle"  title="Sure to delete?" onConfirm={() => this.handleDelete(record.key)}>
                     <button className='bg-red-500 p-2 rounded-xl text-white font-medium'>Delete</button>
                 </Popconfirm>
-                <Link to={location+"/edit/"+record.key} className='bg-gray-800 p-2 rounded-xl text-white font-medium'>
+                <Link to={location+"/"+record.key} className='bg-gray-800 p-2 rounded-xl text-white font-medium'>
                     Edit
                 </Link>
             </Space>

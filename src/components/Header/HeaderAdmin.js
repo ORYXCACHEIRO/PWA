@@ -16,7 +16,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-const HeaderAdmin = () => {
+const HeaderAdmin = ({logStatus}) => {
 
     const location = useLocation().pathname;
 
@@ -28,6 +28,20 @@ const HeaderAdmin = () => {
         if(item.href.toLocaleLowerCase().localeCompare(location.toLocaleLowerCase())==false ){
             item.current = true;
         }
+    }
+
+    const onClickLogout = () => {
+        fetch('/auth/logout', {
+            headers: {'Accept': 'application/json'}
+        })
+        .then((response) => response.json())
+        .then((response) => {
+            if(response.logout){
+                logStatus(false);
+            }
+        }).catch(() => {
+            logStatus(false);
+        });
     }
 
     return(
@@ -113,12 +127,12 @@ const HeaderAdmin = () => {
                                 </a>
                             </Menu.Item>
                             <Menu.Item>
-                                <a
-                                    href="#"
+                                <button
+                                    onClick={onClickLogout}
                                     className=' block px-4 py-2 text-sm text-gray-700'
                                 >
                                     Log out
-                                </a>
+                                </button>
                             </Menu.Item>
                             </Menu.Items>
                         </Transition>

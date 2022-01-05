@@ -12,7 +12,7 @@ const Hotels = () => {
         title: 'Hotel',
         dataIndex: 'hotel',
         key: 'hotel',
-        render: (text, record) => (<Link to={location+"/edit/"+record.key}>{text}</Link>),
+        render: (text, record) => (<Link to={location+"/"+record.key}>{text}</Link>),
     },
     {
         title: 'Rating',
@@ -66,7 +66,7 @@ const Hotels = () => {
             <Popconfirm size="middle"  title="Sure to delete?" onConfirm={() => this.handleDelete(record.key)}>
                 <button className='bg-red-500 p-2 rounded-xl text-white font-medium'>Delete</button>
             </Popconfirm>
-            <Link to={location+"/edit/"+record.key} className='bg-gray-800 p-2 rounded-xl text-white font-medium'>
+            <Link to={location+"/"+record.key} className='bg-gray-800 p-2 rounded-xl text-white font-medium'>
                 Edit
             </Link>
         </Space>
@@ -102,7 +102,7 @@ const Hotels = () => {
         <>
             <div className="h-full relative">
                 <div className=' absolute top-1/4 left-2/4 translate-x-[-50%] translate-y-[-25%]  w-full px-10 sm:px-0'>
-                    <Link to="/admin/hotel/create" className='bg-gray-800 p-3 text-white rounded-lg text-lg sm:ml-2 flex items-center w-max gap-2'>
+                    <Link to="/admin/hotels/create" className='bg-gray-800 p-3 text-white rounded-lg text-lg sm:ml-2 flex items-center w-max gap-2'>
                         Create Hotel
                         <FaPlus/>
                     </Link>
