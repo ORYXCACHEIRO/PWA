@@ -27,7 +27,6 @@ import HotelComs from "../pages/admin/HotelComs";
 import HotelLangs from "../pages/admin/HotelLangs";
 import HotelGallery from "../pages/admin/HotelGallery";
 
-
 const Admin = () => {
 
     const [valid, setValid] = useState(true);

@@ -18,7 +18,7 @@ const ForgotPass = () => {
     const recoverPass = (data) => {
         console.log(data)
         console.log("ganza")
-        fetch(`/auth/recover/`  key, {
+        fetch(`/auth/recover/${key}`, {
             headers: {'Content-type': 'application/json'},
             method: 'POST',
             body: JSON.stringify(data)
