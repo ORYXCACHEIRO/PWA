@@ -17,6 +17,7 @@ const Header = ({ userName }) => {
         defaultHeader = false
         signedin = true
       }
+
   
   const onClickLogout = () => {
     fetch('/auth/logout', {
@@ -62,26 +63,26 @@ const Header = ({ userName }) => {
                       <path fillRule="evenodd" d="M3 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1zm7.707 3.293a1 1 0 010 1.414L9.414 9H17a1 1 0 110 2H9.414l1.293 1.293a1 1 0 01-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
                   </Link>
-                  <Link to="/signup" className="flex items-center justify-center w-max shadow-lg transition duration-300 ease-in-out bg-gray-900 font-bold text-lg p-3 pl-4 pr-4 lg:p-5  rounded-3xl text-white space-x-1 hover:bg-gray-700 lg:mr-2">
+                  <button className="flex items-center justify-center w-max shadow-lg transition duration-300 ease-in-out bg-gray-900 font-bold text-lg p-3 pl-4 pr-4 lg:p-5  rounded-3xl text-white space-x-1 hover:bg-gray-700 lg:mr-2">
                     <span className=" lg:text-sm lg:hidden">
                       Sign Up
                     </span>
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 lg:text-sm md:mr-auto md:ml-auto md:block" viewBox="0 0 20 20" fill="currentColor">
                       <path fillRule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z" clipRule="evenodd" />
                     </svg>
-                  </Link>
+                  </button>
                 </div>
               </div>
             }
              {signedin &&
             <div className=" h-full">
               <div className="flex justify-end items-center w-max space-x-2 pr-10 xl:pr-2 lg:pr-8 float-right gap-5 xl:gap-0  h-full">
-                <button type="button" className="flex items-center justify-center w-max shadow-lg transition duration-300 ease-in-out bg-gray-900 font-bold text-lg p-3 pl-4 pr-4  rounded-3xl text-white space-x-1 hover:bg-gray-700 lg:mr-2">
+                <Link to="/profile" type="button" className="flex items-center justify-center w-max shadow-lg transition duration-300 ease-in-out bg-gray-900 font-bold text-lg p-3 pl-4 pr-4  rounded-3xl text-white space-x-1 hover:bg-gray-700 lg:mr-2">
                   <span className="lg:hidden">
-                    {userName}
+                    {userName.name}
                   </span>
                   <img src={mainLogo} className=" h-10 w-10 rounded-full" alt="" />
-                </button>
+                </Link>
                 <button onClick={onClickLogout} type="button" className="flex items-center justify-center w-max shadow-lg transition duration-300 ease-in-out bg-red-700 font-bold text-lg p-5 pl-5 pr-5  rounded-3xl text-white space-x-1 hover:bg-gray-700 lg:mr-9">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 lg:text-sm md:mr-auto md:ml-auto md:block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />

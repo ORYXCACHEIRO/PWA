@@ -1,24 +1,47 @@
 import {FaTrash} from 'react-icons/fa';
 import hotelImg from '../../assets/exterior.jpg';
 
-const Reservations = () => {
+import { useEffect } from "react";
+import React, { useState } from "react";
+
+const Reservations = ({userid}) => {
+
+    const [reservaData, setreservaData] = useState([]);
+    
+
+
+    useEffect(() => {
+        fetch(`/profile/reservations/${userid}`  , {
+            method: 'GET',
+            headers: { 'Accept': 'application/json' }
+        })
+        .then(response => response.json())
+        .then(data => setreservaData(data))
+
+        console.log(reservaData)
+
+    }, []);
+
+
+
 
     return(
         <>
             <h1 className='text-center text-4xl font-bold p-3'>Reservations</h1>
-            <div className=' bg-gray-800  rounded-lg mt-5 p-1'>
+            {reservaData.map((reserva) => (
+            <div key={reserva.id} className=' bg-gray-800  rounded-lg mt-5 p-1'>
                 <div className='border-3 border-purple-500 m-4 p-3 rounded-xl flex'>
                     <div className='w-max xl:hidden'>
                         <img src={hotelImg} alt='' className='rounded-xl w-40'/>
                     </div>
                     <div className='w-full flex lg:flex-col lg:gap-3 lg:pt-4'>
                         <div className=' w-max lg:w-full flex flex-col justify-center px-5 ml-3 lg:ml-0'>
-                            <h1 className='font-bold text-2xl text-center '><span className='text-purple-500'>Hotel Cidnay</span></h1>
+                            <h1 className='font-bold text-2xl text-center '><span className='text-purple-500'>{reserva.total_price}€ </span></h1>
                             <h1 className='font-bold text-xl text-center text-white'>Santo Tirso</h1>
                         </div>
                         <div className=' w-max lg:w-full flex flex-col justify-center px-5  '>
-                            <h1 className='font-bold text-lg text-center text-white'><span className='text-purple-500'>Begins</span> 20 / 02 / 2021</h1>
-                            <h1 className='font-bold text-lg text-center text-white'><span className='text-purple-500'>Ends</span> 20 / 02 / 2021</h1>
+                            <h1 className='font-bold text-lg text-center text-white'><span className='text-purple-500'>Begins</span> {reserva.begin_date}</h1>
+                            <h1 className='font-bold text-lg text-center text-white'><span className='text-purple-500'>Ends</span> {reserva.end_date}</h1>
                         </div>
                         <div className=' w-max lg:w-full flex flex-col justify-center px-5  '>
                             <h1 className='font-bold text-lg text-center text-white'><span className='text-purple-500'>Adults</span> 2</h1>
@@ -30,6 +53,7 @@ const Reservations = () => {
                     </div>
                 </div>
             </div>
+              ))}
         </>
     )
 
