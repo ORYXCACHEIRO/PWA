@@ -7,10 +7,14 @@ import React, { useState } from "react";
 
 const Reviews = ({ userid }) => {
 
+    console.log(userid)
+
+    let userData = userid;
+
     const [reviewData, setreviewData] = useState([]);
 
     useEffect(() => {
-        fetch(`/profile/reviews/${userid}`, {
+        fetch(`/profile/reviews/${userData.id}`, {
             method: 'GET',
             headers: { 'Accept': 'application/json' }
         })

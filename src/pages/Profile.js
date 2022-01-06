@@ -9,10 +9,10 @@ import Reservations from '../components/Profile/Reservations';
 import Favorites from '../components/Profile/Favorites';
 import Reviews from '../components/Profile/Reviews';
 
-const Profile = () => {
+const Profile = ({ userName }) => {
 
+    console.log(userName)
 
-    const [roleResponse, setRoleRespose] = useState(0);
     const [userData, setuserData] = useState([]);
 
 
@@ -31,6 +31,8 @@ const Profile = () => {
         });
     },[]);
 
+
+    console.log(userData)
 
     const {register, handleSubmit} = useForm();
 
@@ -89,13 +91,13 @@ const Profile = () => {
                     </div>
                 </div>
                 <div className='w-3/4'>
-                    <Reservations userid={userData.id} />
+                    <Reservations userid={userData} />
                 </div>
                 <div className='w-3/4'>
                     <Favorites />
                 </div>
                 <div className='w-3/4'>
-                    <Reviews userid={userData.id}/>
+                    <Reviews userid={userData}/>
                 </div>
             </div>
         </>

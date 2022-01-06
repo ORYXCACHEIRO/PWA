@@ -8,10 +8,12 @@ const Reservations = ({userid}) => {
 
     const [reservaData, setreservaData] = useState([]);
     
+    console.log(userid)
 
+    let userData = userid;
 
     useEffect(() => {
-        fetch(`/profile/reservations/${userid}`  , {
+        fetch(`/profile/reservations/${userData.id}`  , {
             method: 'GET',
             headers: { 'Accept': 'application/json' }
         })
@@ -29,7 +31,7 @@ const Reservations = ({userid}) => {
         <>
             <h1 className='text-center text-4xl font-bold p-3'>Reservations</h1>
             {reservaData.map((reserva) => (
-            <div key={reserva.id} className=' bg-gray-800  rounded-lg mt-5 p-1'>
+            <div key={reserva._id} className=' bg-gray-800  rounded-lg mt-5 p-1'>
                 <div className='border-3 border-purple-500 m-4 p-3 rounded-xl flex'>
                     <div className='w-max xl:hidden'>
                         <img src={hotelImg} alt='' className='rounded-xl w-40'/>

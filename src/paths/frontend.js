@@ -30,6 +30,8 @@ const Frontend = () => {
                 setuserName(response.decoded)
                 switch(response.decoded.role){
                     case 1:
+                        setuserName(response.decoded)
+                        console.log(userName)
                        setRoleRespose(1)
                     case 2:
                         setRoleRespose(2)
