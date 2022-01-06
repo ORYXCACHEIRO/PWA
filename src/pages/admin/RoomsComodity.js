@@ -1,10 +1,10 @@
 import { Table, Space, Popconfirm } from 'antd';
 import { FaPlus } from 'react-icons/fa';
+import AddComodityRoom from '../../components/Hotel/admin/AddComodityRoom';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import AddPicHotel from '../../components/Hotel/admin/AddPicHotel';
 
-const HotelGallery = () => {
+const RoomsComodity = () => {
 
     const [showForm, setShowForm] = useState(false);
 
@@ -14,9 +14,14 @@ const HotelGallery = () => {
 
     const columns = [
         {
-            title: 'Picture',
-            dataIndex: 'pic',
-            key: 'pic'
+            title: 'Name',
+            dataIndex: 'name',
+            key: 'name'
+        },
+        {
+            title: 'Type',
+            dataIndex: 'type',
+            key: 'type'
         },
         {
             title: 'Action',
@@ -35,15 +40,18 @@ const HotelGallery = () => {
     const data = [
         {
             key: '1',
-            pic: 'John Brown'
+            name: 'John Brown',
+            type: 'Free'
         },
         {
             key: '2',
-            pic: 'Jim Green'
+            name: 'Jim Green',
+            type: 'Free'
         },
         {
             key: '3',
-            pic: 'Joe Black'
+            name: 'Joe Black',
+            type: 'Free'
         }
     ];
 
@@ -53,14 +61,14 @@ const HotelGallery = () => {
                 <div className=' absolute top-1/4 left-2/4 translate-x-[-50%] translate-y-[-25%]  w-full px-10 sm:px-0'>
                     <div className='flex gap-4'>
                         <button onClick={onClickShowForm} className='bg-gray-800 p-3 text-white rounded-lg text-lg sm:ml-2 flex items-center w-max gap-2'>
-                            Add Picture
+                            Add Comodity
                             <FaPlus/>
                         </button>
-                        <Link to="/admin/hotels/1" className='bg-gray-800 p-3 text-white rounded-lg text-lg sm:ml-2 flex items-center w-max gap-2'>
-                            Back to Hotel
+                        <Link to="/admin/hotels/1/rooms/1" className='bg-gray-800 p-3 text-white rounded-lg text-lg sm:ml-2 flex items-center w-max gap-2'>
+                            Back to Room
                         </Link>
                     </div>
-                    {showForm && <AddPicHotel/>}
+                    {showForm && <AddComodityRoom/>}
                     <Table columns={columns} dataSource={data} className='border-2 p-1 mt-5'/>
                 </div>
             </div>
@@ -69,4 +77,4 @@ const HotelGallery = () => {
 
 }
 
-export default HotelGallery;
+export default RoomsComodity;

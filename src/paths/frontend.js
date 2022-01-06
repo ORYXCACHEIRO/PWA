@@ -30,11 +30,13 @@ const Frontend = () => {
                 setuserName(response.decoded)
                 switch(response.decoded.role){
                     case 1:
-                        setuserName(response.decoded)
-                        console.log(userName)
-                       setRoleRespose(1)
+                       setRoleRespose(1);
+                       break;
                     case 2:
-                        setRoleRespose(2)
+                        setRoleRespose(2);
+                        break;
+                    default:
+                        break;
                 }
             }
         }).catch((err) => {
@@ -48,6 +50,8 @@ const Frontend = () => {
                 return <Navigate to="/employee/"/>
             case 2:
                 return <Navigate to="/admin/"/>
+            default:
+                break;
  
         }
     }

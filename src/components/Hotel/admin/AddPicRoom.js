@@ -1,4 +1,4 @@
-const AddPicHotel = () => {
+const AddPicRoom = () => {
 
     return(
         <>
@@ -15,4 +15,4 @@ const AddPicHotel = () => {
 
 }
 
-export default AddPicHotel;
+export default AddPicRoom;

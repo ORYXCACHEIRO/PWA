@@ -2,9 +2,9 @@ import { Table, Space, Popconfirm } from 'antd';
 import { FaPlus } from 'react-icons/fa';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import AddPicHotel from '../../components/Hotel/admin/AddPicHotel';
+import AddPicRoom from '../../components/Hotel/admin/AddPicRoom';
 
-const HotelGallery = () => {
+const RoomsGallery = () => {
 
     const [showForm, setShowForm] = useState(false);
 
@@ -56,11 +56,11 @@ const HotelGallery = () => {
                             Add Picture
                             <FaPlus/>
                         </button>
-                        <Link to="/admin/hotels/1" className='bg-gray-800 p-3 text-white rounded-lg text-lg sm:ml-2 flex items-center w-max gap-2'>
-                            Back to Hotel
+                        <Link to="/admin/hotels/1/rooms/1" className='bg-gray-800 p-3 text-white rounded-lg text-lg sm:ml-2 flex items-center w-max gap-2'>
+                            Back to Room
                         </Link>
                     </div>
-                    {showForm && <AddPicHotel/>}
+                    {showForm && <AddPicRoom/>}
                     <Table columns={columns} dataSource={data} className='border-2 p-1 mt-5'/>
                 </div>
             </div>
@@ -69,4 +69,4 @@ const HotelGallery = () => {
 
 }
 
-export default HotelGallery;
+export default RoomsGallery;

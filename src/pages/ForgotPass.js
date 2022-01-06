@@ -28,6 +28,8 @@ const ForgotPass = () => {
             case 2:
                 console.log("111")
                 return <Navigate to="/"/>
+            default:
+                break;
  
         }
     }
