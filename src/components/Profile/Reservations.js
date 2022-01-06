@@ -9,6 +9,7 @@ const Reservations = ({userid}) => {
     const [reservaData, setreservaData] = useState([]);
     
     console.log(userid)
+    console.log(userid)
 
     useEffect(() => {
         fetch(`/profile/reservations/${userid.id}`  , {

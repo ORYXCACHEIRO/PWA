@@ -1,7 +1,25 @@
-import {FaTrash} from 'react-icons/fa';
+import { FaTrash } from 'react-icons/fa';
 import teste from '../../assets/exterior.jpg';
 
-const Favorites = () => {
+
+import { useEffect } from "react";
+import React, { useState } from "react";
+
+const Favorites =  ({ userid }) => {
+
+    const [favoriteData, setfavoriteData] = useState([]);
+
+    useEffect(() => {
+        fetch(`/profile/reviews`, {
+            method: 'GET',
+            headers: { 'Accept': 'application/json' }
+        })
+            .then(response => response.json())
+            .then(data => setfavoriteData(data))
+
+        console.log(favoriteData)
+
+    }, []);
 
     return(
         <>

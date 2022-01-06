@@ -20,6 +20,8 @@ const Recomended = () => {
 
     }, []);
 
+    console.log(hotelData)
+
     return (
         <>
             <div className="ml-4 mr-4">
@@ -34,7 +36,7 @@ const Recomended = () => {
                                 <div className="bg-gray-900 h-96 w-96 absolute left-7 top-7 rounded-lg ">
                                     <div className='relative'>
                                         <div className="top-1 right-[0.15rem] absolute">
-                                            <AddFav />
+                                            <AddFav hotelData={hotel._id} />
                                         </div>
                                         <Link to="/hotel/1">
                                             <div className="p-10">
