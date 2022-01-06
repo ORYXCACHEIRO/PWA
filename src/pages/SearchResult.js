@@ -30,7 +30,6 @@ return (
         <div className="mt-10">
             <h1 className="font-bold text-5xl text-center">Search result with <span className="text-purple-500">{query}</span>.</h1>
         </div>
-        <h1></h1>
         <div className="pt-10 flex md:flex-col">
             <div className=" w-1/4 xl:w-max md:w-full">
                 <Filter />

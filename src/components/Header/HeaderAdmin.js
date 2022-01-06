@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { FaTimes, FaBars } from 'react-icons/fa';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 
 const navigation = [
@@ -25,7 +25,7 @@ const HeaderAdmin = ({logStatus}) => {
     ));
 
     function actualPage(item){
-        if(item.href.toLocaleLowerCase().localeCompare(location.toLocaleLowerCase())==false ){
+        if(item.href.toLocaleLowerCase().localeCompare(location.toLocaleLowerCase())===false ){
             item.current = true;
         }
     }
@@ -119,12 +119,12 @@ const HeaderAdmin = ({logStatus}) => {
                         >
                             <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                             <Menu.Item>
-                                <a
-                                    href="#"
+                                <Link
+                                    to="/admin/profile"
                                     className=' block px-4 py-2 text-sm text-gray-700'
                                 >
                                     Profile
-                                </a>
+                                </Link>
                             </Menu.Item>
                             <Menu.Item>
                                 <button
@@ -164,7 +164,7 @@ const HeaderAdmin = ({logStatus}) => {
             </Disclosure>
             <header className="bg-white shadow">
                 <div className="max-w-7xl mx-auto py-5 px-4 sm:px-6 lg:px-8">
-                    <h1 className="text-4xl font-bold text-gray-900 pl-2">{navigation.filter(item => item.current==true).map((item) => (item.name))}</h1>
+                    <h1 className="text-4xl font-bold text-gray-900 pl-2">{navigation.filter(item => item.current===true).map((item) => (item.name))}</h1>
                 </div>
             </header>
         </> 

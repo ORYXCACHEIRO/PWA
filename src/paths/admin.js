@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import FooterAdmin from "../components/Footer/FooterAdmin";
 import HeaderAdmin from "../components/Header/HeaderAdmin";
 import Homepage from "../pages/admin/Homepage";
+import Profile from "../pages/admin/Profile";
 
 import UserFavs from "../pages/admin/UserFavs";
 import UserReviews from "../pages/admin/UserReviews";
@@ -26,6 +27,14 @@ import HotelReviews from "../pages/admin/HotelReviews";
 import HotelComs from "../pages/admin/HotelComs";
 import HotelLangs from "../pages/admin/HotelLangs";
 import HotelGallery from "../pages/admin/HotelGallery";
+import HotelRooms from "../pages/admin/HotelRooms";
+
+import RoomsEdit from "../pages/admin/RoomsEdit";
+import RoomCreate from "../pages/admin/RoomCreate";
+import RoomsReservations from "../pages/admin/RoomsReservations";
+import RoomsComodity from "../pages/admin/RoomsComodity";
+import RoomsGallery from "../pages/admin/RoomsGallery";
+
 
 const Admin = () => {
 
@@ -39,14 +48,19 @@ const Admin = () => {
         })
         .then((response) => response.json())
         .then((response) => {
-            if(response.auth===false || (response.auth===true && response.decoded.role!=2)){
+            if(response.auth===false || (response.auth===true && response.decoded.role!==2)){
                 setValid(false);
                 if(response.auth===true){
                     switch(response.decoded.role){
                         case 0:
                            setRoleRespose(0)
+                           break;
                         case 1:
                             setRoleRespose(1)
+                            break;
+                        default:
+                            setRoleRespose(2)
+                            break;
                     }
                 }
             }
@@ -72,6 +86,7 @@ const Admin = () => {
             <HeaderAdmin logStatus={setValid}/>
                 <Routes>
                     <Route path="/" exact  element={<Homepage/>}/>
+                    <Route path="/profile" exact  element={<Profile/>}/>
                     <Route path="/users" exact  element={<Users/>}/>
                     <Route path="/users/:userid" exact  element={<UsersDet/>}/>
                     <Route path="/users/:userid/reviews" exact  element={<UserReviews/>}/>
@@ -90,6 +105,12 @@ const Admin = () => {
                     <Route path="/hotels/:hotelid/comodities" exact  element={<HotelComs/>}/>
                     <Route path="/hotels/:hotelid/languages" exact  element={<HotelLangs/>}/>
                     <Route path="/hotels/:hotelid/gallery" exact  element={<HotelGallery/>}/>
+                    <Route path="/hotels/:hotelid/rooms" exact  element={<HotelRooms/>}/>
+                    <Route path="/hotels/:hotelid/rooms/:roomid" exact  element={<RoomsEdit/>}/>
+                    <Route path="/hotels/:hotelid/rooms/create" exact  element={<RoomCreate/>}/>
+                    <Route path="/hotels/:hotelid/rooms/:roomid/reservations" exact  element={<RoomsReservations/>}/>
+                    <Route path="/hotels/:hotelid/rooms/:roomid/comodities" exact  element={<RoomsComodity/>}/>
+                    <Route path="/hotels/:hotelid/rooms/:roomid/gallery" exact  element={<RoomsGallery/>}/>
                 </Routes>
             <FooterAdmin/>
         </>

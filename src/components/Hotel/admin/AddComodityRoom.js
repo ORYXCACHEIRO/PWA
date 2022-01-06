@@ -1,10 +1,12 @@
-const AddPicHotel = () => {
+const AddComodityRoom = () => {
 
     return(
         <>
             <div>
                 <form className="pt-5 flex gap-5">
-                    <input type="file" className="p-3 px-6 border" />
+                    <select className="p-2 px-6">
+                        <option>aaaaaaaaaa</option>    
+                    </select>
                     <button className="bg-green-400 p-3 rounded-lg text-white">
                         Confirm
                     </button>
@@ -15,4 +17,4 @@ const AddPicHotel = () => {
 
 }
 
-export default AddPicHotel;
+export default AddComodityRoom;

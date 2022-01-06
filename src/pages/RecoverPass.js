@@ -1,5 +1,4 @@
 import {useForm} from 'react-hook-form';
-import { useState } from "react";
 
 const ForgotPass = () => {
 
@@ -16,8 +15,6 @@ const ForgotPass = () => {
 
 
     const recoverPass = (data) => {
-        console.log(data)
-        console.log("ganza")
         fetch(`/auth/recover/${key}`, {
             headers: {'Content-type': 'application/json'},
             method: 'POST',

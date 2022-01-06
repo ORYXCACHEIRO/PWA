@@ -1,4 +1,4 @@
-import {FaStar, FaPhotoVideo, FaBook, FaWifi, FaLanguage, FaBed} from 'react-icons/fa';
+import {FaStar, FaPhotoVideo, FaWifi, FaLanguage, FaBed} from 'react-icons/fa';
 import {Link, useLocation} from 'react-router-dom';
 
 const HotelEdit = () => {
@@ -45,6 +45,13 @@ const HotelEdit = () => {
                                 <input className="border-2 p-2 rounded" type="file"/>
                             </div>
                             <div className="flex flex-col gap-2">
+                                <label className="font-medium text-lg">State</label>
+                                <select className="border-2 p-2 rounded">
+                                    <option value={0}>Not visible</option>
+                                    <option value={1}>Visible</option>
+                                </select>
+                            </div>
+                            <div className="flex flex-col gap-2">
                                 <button className="bg-gray-800 mx-8 p-2 rounded-lg text-white font-medium transition ease-out duration-100 hover:bg-gray-600" type="submit">Edit</button>
                             </div>
                         </form>
@@ -59,10 +66,6 @@ const HotelEdit = () => {
                     <Link to={location + "/gallery"} className=" w-80 h-96 items-center justify-center flex gap-2 text-3xl font-semibold bg-gray-800 text-white rounded-lg transition ease-out duration-100 hover:bg-gray-600">
                         <FaPhotoVideo className=''/>
                         Gallery
-                    </Link>
-                    <Link to={location + "/reservations"} className=" w-80 h-96 items-center justify-center flex gap-2 text-3xl font-semibold bg-gray-800 text-white rounded-lg transition ease-out duration-100 hover:bg-gray-600">
-                        <FaBook className=''/>
-                        Reservations
                     </Link>
                     <Link to={location + "/comodities"} className=" w-80 h-96 items-center justify-center flex gap-2 text-3xl font-semibold bg-gray-800 text-white rounded-lg transition ease-out duration-100 hover:bg-gray-600">
                         <FaWifi className=''/>
