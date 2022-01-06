@@ -1,20 +1,12 @@
 import teste from '../../assets/exterior.jpg';
-import { starFilled, starNotFilled } from '../../utils/icons';
 import { FaBed } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { useEffect } from "react";
 import React, { useState } from "react";
-
 import AddFav from '../Hotel/AddFav';
+import HotelRating from '../Hotel/HotelRating';
 
 const Recomended = () => {
-
-    let arrayStar = [starFilled, starFilled, starFilled, starFilled, starNotFilled];
-
-    const listItems = arrayStar.map((star, index) =>
-        <div key={index}>{star}</div>
-    );
-
 
     const [hotelData, sethotelData] = useState([])
 
@@ -50,7 +42,7 @@ const Recomended = () => {
                                             </div>
                                             <div className=' -mt-5 flex gap-5 '>
                                                 <div className='flex  w-max ml-7  items-center'>
-                                                    {listItems}
+                                                <HotelRating category={hotel.category}/>
                                                 </div>
                                                 <div className=' w-max flex  justify-center items-center gap-2 text-white text-lg font-medium'>
                                                     <span>99</span>
@@ -58,7 +50,7 @@ const Recomended = () => {
                                                 </div>
                                             </div>
                                             <div className='mt-2'>
-                                                <h2 className='text-white font-medium text-2xl ml-7  break-words'>{hotel.name}</h2>
+                                                <h2 className='text-white font-medium text-2xl m-0 ml-7  break-words '>{hotel.name}</h2>
                                                 <h2 className='text-purple-400 font-medium text-lg ml-7 '>{hotel.city}</h2>
                                             </div>
                                         </Link>

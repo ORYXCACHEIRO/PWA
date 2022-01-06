@@ -9,7 +9,6 @@ const ForgotPass = () => {
     const [forgotSuccess, setForgotSuccess] = useState(0);
 
     const forgotPass = (data) => {
-        console.log("ganza")
         fetch('/auth/recover', {
             headers: {'Content-type': 'application/json'},
             method: 'POST',
@@ -23,10 +22,8 @@ const ForgotPass = () => {
     if(forgotSuccess){
         switch(forgotSuccess){
             case 0:
-                console.log("112")
                 return <Navigate to="/forgotpass"/>
             case 2:
-                console.log("111")
                 return <Navigate to="/"/>
             default:
                 break;
