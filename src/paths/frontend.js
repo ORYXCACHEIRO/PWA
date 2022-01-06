@@ -27,7 +27,7 @@ const Frontend = () => {
         .then((response) => response.json())
         .then((response) => {
             if(response.auth===true){
-                setuserName(response.decoded.name)
+                setuserName(response.decoded)
                 switch(response.decoded.role){
                     case 1:
                        setRoleRespose(1);
