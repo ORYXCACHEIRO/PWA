@@ -1,6 +1,6 @@
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
-import {Route, Routes, useLocation, Navigate} from "react-router-dom";
+import { Route, Routes, useLocation, Navigate } from "react-router-dom";
 
 import Homepage from "../pages/Homepage";
 import SearchResPage from "../pages/SearchResult";
@@ -19,59 +19,66 @@ const Frontend = () => {
 
     const [roleResponse, setRoleRespose] = useState(0);
     const [userName, setuserName] = useState("");
-    
+
     useEffect(() => {
         fetch('/auth/me', {
-            headers: {'Accept': 'application/json'}
+            headers: { 'Accept': 'application/json' }
         })
-        .then((response) => response.json())
-        .then((response) => {
-            if(response.auth===true){
-                setuserName(response.decoded)
-                switch(response.decoded.role){
-                    case 1:
+            .then((response) => response.json())
+            .then((response) => {
+                if (response.auth === true) {
+                    setuserName(response.decoded)
+                    if (response.decoded.role === 0) {
                         setuserName(response.decoded)
-                        setRoleRespose(1)
-                    case 2:
-                        setRoleRespose(2);
-                        break;
-                    default:
-                        break;
+                        setRoleRespose(0)
+                    }
+                    else {
+
+                        if (response.decoded.role === 1) {
+                            setuserName(response.decoded)
+                            setRoleRespose(1)
+                        }
+                        else{
+                            setuserName(response.decoded)
+                            setRoleRespose(2);
+                        }
+                    }              
                 }
-            }
-        }).catch((err) => {
-            
-        });
+            }).catch((err) => {
+
+            });
     }, [location]);
 
-    if(roleResponse){
-        switch(roleResponse){
+    if (roleResponse) {
+        switch (roleResponse) {
+            case 0:
+                return <Navigate to="/" />
             case 1:
-                return <Navigate to="/employee/"/>
+                return <Navigate to="/employee/" />
             case 2:
-                return <Navigate to="/admin/"/>
+                return <Navigate to="/admin/" />
             default:
                 break;
- 
+
         }
     }
 
-    
 
-    return(
+
+    return (
         <>
             <Header userName={userName} />
-                <Routes>
-                    <Route path="/" exact element={<Homepage/>}/>
-                    <Route path="/search/:query" exact element={<SearchResPage/>}/>
-                    <Route path="/signin" exact element={<SignIn/>}/>
-                    <Route path="/signup" exact element={<SignUp/>}/>
-                    <Route path="/forgotpass" exact element={<ForgotPass/>}/>
-                    <Route path="/recoverpass/:key" exact element={<RecoverPass/>}/>
-                    <Route path="/profile" exact element={<Profile/>}/>
-                    <Route path="/hotel/:id" exact element={<Hotel/>}/>
-                </Routes>
-            <Footer/>
+            <Routes>
+                <Route path="/" exact element={<Homepage />} />
+                <Route path="/search/:query" exact element={<SearchResPage />} />
+                <Route path="/signin" exact element={<SignIn />} />
+                <Route path="/signup" exact element={<SignUp />} />
+                <Route path="/forgotpass" exact element={<ForgotPass />} />
+                <Route path="/recoverpass/:key" exact element={<RecoverPass />} />
+                <Route path="/profile" exact element={<Profile />} />
+                <Route path="/hotel/:id" exact element={<Hotel />} />
+            </Routes>
+            <Footer />
         </>
     )
 
