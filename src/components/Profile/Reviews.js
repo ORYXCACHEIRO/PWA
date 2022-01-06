@@ -9,12 +9,10 @@ const Reviews = ({ userid }) => {
 
     console.log(userid)
 
-    let userData = userid;
-
     const [reviewData, setreviewData] = useState([]);
 
     useEffect(() => {
-        fetch(`/profile/reviews/${userData.id}`, {
+        fetch(`/profile/reviews/${userid.id}`, {
             method: 'GET',
             headers: { 'Accept': 'application/json' }
         })

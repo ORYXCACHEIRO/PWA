@@ -10,10 +10,8 @@ const Reservations = ({userid}) => {
     
     console.log(userid)
 
-    let userData = userid;
-
     useEffect(() => {
-        fetch(`/profile/reservations/${userData.id}`  , {
+        fetch(`/profile/reservations/${userid.id}`  , {
             method: 'GET',
             headers: { 'Accept': 'application/json' }
         })

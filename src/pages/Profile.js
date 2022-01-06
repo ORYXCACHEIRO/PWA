@@ -15,7 +15,7 @@ const Profile = ({ userName }) => {
 
     const [userData, setuserData] = useState([]);
 
-
+console.log(userData)
     
     useEffect(() => {
         fetch('/auth/me', {
