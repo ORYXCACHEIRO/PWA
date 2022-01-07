@@ -48,21 +48,10 @@ const Admin = () => {
         })
         .then((response) => response.json())
         .then((response) => {
-            if(response.auth===false || (response.auth===true && response.decoded.role!==2)){
+            if(response.auth===false || (response.auth===true && response.decoded.role===0)){
                 setValid(false);
-                if(response.auth===true){
-                    switch(response.decoded.role){
-                        case 0:
-                           setRoleRespose(0)
-                           break;
-                        case 1:
-                            setRoleRespose(1)
-                            break;
-                        default:
-                            setRoleRespose(2)
-                            break;
-                    }
-                }
+            } else {
+                setRoleRespose(response.decoded.role)
             }
         }).catch((err) => {
             if(err) setValid(false);
@@ -70,37 +59,29 @@ const Admin = () => {
     }, [location]);
 
     if(valid===false){
-        switch(roleResponse){
-            case 0:
-                return <Navigate to="/"/>
-            case 1:
-                return <Navigate to="/employee/"/>
-            default:
-                return <Navigate to="/"/>
- 
-        }
+        return <Navigate to="/"/>
     }
 
     return(
         <>
             <HeaderAdmin logStatus={setValid}/>
                 <Routes>
-                    <Route path="/" exact  element={<Homepage/>}/>
+                    <Route path="/" exact  element={<Homepage role={roleResponse}/>}/>
                     <Route path="/profile" exact  element={<Profile/>}/>
-                    <Route path="/users" exact  element={<Users/>}/>
-                    <Route path="/users/:userid" exact  element={<UsersDet/>}/>
-                    <Route path="/users/:userid/reviews" exact  element={<UserReviews/>}/>
-                    <Route path="/users/:userid/favs" exact  element={<UserFavs/>}/>
-                    <Route path="/users/:userid/reservations" exact  element={<UserReservations/>}/>
-                    <Route path="/languages" exact  element={<Languages/>}/>
-                    <Route path="/languages/create" exact  element={<LanguageCreate/>}/>
-                    <Route path="/languages/:langid" exact  element={<LanguageEdit/>}/>
-                    <Route path="/comodities" exact  element={<Comodities/>}/>
-                    <Route path="/comodities/create" exact  element={<ComodityCreate/>}/>
-                    <Route path="/comodities/:comid" exact  element={<ComodityEdit/>}/>
-                    <Route path="/hotels" exact  element={<Hotels/>}/>
-                    <Route path="/hotels/create" exact  element={<HotelCreate/>}/>
-                    <Route path="/hotels/:hotelid" exact  element={<HotelEdit/>}/>
+                    <Route path="/users" exact  element={<Users role={roleResponse}/>}/>
+                    <Route path="/users/:userid" exact  element={<UsersDet role={roleResponse}/>}/>
+                    <Route path="/users/:userid/reviews" exact  element={<UserReviews role={roleResponse}/>}/>
+                    <Route path="/users/:userid/favs" exact  element={<UserFavs role={roleResponse}/>}/>
+                    <Route path="/users/:userid/reservations" exact  element={<UserReservations role={roleResponse}/>}/>
+                    <Route path="/languages" exact  element={<Languages role={roleResponse}/>}/>
+                    <Route path="/languages/create" exact  element={<LanguageCreate role={roleResponse}/>}/>
+                    <Route path="/languages/:langid" exact  element={<LanguageEdit role={roleResponse}/>}/>
+                    <Route path="/comodities" exact  element={<Comodities role={roleResponse}/>}/>
+                    <Route path="/comodities/create" exact  element={<ComodityCreate role={roleResponse}/>}/>
+                    <Route path="/comodities/:comid" exact  element={<ComodityEdit role={roleResponse}/>}/>
+                    <Route path="/hotels" exact  element={<Hotels role={roleResponse}/>}/>
+                    <Route path="/hotels/create" exact  element={<HotelCreate role={roleResponse}/>}/>
+                    <Route path="/hotels/:hotelid" exact  element={<HotelEdit role={roleResponse}/>}/>
                     <Route path="/hotels/:hotelid/reviews" exact  element={<HotelReviews/>}/>
                     <Route path="/hotels/:hotelid/comodities" exact  element={<HotelComs/>}/>
                     <Route path="/hotels/:hotelid/languages" exact  element={<HotelLangs/>}/>

@@ -72,7 +72,7 @@ const Frontend = () => {
             {login ? <Header userName={userName} loginStatus={login} setLoginStatus={setLoginStatus} /> : <Header  />}
             <Routes>
                 <Route path="/" exact element={<Homepage loginStatus={login}/>} />
-                <Route path="/search/:query" exact element={<SearchResPage />} />
+                <Route path="/search/:query" exact element={<SearchResPage loginStatus={login} />} />
                 <Route path="/signin" exact element={<SignIn />} />
                 <Route path="/signup" exact element={<SignUp />} />
                 <Route path="/forgotpass" exact element={<ForgotPass />} />

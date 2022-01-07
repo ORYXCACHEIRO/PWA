@@ -1,19 +1,10 @@
 import teste from '../../assets/exterior.jpg';
-import { starFilled, starNotFilled } from '../../utils/icons';
-import { FaBed } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 import AddFav from '../Hotel/AddFav';
+import HotelRating from '../Hotel/HotelRating';
 
-const Result = ({ hoteis }) => {
-
-    let arrayStar = [starFilled, starFilled, starFilled, starFilled, starNotFilled];
-
-    const listItems = arrayStar.map((star, index) =>
-        <div key={index}>{star}</div>
-    );
-
-
+const Result = ({ hoteis,  loginStatus}) => {
 
     return (
         <div className="ml-4 mr-4">
@@ -28,7 +19,7 @@ const Result = ({ hoteis }) => {
                     <div className="bg-gray-900 h-96 w-96 absolute left-7 top-7 rounded-lg ">
                         <div className='relative'>
                             <div className="top-1 right-[0.15rem] absolute">
-                                <AddFav />
+                                <AddFav hotelData={hotel._id} loginStatus={loginStatus} />
                             </div>
                             <Link to="/hotel/1">
                                 <div className="p-10">
@@ -36,15 +27,11 @@ const Result = ({ hoteis }) => {
                                 </div>
                                 <div className=' -mt-5 flex gap-5 '>
                                     <div className='flex  w-max ml-7  items-center'>
-                                        {listItems}
-                                    </div>
-                                    <div className=' w-max flex  justify-center items-center gap-2 text-white text-lg font-medium'>
-                                        <span>99</span>
-                                        <FaBed className=' text-purple-400' />
+                                        <HotelRating category={hotel.category}/>
                                     </div>
                                 </div>
                                 <div className='mt-2'>
-                                    <h2 className='text-white font-medium text-2xl ml-7  break-words'>{hotel.name}</h2>
+                                    <h2 className='text-white font-medium text-2xl m-0 ml-7  break-words'>{hotel.name}</h2>
                                     <h2 className='text-purple-400 font-medium text-lg ml-7 '>{hotel.city}</h2>
                                 </div>
                             </Link>

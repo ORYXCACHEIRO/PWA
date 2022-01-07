@@ -9,7 +9,7 @@ const query = new URLSearchParams(search).get('s');
 
 
 
-const SearchResPage = () => {
+const SearchResPage = ({loginStatus}) => {
 
     const [userData, setUserData] = useState([])
 
@@ -35,7 +35,7 @@ return (
                 <Filter />
             </div>
             <div className=" w-3/4 md:w-full">
-                <Result hoteis={userData}  />
+                <Result hoteis={userData} loginStatus={loginStatus}/>
             </div>
         </div>
     </>

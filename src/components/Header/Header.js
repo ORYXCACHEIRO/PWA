@@ -11,7 +11,6 @@ const Header = ({ userName, loginStatus, setLoginStatus }) => {
 
   var defaultHeader = true;
 
-
   if(userName && defaultHeader===true){
     defaultHeader = false;
   }

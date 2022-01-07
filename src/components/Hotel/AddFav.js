@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { favStarFilled, favStarNotFilled} from '../../utils/icons';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const AddFav = ({hotelData, loginStatus}) => {
 
     const [isFav, setFav] = useState(false);
+    const [loads, haveLoaded] = useState(false);
 
     const hotelId = hotelData;
 
@@ -41,6 +42,7 @@ const AddFav = ({hotelData, loginStatus}) => {
                 });
 
             }
+
         } else{
             setFav(false);
         }
@@ -48,27 +50,27 @@ const AddFav = ({hotelData, loginStatus}) => {
         
     }
 
-   useEffect(() => {
+    useEffect(() => {
 
-    if(loginStatus===true){
+        if(loginStatus===true){
 
-        fetch(`/profile/favorites`, {
-            headers: { 'Accept': 'application/json' },
-            method: 'GET'
-        })
-        .then(r => r.json())
-        .then((response) => {
-            response.map((fav) => {
-                if(fav.id_hotel===hotelId){
-                    setFav(true);
-                }
+            fetch(`/profile/favorites`, {
+                headers: { 'Accept': 'application/json' },
+                method: 'GET'
             })
-        });
+            .then(r => r.json())
+            .then((response) => {
+                response.map((fav) => {
+                    if(fav.id_hotel===hotelId){
+                        setFav(true);
+                    }
+                })
+                haveLoaded(true);
+            });
 
-    }
-    
+        }
 
-   }, [isFav]);
+    });
 
     return(
         <>  

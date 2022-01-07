@@ -1,5 +1,4 @@
 import teste from '../../assets/exterior.jpg';
-import { FaBed } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { useEffect } from "react";
 import React, { useState } from "react";
@@ -8,7 +7,7 @@ import HotelRating from '../Hotel/HotelRating';
 
 const Recomended = ({loginStatus}) => {
 
-    const [hotelData, sethotelData] = useState([])
+    const [hotelData, sethotelData] = useState([]);
 
     useEffect(() => {
         fetch('/hotel/recomended', {
@@ -43,10 +42,6 @@ const Recomended = ({loginStatus}) => {
                                             <div className=' -mt-5 flex gap-5 '>
                                                 <div className='flex  w-max ml-7  items-center'>
                                                 <HotelRating category={hotel.category}/>
-                                                </div>
-                                                <div className=' w-max flex  justify-center items-center gap-2 text-white text-lg font-medium'>
-                                                    <span>99</span>
-                                                    <FaBed className=' text-purple-400' />
                                                 </div>
                                             </div>
                                             <div className='mt-2'>
