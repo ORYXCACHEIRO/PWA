@@ -66,6 +66,8 @@ const AddFav = ({hotelData, loginStatus}) => {
                     }
                 })
                 haveLoaded(true);
+            }).catch(() => {
+                
             });
 
         }

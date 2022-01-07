@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { FaTimes, FaBars } from 'react-icons/fa';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 
 
 const navigation = [
@@ -16,7 +16,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-const HeaderAdmin = ({logStatus}) => {
+const HeaderAdmin = ({logStatus, role}) => {
 
     const location = useLocation().pathname;
 
@@ -77,20 +77,23 @@ const HeaderAdmin = ({logStatus}) => {
                         </div>
                         <div className="md:hidden block md:ml-6">
                         <div className="flex space-x-4">
-                            {navigation.map((item) => (
+                            {role==2 
+                            ? navigation.map((item) => (
                                 
-                            <a
-                                key={item.name}
-                                href={item.href}
-                                className={classNames(
-                                item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                'px-3 py-2 rounded-md text-sm font-medium'
-                                )}
-                                aria-current={item.current ? 'page' : undefined}
-                            >
-                                {item.name}
-                            </a>
-                            ))}
+                                <NavLink
+                                    key={item.name}
+                                    to={item.href}
+                                    className={classNames(
+                                    item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                    'px-3 py-2 rounded-md text-sm font-medium'
+                                    )}
+                                    aria-current={item.current ? 'page' : undefined}
+                                >
+                                    {item.name}
+                                </NavLink>
+                                )) 
+                            : <NavLink to="/" key={"/"} className="text-gray-300 hover:bg-gray-700 hover:text-white">Dashboard</NavLink>}
+                            
                         </div>
                         </div>
                     </div>

@@ -28,6 +28,7 @@ import HotelComs from "../pages/admin/HotelComs";
 import HotelLangs from "../pages/admin/HotelLangs";
 import HotelGallery from "../pages/admin/HotelGallery";
 import HotelRooms from "../pages/admin/HotelRooms";
+import HotelWorkStation from "../pages/admin/HotelWorkStation";
 
 import RoomsEdit from "../pages/admin/RoomsEdit";
 import RoomCreate from "../pages/admin/RoomCreate";
@@ -64,34 +65,35 @@ const Admin = () => {
 
     return(
         <>
-            <HeaderAdmin logStatus={setValid}/>
+            <HeaderAdmin logStatus={setValid} role={roleResponse} />
                 <Routes>
-                    <Route path="/" exact  element={<Homepage role={roleResponse}/>}/>
-                    <Route path="/profile" exact  element={<Profile/>}/>
-                    <Route path="/users" exact  element={<Users role={roleResponse}/>}/>
-                    <Route path="/users/:userid" exact  element={<UsersDet role={roleResponse}/>}/>
-                    <Route path="/users/:userid/reviews" exact  element={<UserReviews role={roleResponse}/>}/>
-                    <Route path="/users/:userid/favs" exact  element={<UserFavs role={roleResponse}/>}/>
-                    <Route path="/users/:userid/reservations" exact  element={<UserReservations role={roleResponse}/>}/>
-                    <Route path="/languages" exact  element={<Languages role={roleResponse}/>}/>
-                    <Route path="/languages/create" exact  element={<LanguageCreate role={roleResponse}/>}/>
-                    <Route path="/languages/:langid" exact  element={<LanguageEdit role={roleResponse}/>}/>
-                    <Route path="/comodities" exact  element={<Comodities role={roleResponse}/>}/>
-                    <Route path="/comodities/create" exact  element={<ComodityCreate role={roleResponse}/>}/>
-                    <Route path="/comodities/:comid" exact  element={<ComodityEdit role={roleResponse}/>}/>
-                    <Route path="/hotels" exact  element={<Hotels role={roleResponse}/>}/>
-                    <Route path="/hotels/create" exact  element={<HotelCreate role={roleResponse}/>}/>
-                    <Route path="/hotels/:hotelid" exact  element={<HotelEdit role={roleResponse}/>}/>
-                    <Route path="/hotels/:hotelid/reviews" exact  element={<HotelReviews/>}/>
-                    <Route path="/hotels/:hotelid/comodities" exact  element={<HotelComs/>}/>
-                    <Route path="/hotels/:hotelid/languages" exact  element={<HotelLangs/>}/>
-                    <Route path="/hotels/:hotelid/gallery" exact  element={<HotelGallery/>}/>
-                    <Route path="/hotels/:hotelid/rooms" exact  element={<HotelRooms/>}/>
-                    <Route path="/hotels/:hotelid/rooms/:roomid" exact  element={<RoomsEdit/>}/>
-                    <Route path="/hotels/:hotelid/rooms/create" exact  element={<RoomCreate/>}/>
-                    <Route path="/hotels/:hotelid/rooms/:roomid/reservations" exact  element={<RoomsReservations/>}/>
-                    <Route path="/hotels/:hotelid/rooms/:roomid/comodities" exact  element={<RoomsComodity/>}/>
-                    <Route path="/hotels/:hotelid/rooms/:roomid/gallery" exact  element={<RoomsGallery/>}/>
+                    {roleResponse==2 ? <Route path="/" element={<Homepage role={roleResponse}/>}/> : <Route path="/" element={<Hotels role={roleResponse}/>}/>}
+                    <Route path="/profile"  element={<Profile/>}/>
+                    {roleResponse==2 && <Route path="/users" element={<Users/>}/> }
+                    {roleResponse==2 && <Route path="/users/:userid" element={<UsersDet />}/> }
+                    {roleResponse==2 && <Route path="/users/:userid/reviews"  element={<UserReviews />}/>}
+                    {roleResponse==2 && <Route path="/users/:userid/favs"  element={<UserFavs />}/>}
+                    {roleResponse==2 && <Route path="/users/:userid/reservations"  element={<UserReservations />}/>}
+                    {roleResponse==2 && <Route path="/languages"  element={<Languages />}/>}
+                    {roleResponse==2 && <Route path="/languages/create" element={<LanguageCreate/>}/>}
+                    {roleResponse==2 && <Route path="/languages/:langid" element={<LanguageEdit />}/>}
+                    {roleResponse==2 && <Route path="/comodities" element={<Comodities />}/>}
+                    {roleResponse==2 && <Route path="/comodities/create" element={<ComodityCreate />}/>}
+                    {roleResponse==2 && <Route path="/comodities/:comid" element={<ComodityEdit />}/>}
+                    { roleResponse==2 && <Route path="/hotels" element={<Hotels role={roleResponse}/>}/>}
+                    <Route path="/hotels/create" element={<HotelCreate role={roleResponse}/>}/>
+                    {roleResponse==2 && <Route path="/hotels/:hotelid/workstation" element={<HotelRooms/>}/>}
+                    <Route path="/hotels/:hotelid" element={<HotelEdit role={roleResponse}/>}/>
+                    <Route path="/hotels/:hotelid/reviews" element={<HotelReviews/>}/>
+                    <Route path="/hotels/:hotelid/comodities" element={<HotelComs/>}/>
+                    <Route path="/hotels/:hotelid/languages" element={<HotelLangs/>}/>
+                    <Route path="/hotels/:hotelid/gallery" element={<HotelGallery/>}/>
+                    <Route path="/hotels/:hotelid/rooms" element={<HotelRooms/>}/>
+                    <Route path="/hotels/:hotelid/rooms/:roomid" element={<RoomsEdit/>}/>
+                    <Route path="/hotels/:hotelid/rooms/create" element={<RoomCreate/>}/>
+                    <Route path="/hotels/:hotelid/rooms/:roomid/reservations" element={<RoomsReservations/>}/>
+                    <Route path="/hotels/:hotelid/rooms/:roomid/comodities" element={<RoomsComodity/>}/>
+                    <Route path="/hotels/:hotelid/rooms/:roomid/gallery" element={<RoomsGallery/>}/>
                 </Routes>
             <FooterAdmin/>
         </>

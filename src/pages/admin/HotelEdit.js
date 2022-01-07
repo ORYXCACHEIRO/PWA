@@ -1,7 +1,7 @@
-import {FaStar, FaPhotoVideo, FaWifi, FaLanguage, FaBed} from 'react-icons/fa';
+import {FaStar, FaPhotoVideo, FaWifi, FaLanguage, FaBed, FaBriefcase} from 'react-icons/fa';
 import {Link, useLocation} from 'react-router-dom';
 
-const HotelEdit = () => {
+const HotelEdit = ({role}) => {
 
     const location = useLocation().pathname;
 
@@ -51,8 +51,11 @@ const HotelEdit = () => {
                                     <option value={1}>Visible</option>
                                 </select>
                             </div>
-                            <div className="flex flex-col gap-2">
-                                <button className="bg-gray-800 mx-8 p-2 rounded-lg text-white font-medium transition ease-out duration-100 hover:bg-gray-600" type="submit">Edit</button>
+                            <div className="flex gap-2 sm:flex-col sm:gap-6">
+                                <button type="submit" className="bg-gray-800 mx-4 p-3 rounded-lg text-white font-medium transition ease-out duration-100 hover:bg-gray-600  w-2/4 sm:w-full">Edit</button>
+                                <Link to="/admin/" className=' bg-indigo-500 mx-4 p-3 rounded-lg text-white font-medium transition ease-out duration-100 hover:bg-indigo-400 text-center w-2/4 sm:w-full'>
+                                    Back to Rooms
+                                </Link>
                             </div>
                         </form>
                     </div>
@@ -79,6 +82,12 @@ const HotelEdit = () => {
                         <FaBed className=''/>
                         Rooms
                     </Link>
+                    {role==2 && <Link to={location + "/workstations"} className=" w-80 h-96 items-center justify-center flex gap-2 text-3xl font-semibold bg-gray-800 text-white rounded-lg transition ease-out duration-100 hover:bg-gray-600">
+                        <FaBriefcase className=''/>
+                        Workstations
+                    </Link>
+                    }
+                    
                 </div>
             </div>
         </>

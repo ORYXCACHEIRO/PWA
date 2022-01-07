@@ -1,3 +1,5 @@
+import {Link} from 'react-router-dom';
+
 const RoomCreate = () => {
 
     return(
@@ -27,8 +29,11 @@ const RoomCreate = () => {
                                 <label className="font-medium text-lg">Price per night</label>
                                 <input className="border-2 p-2 rounded" type="number" placeholder="street name..."/>
                             </div>
-                            <div className="flex flex-col gap-2">
-                                <button className="bg-gray-800 mx-8 p-2 rounded-lg text-white font-medium transition ease-out duration-100 hover:bg-gray-600" type="submit">Create</button>
+                            <div className="flex gap-2 sm:flex-col sm:gap-6">
+                                <button type="submit" className="bg-gray-800 mx-4 p-3 rounded-lg text-white font-medium transition ease-out duration-100 hover:bg-gray-600  w-2/4 sm:w-full">Edit</button>
+                                <Link to="/admin/hotels/1/rooms" className=' bg-indigo-500 mx-4 p-3 rounded-lg text-white font-medium transition ease-out duration-100 hover:bg-indigo-400 text-center w-2/4 sm:w-full'>
+                                    Back to Rooms
+                                </Link>
                             </div>
                         </form>
                     </div>

@@ -3,9 +3,11 @@ import { Link, useLocation } from 'react-router-dom';
 import ReactStars from "react-rating-stars-component";
 import { FaPlus } from 'react-icons/fa';
 
-const Hotels = () => {
+const Hotels = ({role}) => {
 
-    const location = useLocation().pathname;
+    var location = useLocation().pathname;
+
+    console.log(location)
 
     const columns = [
     {
@@ -63,12 +65,22 @@ const Hotels = () => {
         render: (text, record) => (
         
         <Space className='sm:flex sm:flex-col sm:items-center '>
-            <Popconfirm size="middle"  title="Sure to delete?" onConfirm={() => this.handleDelete(record.key)}>
+            {role==2 && <Popconfirm size="middle"  title="Sure to delete?" onConfirm={() => this.handleDelete(record.key)}>
                 <button className='bg-red-500 p-2 rounded-xl text-white font-medium'>Delete</button>
-            </Popconfirm>
-            <Link to={location+"/"+record.key} className='bg-gray-800 p-2 rounded-xl text-white font-medium'>
+            </Popconfirm>}
+            
+            {
+            role==2 
+            ?
+            <Link  to={location+"/"+record.key} className='bg-gray-800 p-2 rounded-xl text-white font-medium'>
                 Edit
-            </Link>
+            </Link> 
+            : 
+            <Link  to={location+"hotels/"+record.key} className='bg-gray-800 p-2 rounded-xl text-white font-medium px-5'>
+                Edit
+            </Link> 
+            }
+            
         </Space>
         )
     }
@@ -102,10 +114,11 @@ const Hotels = () => {
         <>
             <div className="h-full relative">
                 <div className=' absolute top-1/4 left-2/4 translate-x-[-50%] translate-y-[-25%]  w-full px-10 sm:px-0'>
-                    <Link to="/admin/hotels/create" className='bg-gray-800 p-3 text-white rounded-lg text-lg sm:ml-2 flex items-center w-max gap-2'>
+                    {role==2 && <Link to="/admin/hotels/create" className='bg-gray-800 p-3 text-white rounded-lg text-lg sm:ml-2 flex items-center w-max gap-2'>
                         Create Hotel
                         <FaPlus/>
-                    </Link>
+                    </Link>}
+                    
                     <Table columns={columns} dataSource={data} className='border-2 p-1 mt-5'/>
                 </div>
             </div>
