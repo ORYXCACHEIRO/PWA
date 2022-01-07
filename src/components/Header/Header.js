@@ -1,22 +1,24 @@
 //import logo from './logo.svg';
 import { Popover, Transition } from '@headlessui/react'
-import { Fragment } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 
 import mainLogo from '../../logo.svg';
 import Search from './Search';
 import UpperHeader from './UpperHeader';
 import { Link } from "react-router-dom";
 
-const Header = ({ userName }) => {
-  let signedin = false;
-  let defaultHeader = true;
+const Header = ({ userName, loginStatus, setLoginStatus }) => {
 
-      if(userName)
-      {
-        defaultHeader = false
-        signedin = true
-      }
+  var defaultHeader = true;
 
+
+  if(userName && defaultHeader===true){
+    defaultHeader = false;
+  }
+
+  if(defaultHeader===false && userName.length>10){
+    userName = userName.substring(0, 9) + "...";
+  }
   
   const onClickLogout = () => {
     fetch('/auth/logout', {
@@ -24,12 +26,18 @@ const Header = ({ userName }) => {
     })
     .then((response) => response.json())
     .then((response) => {
-      defaultHeader = true
-      signedin = false
-    }).catch(() => {
-
+      if(response){
+        setLoginStatus(false);
+        defaultHeader = true;
+      }
+    }).catch((err) => {
+      console.log(err);
     });
-}
+  }
+
+  useEffect(() => {
+
+  }, [loginStatus]);
 
   return (
     <>
@@ -51,7 +59,7 @@ const Header = ({ userName }) => {
           <div className="md:hidden h-full">
 
 
-            {defaultHeader &&
+            {defaultHeader ?
               <div className='h-full'>
                 <div className='flex justify-end items-center w-max space-x-2 pr-10 xl:pr-2 lg:pr-7 float-right gap-5 xl:gap-0 h-full'>
                   <Link to="/signin" className="flex items-center justify-center w-max shadow-lg transition duration-300 ease-in-out bg-gray-900 font-bold text-lg p-3 pl-4 pr-4 lg:p-5  rounded-3xl text-white space-x-1 hover:bg-gray-700 lg:mr-2">
@@ -72,13 +80,12 @@ const Header = ({ userName }) => {
                   </button>
                 </div>
               </div>
-            }
-             {signedin &&
+            :
             <div className=" h-full">
               <div className="flex justify-end items-center w-max space-x-2 pr-10 xl:pr-2 lg:pr-8 float-right gap-5 xl:gap-0  h-full">
                 <Link to="/profile" type="button" className="flex items-center justify-center w-max shadow-lg transition duration-300 ease-in-out bg-gray-900 font-bold text-lg p-3 pl-4 pr-4  rounded-3xl text-white space-x-1 hover:bg-gray-700 lg:mr-2">
                   <span className="lg:hidden">
-                    {userName.name}
+                    {userName}
                   </span>
                   <img src={mainLogo} className=" h-10 w-10 rounded-full" alt="" />
                 </Link>
@@ -132,6 +139,7 @@ const Header = ({ userName }) => {
                         <div className="flex w-max mr-auto ml-auto pl-10">
                           <Search />
                         </div>
+                        {defaultHeader ?
                         <div className=''>
                           <div className="flex ">
                             <Link to="/signin" className="bg-purple-700 text-white mr-auto ml-auto block px-28 sm:px-16 m-4 p-3 text-lg font-medium rounded-full transition duration-100 ease-out hover:ease-in hover:bg-purple-400">
@@ -142,16 +150,18 @@ const Header = ({ userName }) => {
                             </Link>
                           </div>
                         </div>
-                        <div className='hidden'>
+                        :
+                        <div className=''>
                           <div className="flex ">
-                            <button className="bg-purple-700 text-white mr-auto ml-auto block px-28 sm:px-16 m-4 p-3 text-lg font-medium rounded-full space-x-2 transition duration-100 ease-out hover:ease-in hover:bg-purple-300">
-                              <span className="font-medium">Profile</span>
-                            </button>
-                            <button className="bg-red-700 text-white mr-auto ml-auto block px-28 sm:px-16 m-4 p-3 text-lg font-medium rounded-full space-x-2 transition duration-100 ease-out hover:ease-in hover:bg-red-400">
+                            <Link to="/profile" className="bg-purple-700 text-white mr-auto ml-auto block px-24 sm:px-12 m-4 p-3 text-lg font-medium rounded-full space-x-2 transition duration-100 ease-out hover:ease-in hover:bg-purple-300">
+                              <span className="font-medium">{userName}</span>
+                            </Link>
+                            <button onClick={onClickLogout} className="bg-red-700 text-white mr-auto ml-auto block px-24 sm:px-12 m-4 p-3 text-lg font-medium rounded-full space-x-2 transition duration-100 ease-out hover:ease-in hover:bg-red-400">
                               <span className="font-medium">Sign out</span>
                             </button>
                           </div>
                         </div>
+                        }
                       </div>
                     </Popover.Panel>
 

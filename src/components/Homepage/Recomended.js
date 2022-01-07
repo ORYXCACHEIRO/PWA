@@ -6,12 +6,12 @@ import React, { useState } from "react";
 import AddFav from '../Hotel/AddFav';
 import HotelRating from '../Hotel/HotelRating';
 
-const Recomended = () => {
+const Recomended = ({loginStatus}) => {
 
     const [hotelData, sethotelData] = useState([])
 
     useEffect(() => {
-        fetch('http://127.0.0.1:5000/hotel/recomended', {
+        fetch('/hotel/recomended', {
             method: 'GET',
             headers: { 'Accept': 'application/json' }
         })
@@ -19,8 +19,6 @@ const Recomended = () => {
             .then(data => sethotelData(data))
 
     }, []);
-
-    console.log(hotelData)
 
     return (
         <>
@@ -36,7 +34,7 @@ const Recomended = () => {
                                 <div className="bg-gray-900 h-96 w-96 absolute left-7 top-7 rounded-lg ">
                                     <div className='relative'>
                                         <div className="top-1 right-[0.15rem] absolute">
-                                            <AddFav hotelData={hotel._id} />
+                                            <AddFav hotelData={hotel._id} loginStatus={loginStatus} />
                                         </div>
                                         <Link to="/hotel/1">
                                             <div className="p-10">

@@ -18,35 +18,37 @@ const Frontend = () => {
 
 
     const [roleResponse, setRoleRespose] = useState(0);
-    const [userName, setuserName] = useState("");
+    const [userName, setUserName] = useState("");
+    const [login, setLoginStatus] = useState(false);
 
     useEffect(() => {
         fetch('/auth/me', {
             headers: { 'Accept': 'application/json' }
         })
-            .then((response) => response.json())
-            .then((response) => {
-                if (response.auth === true) {
-                    setuserName(response.decoded)
-                    if (response.decoded.role === 0) {
-                        setuserName(response.decoded)
-                        setRoleRespose(0)
-                    }
-                    else {
-
-                        if (response.decoded.role === 1) {
-                            setuserName(response.decoded)
-                            setRoleRespose(1)
-                        }
-                        else{
-                            setuserName(response.decoded)
-                            setRoleRespose(2);
-                        }
-                    }              
-                }
-            }).catch((err) => {
-
-            });
+        .then((response) => response.json())
+        .then((response) => {
+        if (response.auth === true) {
+            
+            setLoginStatus(true);
+            setUserName(response.decoded.name)
+            switch(response.decoded.role){
+                case 0:
+                    setRoleRespose(response.decoded.role);
+                    break;
+                case 1:
+                    setRoleRespose(response.decoded.role);
+                    break;
+                case 2:
+                    setRoleRespose(response.decoded.role);
+                    break;
+                default:
+                    setRoleRespose(0);
+                    break;
+            }           
+        }
+        }).catch((err) => {
+            console.log(err);
+        });
     }, [location]);
 
     if (roleResponse) {
@@ -54,7 +56,7 @@ const Frontend = () => {
             case 0:
                 return <Navigate to="/" />
             case 1:
-                return <Navigate to="/employee/" />
+                return <Navigate to="/admin/" />
             case 2:
                 return <Navigate to="/admin/" />
             default:
@@ -67,9 +69,9 @@ const Frontend = () => {
 
     return (
         <>
-            <Header userName={userName} />
+            {login ? <Header userName={userName} loginStatus={login} setLoginStatus={setLoginStatus} /> : <Header  />}
             <Routes>
-                <Route path="/" exact element={<Homepage />} />
+                <Route path="/" exact element={<Homepage loginStatus={login}/>} />
                 <Route path="/search/:query" exact element={<SearchResPage />} />
                 <Route path="/signin" exact element={<SignIn />} />
                 <Route path="/signup" exact element={<SignUp />} />
