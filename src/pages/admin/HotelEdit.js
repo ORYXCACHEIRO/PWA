@@ -82,7 +82,7 @@ const HotelEdit = ({role}) => {
                         <FaBed className=''/>
                         Rooms
                     </Link>
-                    {role==2 && <Link to={location + "/workstations"} className=" w-80 h-96 items-center justify-center flex gap-2 text-3xl font-semibold bg-gray-800 text-white rounded-lg transition ease-out duration-100 hover:bg-gray-600">
+                    {role===2 && <Link to={location + "/workstations"} className=" w-80 h-96 items-center justify-center flex gap-2 text-3xl font-semibold bg-gray-800 text-white rounded-lg transition ease-out duration-100 hover:bg-gray-600">
                         <FaBriefcase className=''/>
                         Workstations
                     </Link>

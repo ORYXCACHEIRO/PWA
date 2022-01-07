@@ -27,7 +27,7 @@ console.log(userData)
                 setuserData(response.decoded)
             }
         }).catch((err) => {
-            alert="algo correu mal"
+            alert("algo correu mal");
         });
     },[]);
 

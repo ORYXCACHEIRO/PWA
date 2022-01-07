@@ -77,7 +77,7 @@ const HeaderAdmin = ({logStatus, role}) => {
                         </div>
                         <div className="md:hidden block md:ml-6">
                         <div className="flex space-x-4">
-                            {role==2 
+                            {role===2 
                             ? navigation.map((item) => (
                                 
                                 <NavLink

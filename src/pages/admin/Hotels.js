@@ -65,12 +65,12 @@ const Hotels = ({role}) => {
         render: (text, record) => (
         
         <Space className='sm:flex sm:flex-col sm:items-center '>
-            {role==2 && <Popconfirm size="middle"  title="Sure to delete?" onConfirm={() => this.handleDelete(record.key)}>
+            {role===2 && <Popconfirm size="middle"  title="Sure to delete?" onConfirm={() => this.handleDelete(record.key)}>
                 <button className='bg-red-500 p-2 rounded-xl text-white font-medium'>Delete</button>
             </Popconfirm>}
             
             {
-            role==2 
+            role===2 
             ?
             <Link  to={location+"/"+record.key} className='bg-gray-800 p-2 rounded-xl text-white font-medium'>
                 Edit
@@ -114,7 +114,7 @@ const Hotels = ({role}) => {
         <>
             <div className="h-full relative">
                 <div className=' absolute top-1/4 left-2/4 translate-x-[-50%] translate-y-[-25%]  w-full px-10 sm:px-0'>
-                    {role==2 && <Link to="/admin/hotels/create" className='bg-gray-800 p-3 text-white rounded-lg text-lg sm:ml-2 flex items-center w-max gap-2'>
+                    {role===2 && <Link to="/admin/hotels/create" className='bg-gray-800 p-3 text-white rounded-lg text-lg sm:ml-2 flex items-center w-max gap-2'>
                         Create Hotel
                         <FaPlus/>
                     </Link>}

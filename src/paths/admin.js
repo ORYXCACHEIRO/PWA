@@ -41,6 +41,7 @@ const Admin = () => {
 
     const [valid, setValid] = useState(true);
     const [roleResponse, setRoleRespose] = useState(2);
+    const [userId, setUserId] = useState("");
     var location = useLocation().pathname;
     
     useEffect(() => {
@@ -52,7 +53,8 @@ const Admin = () => {
             if(response.auth===false || (response.auth===true && response.decoded.role===0)){
                 setValid(false);
             } else {
-                setRoleRespose(response.decoded.role)
+                setRoleRespose(response.decoded.role);
+                setUserId(response.decoded.id);
             }
         }).catch((err) => {
             if(err) setValid(false);
@@ -67,22 +69,22 @@ const Admin = () => {
         <>
             <HeaderAdmin logStatus={setValid} role={roleResponse} />
                 <Routes>
-                    {roleResponse==2 ? <Route path="/" element={<Homepage role={roleResponse}/>}/> : <Route path="/" element={<Hotels role={roleResponse}/>}/>}
-                    <Route path="/profile"  element={<Profile/>}/>
-                    {roleResponse==2 && <Route path="/users" element={<Users/>}/> }
-                    {roleResponse==2 && <Route path="/users/:userid" element={<UsersDet />}/> }
-                    {roleResponse==2 && <Route path="/users/:userid/reviews"  element={<UserReviews />}/>}
-                    {roleResponse==2 && <Route path="/users/:userid/favs"  element={<UserFavs />}/>}
-                    {roleResponse==2 && <Route path="/users/:userid/reservations"  element={<UserReservations />}/>}
-                    {roleResponse==2 && <Route path="/languages"  element={<Languages />}/>}
-                    {roleResponse==2 && <Route path="/languages/create" element={<LanguageCreate/>}/>}
-                    {roleResponse==2 && <Route path="/languages/:langid" element={<LanguageEdit />}/>}
-                    {roleResponse==2 && <Route path="/comodities" element={<Comodities />}/>}
-                    {roleResponse==2 && <Route path="/comodities/create" element={<ComodityCreate />}/>}
-                    {roleResponse==2 && <Route path="/comodities/:comid" element={<ComodityEdit />}/>}
-                    { roleResponse==2 && <Route path="/hotels" element={<Hotels role={roleResponse}/>}/>}
+                    {roleResponse===2 ? <Route path="/" element={<Homepage role={roleResponse}/>}/> : <Route path="/" element={<Hotels role={roleResponse}/>}/>}
+                    <Route path="/profile"  element={<Profile/>} userid={userId}/>
+                    {roleResponse===2 && <Route path="/users" element={<Users/>}/> }
+                    {roleResponse===2 && <Route path="/users/:userid" element={<UsersDet />}/> }
+                    {roleResponse===2 && <Route path="/users/:userid/reviews"  element={<UserReviews />}/>}
+                    {roleResponse===2 && <Route path="/users/:userid/favs"  element={<UserFavs />}/>}
+                    {roleResponse===2 && <Route path="/users/:userid/reservations"  element={<UserReservations />}/>}
+                    {roleResponse===2 && <Route path="/languages"  element={<Languages />}/>}
+                    {roleResponse===2 && <Route path="/languages/create" element={<LanguageCreate/>}/>}
+                    {roleResponse===2 && <Route path="/languages/:langid" element={<LanguageEdit />}/>}
+                    {roleResponse===2 && <Route path="/comodities" element={<Comodities />}/>}
+                    {roleResponse===2 && <Route path="/comodities/create" element={<ComodityCreate />}/>}
+                    {roleResponse===2 && <Route path="/comodities/:comid" element={<ComodityEdit />}/>}
+                    { roleResponse===2 && <Route path="/hotels" element={<Hotels role={roleResponse}/>}/>}
                     <Route path="/hotels/create" element={<HotelCreate role={roleResponse}/>}/>
-                    {roleResponse==2 && <Route path="/hotels/:hotelid/workstation" element={<HotelRooms/>}/>}
+                    {roleResponse===2 && <Route path="/hotels/:hotelid/workstation" element={<HotelWorkStation/>}/>}
                     <Route path="/hotels/:hotelid" element={<HotelEdit role={roleResponse}/>}/>
                     <Route path="/hotels/:hotelid/reviews" element={<HotelReviews/>}/>
                     <Route path="/hotels/:hotelid/comodities" element={<HotelComs/>}/>

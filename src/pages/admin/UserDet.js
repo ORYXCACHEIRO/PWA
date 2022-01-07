@@ -6,14 +6,6 @@ const UsersDet = () => {
 
   const location = useLocation().pathname;
 
-  const onFinish = (values) => {
-    console.log("Success:", values);
-  };
-
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
-
   return (
     <>
       <div className="flex flex-col items-center">
@@ -32,6 +24,13 @@ const UsersDet = () => {
               <div className="flex flex-col gap-2">
                 <label className="font-medium text-lg">Email</label>
                 <input className="border-2 p-2 rounded" type="email" placeholder="example@example.com"/>
+              </div>
+              <div className="flex flex-col gap-2">
+                <label className="font-medium text-lg">Type</label>
+                <select className="border-2 p-2 rounded">
+                  <option>aaaaa</option>
+                  <option>bbbbbbbb</option>
+                </select>
               </div>
               <div className="flex flex-col gap-2">
                 <button className="bg-gray-800 mx-8 p-2 rounded-lg text-white font-medium transition ease-out duration-100 hover:bg-gray-600" type="submit">Edit</button>

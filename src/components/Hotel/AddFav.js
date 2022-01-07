@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 const AddFav = ({hotelData, loginStatus}) => {
 
     const [isFav, setFav] = useState(false);
-    const [loads, haveLoaded] = useState(false);
 
     const hotelId = hotelData;
 
@@ -64,8 +63,7 @@ const AddFav = ({hotelData, loginStatus}) => {
                     if(fav.id_hotel===hotelId){
                         setFav(true);
                     }
-                })
-                haveLoaded(true);
+                });
             }).catch(() => {
                 
             });

@@ -1,6 +1,6 @@
 //import logo from './logo.svg';
 import { Popover, Transition } from '@headlessui/react'
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useEffect } from 'react';
 
 import mainLogo from '../../logo.svg';
 import Search from './Search';
