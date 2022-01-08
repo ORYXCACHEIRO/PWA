@@ -1,6 +1,9 @@
 import { Table, Tag, Space, Popconfirm } from 'antd';
 import { Link, useLocation } from 'react-router-dom';
 import {useState, useEffect} from 'react';
+import notificationSucess from '../../components/Notifications/Success';
+import { ToastContainer} from 'react-toastify';
+import notificationError from '../../components/Notifications/Error';
 
 const Users = () => {
 
@@ -68,9 +71,10 @@ const Users = () => {
         })
         .then(r => r.json())
         .then((response) => {
-            console.log(response)
+            notificationSucess("User deleted Successfully");
+            fetchAPI(data.pagination.pageSize, data.pagination.current);
         }).catch((err) => {
-            console.log(err);
+            notificationError("Error deleting user");
         });
     }
 
@@ -127,6 +131,7 @@ const Users = () => {
 
     return(
         <>
+            <ToastContainer/>
             <div className="h-full relative">
                 <div className=' absolute top-1/4 left-2/4 translate-x-[-50%] translate-y-[-25%]  w-full px-10 sm:px-0'>
                     <Table columns={columns} className='border-2 p-1' rowKey={record => record._id} dataSource={[...users]} pagination={pagination} loading={loading} onChange={handleTableChange}/>
