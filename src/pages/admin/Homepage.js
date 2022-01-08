@@ -9,7 +9,7 @@ const Homepage = () => {
     const [reviewsCount, setReviewsCount] = useState(0);
 
     function users(){
-        fetch('/users', {
+        fetch('/users/count', {
                 headers: {'Accept': 'application/json'}
         })
         .then((r) => r.json())
