@@ -2,6 +2,7 @@
 import {Route, Routes} from "react-router-dom";
 import Admin from "./paths/admin";
 import Frontend from "./paths/frontend";
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 

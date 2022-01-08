@@ -92,6 +92,21 @@ const Users = () => {
         key: 'email',
     },
     {
+        title: 'Role',
+        dataIndex: 'role',
+        key: 'role',
+        render: (record) => {
+            switch (record) {
+                case 0:
+                    return (<div className='p-2 bg-orange-400 text-center text-white font-medium rounded-lg'>Client</div>);
+                case 1:
+                    return (<div className='p-2 bg-indigo-400 text-center text-white font-medium rounded-lg'>Employee</div>);
+                default:
+                    return;
+            }
+        }
+    },
+    {
         title: 'Action',
         key: 'action',
         render: (text, record) => (

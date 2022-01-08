@@ -25,6 +25,8 @@ const AddFav = ({hotelData, loginStatus}) => {
                     } else {
                         setFav(true);
                     }
+                }).catch((err) => {
+                    
                 });
 
             } else {
@@ -38,6 +40,8 @@ const AddFav = ({hotelData, loginStatus}) => {
                     if(response){
                         setFav(false);
                     }
+                }).catch((err) => {
+
                 });
 
             }
@@ -64,7 +68,7 @@ const AddFav = ({hotelData, loginStatus}) => {
                         setFav(true);
                     }
                 });
-            }).catch(() => {
+            }).catch((err) => {
                 
             });
 

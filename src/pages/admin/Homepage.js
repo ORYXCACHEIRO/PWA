@@ -15,7 +15,6 @@ const Homepage = () => {
         .then((r) => r.json())
         .then((response) => {
                 if(response.length>0){
-                        console.log("yesa");
                         setUsersCount(response.length);
                 }
                 else {
@@ -32,7 +31,6 @@ const Homepage = () => {
         .then((r) => r.json())
         .then((response) => {
                 if(response.length>0){
-                        console.log("yesb");
                         setHotelCount(response.length);
                 }
                 else {
@@ -49,7 +47,6 @@ const Homepage = () => {
         .then((r) => r.json())
         .then((response) => {
                 if(response.length>0){
-                        console.log("yesv");
                         setReviewsCount(response.length);
                 } else {
                         setReviewsCount(0);
@@ -67,7 +64,6 @@ const Homepage = () => {
         .then((r) => r.json())
         .then((response) => {
                 if(response.length>0){
-                        console.log("yesd");
                         setReservationCount(response.length);
                 } else {        
                         setReservationCount(0);
