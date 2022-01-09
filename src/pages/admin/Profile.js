@@ -13,7 +13,6 @@ const Profile = () => {
 
     const [profileData, setProfileData] = useState({});
 
-
     const editData = (data) => {
         fetch('/profile/settings', {
             headers: {'Content-type': 'application/json'},
@@ -59,7 +58,7 @@ const Profile = () => {
         .then((response) => {
             setProfileData(response);
         }).catch((err) => {
-            console.log('Error: ' + err);
+            notificationError('Error: ' + err);
         });
 
     }

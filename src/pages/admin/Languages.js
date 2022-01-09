@@ -41,7 +41,7 @@ const Languages = () => {
             setData({
                 langs,
                 pagination: {
-                    current: 1,
+                    current: pagination.page + 1 || 1,
                     pageSize: pagination.pageSize || 1,
                     total: pagination.total || 5
                 }
@@ -59,7 +59,6 @@ const Languages = () => {
     };
 
     function handleDelete(id){
-        console.log(id)
         fetch(`/languages/${id}`, {
             headers: {'Content-type': 'application/json'},
             method: 'DELETE'
@@ -121,7 +120,7 @@ const Languages = () => {
                         <FaPlus/>
                     </button>
                     {showForm && <CreateLang fetchLanguages={fetchAPI} dataa={data}/>}
-                    <Table columns={columns} className='border-2 p-1 mt-5' rowKey={record => record._id} dataSource={[...langs]} pagination={pagination} loading={loading} onChange={handleTableChange}/>
+                    <Table columns={columns} className='border-2 p-1 mt-5' rowKey={record => record._id} dataSource={langs} pagination={pagination} loading={loading} onChange={handleTableChange}/>
                 </div>
             </div>
         </>

@@ -13,11 +13,9 @@ import UsersDet from "../pages/admin/UserDet";
 import UserReservations from "../pages/admin/UserReservations";
 
 import Languages from "../pages/admin/Languages";
-import LanguageCreate from "../pages/admin/LanguageCreate";
 import LanguageEdit from "../pages/admin/LanguageEdit";
 
 import Comodities from "../pages/admin/Comodities";
-import ComodityCreate from "../pages/admin/ComodityCreate";
 import ComodityEdit from "../pages/admin/ComodityEdit";
 
 import Hotels from "../pages/admin/Hotels";
@@ -77,10 +75,8 @@ const Admin = () => {
                     {roleResponse===2 && <Route path="/users/:userid/favs"  element={<UserFavs />}/>}
                     {roleResponse===2 && <Route path="/users/:userid/reservations"  element={<UserReservations />}/>}
                     {roleResponse===2 && <Route path="/languages"  element={<Languages />}/>}
-                    {roleResponse===2 && <Route path="/languages/create" element={<LanguageCreate/>}/>}
                     {roleResponse===2 && <Route path="/languages/:langid" element={<LanguageEdit />}/>}
                     {roleResponse===2 && <Route path="/comodities" element={<Comodities />}/>}
-                    {roleResponse===2 && <Route path="/comodities/create" element={<ComodityCreate />}/>}
                     {roleResponse===2 && <Route path="/comodities/:comid" element={<ComodityEdit />}/>}
                     { roleResponse===2 && <Route path="/hotels" element={<Hotels role={roleResponse}/>}/>}
                     <Route path="/hotels/create" element={<HotelCreate role={roleResponse}/>}/>

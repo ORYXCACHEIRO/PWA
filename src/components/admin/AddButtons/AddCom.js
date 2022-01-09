@@ -2,25 +2,25 @@ import { useForm } from 'react-hook-form';
 import notificationSucess from '../../Notifications/Success';
 import notificationError from '../../Notifications/Error';
 
-const CreateLang = ({fetchLanguages, dataa}) => {
+const CreateCom = ({fetchLanguages, dataa}) => {
 
     const {register, handleSubmit} = useForm();
 
-    const addLangauge = langauge => addLang(langauge);
+    const addComodity = com => addCom(com);
 
-    const addLang = (data) => {
-        fetch('/languages', {
+    const addCom = (data) => {
+        fetch('/comodities', {
             headers: {'Content-type': 'application/json'},
             method: 'POST',
             body: JSON.stringify(data)
         })
         .then((response) => {
             if(response.ok){
-                notificationSucess("Language added");
+                notificationSucess("Comodity added");
                 fetchLanguages(dataa.pagination.pageSize, dataa.pagination.current);
             }
             else {
-                notificationError('Error adding language');
+                notificationError('Error adding comodity');
             }
         }).catch((err) => {
             console.log('Error: ' + err);
@@ -30,8 +30,12 @@ const CreateLang = ({fetchLanguages, dataa}) => {
     return(
         <>
             <div>
-                <form className="pt-5 flex gap-5 sm:pl-5" onSubmit={handleSubmit(addLangauge)} >
-                    <input className="p-2 px-6 border" type="text" placeholder="language" {...register('name', { required: true })}/>
+                <form className="pt-5 flex gap-5 sm:pl-5" onSubmit={handleSubmit(addComodity)}>
+                    <input className="p-2 px-6 border-2 border-gray-800" type="text" placeholder="comodity" {...register('name', { required: true })}/>
+                    <select className="p-2 px-6 border-2 border-gray-800" {...register('free', { required: true })}>
+                        <option value="1">Free</option>
+                        <option value="0">Extra</option>
+                    </select>
                     <button className="bg-green-400 p-3 rounded-lg text-white" type="submit" >
                         Confirm
                     </button>
@@ -42,4 +46,4 @@ const CreateLang = ({fetchLanguages, dataa}) => {
 
 }
 
-export default CreateLang;
+export default CreateCom;

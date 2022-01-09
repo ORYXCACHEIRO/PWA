@@ -6,9 +6,7 @@ import { FaPlus } from 'react-icons/fa';
 const Hotels = ({role}) => {
 
     var location = useLocation().pathname;
-
-    console.log(location)
-
+    
     const columns = [
     {
         title: 'Hotel',

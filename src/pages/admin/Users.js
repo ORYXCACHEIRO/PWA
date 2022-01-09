@@ -37,7 +37,7 @@ const Users = () => {
             setData({
                 users,
                 pagination: {
-                    current: 1,
+                    current: pagination.page + 1 || 1,
                     pageSize: pagination.pageSize || 1,
                     total: pagination.total || 5
                 }
