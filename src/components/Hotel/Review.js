@@ -14,7 +14,6 @@ const Review = ({ reviewData }) => {
 
     const [userData, setuserData] = useState([]);
 
-    console.log(reviewData)
 
 
     useEffect(() => {
@@ -29,8 +28,6 @@ const Review = ({ reviewData }) => {
 
     }, []);
 
-
-    console.log(userData)
     return (
         <>
 

@@ -7,9 +7,7 @@ import { stringify } from "postcss";
 
 const ReviewForm = ({ userData }) => {
 
-    const ratingChanged = (newRating) => {
 
-    };
 
     const { register, handleSubmit } = useForm();
     const submit = data => reviewFunc(data);
@@ -20,10 +18,17 @@ const ReviewForm = ({ userData }) => {
 
     console.log(userData)
 
+
+
+    const ratingChanged = (newRating) => {
+        var newRating = parseInt(newRating, 10);
+        setRatingData = newRating;
+    };
+
     const reviewFunc = (data) => {
-        console.log(JSON.stringify(data))
+        console.log(data)
         fetch(`/hotel/${userData._id}/reviews/`, {
-            headers: { 'Content-type': 'application/json' },
+            headers: { 'Content-type': 'application/json', 'x-access-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZDVmZTQwNTc4NDU4NmU1NjlhMmE4MSIsImVtYWlsIjoidGljYWRlbGlvYmV0YUBnbWFpbC5jb20iLCJyb2xlIjowLCJuYW1lIjoiSm90YSIsImlhdCI6MTY0MTg0MjAzNiwiZXhwIjoxNjQxOTI4NDM2fQ.po8PLeZLmNWvyoAcUFhV0HOIOsmEdfS19fIz3VOx7RM' },
             method: 'POST',
             body: JSON.stringify(data)
         })
@@ -52,6 +57,7 @@ const ReviewForm = ({ userData }) => {
                         />
                     </div>
                     
+                    <input type="hidden" value={ratingData} pattern="[0-9]*" {...register('review', { required: true })}/>
 
                     <div className="flex flex-col gap-2">
 
