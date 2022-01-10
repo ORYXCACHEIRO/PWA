@@ -78,7 +78,7 @@ const Frontend = () => {
                 <Route path="/forgotpass" exact element={<ForgotPass />} />
                 <Route path="/recoverpass/:key" exact element={<RecoverPass />} />
                 <Route path="/profile" exact element={<Profile />} />
-                <Route path="/hotel/:id" exact element={<Hotel />} />
+                <Route path="/hotel/:hotelid" exact element={<Hotel loginStatus={login}/>} />
             </Routes>
             <Footer />
         </>

@@ -1,30 +1,19 @@
-import { starFilled, starNotFilled } from '../../utils/icons';
 import teste from '../../assets/exterior.jpg';
+import HotelRating from './HotelRating';
 
-import { useEffect } from "react";
-import React, { useState } from "react";
+import { useEffect,useState } from "react";
 
 const Review = ({ reviewData }) => {
 
-    let arrayStar = [starFilled, starFilled, starFilled, starFilled, starNotFilled];
-
-    const listItems = arrayStar.map((star, index) =>
-        <div key={index}>{star}</div>
-    );
-
     const [userData, setuserData] = useState([]);
-
-
 
     useEffect(() => {
         fetch(`/profile/${reviewData.id_user}`, {
             method: 'GET',
             headers: { 'Accept': 'application/json' }
         })
-            .then(response => response.json())
-            .then(data => setuserData(data))
-
-  
+        .then(response => response.json())
+        .then(data => setuserData(data))
 
     }, []);
 
@@ -42,7 +31,7 @@ const Review = ({ reviewData }) => {
                                 <span className='font-medium '>{reviewData.review_date}</span>
                             </div>
                             <div className='flex'>
-                                {listItems}
+                                <HotelRating category={reviewData.review}/>
                             </div>
                         </div>
                         <div >

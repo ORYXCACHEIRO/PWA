@@ -1,8 +1,7 @@
 import teste from '../assets/exterior.jpg';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
-import {FaMapMarked, FaBed, FaCheck} from 'react-icons/fa';
-import { starFilled, starNotFilled} from '../utils/icons';
+import {FaMapMarked, FaCheck} from 'react-icons/fa';
 import { useEffect } from "react";
 import React, { useState } from "react";
 
@@ -10,45 +9,42 @@ import Rooms from '../components/Hotel/Rooms';
 import Review from '../components/Hotel/Review';
 import ReviewForm from '../components/Hotel/ReviewForm';
 import AddFav from '../components/Hotel/AddFav';
+import HotelRating from '../components/Hotel/HotelRating';
+import { useParams } from 'react-router-dom';
 
 
 const Hotel = ({loginStatus}) => {
 
-
-    const url = window.location.href
-
-    let key = "";
-    key = url.split('/')[4];
-
+    const { hotelid } = useParams();
     
-    const [userData, setUserData] = useState([])
-    const [reviewData, setReviewData] = useState([])
+    const [userData, setUserData] = useState([]);
+    const [reviewData, setReviewData] = useState([]);
 
-    useEffect(() => {
-        fetch(`/hotel/${key}`  , {
-            method: 'GET',
+    const getHotelData = () => {
+
+        fetch(`/hotel/${hotelid}`  , {
             headers: { 'Accept': 'application/json' }
         })
         .then(response => response.json())
-        .then(data => setUserData(data))
+        .then(data => setUserData(data));
 
-    }, []);
+    }
 
-    useEffect(() => {
-        fetch(`/hotel/${key}/reviews`  , {
-            method: 'GET',
+    const getHotelReviews = () => {
+
+        fetch(`/hotel/${hotelid}/reviews`  , {
             headers: { 'Accept': 'application/json' }
         })
         .then(response => response.json())
-        .then(data => setReviewData(data))
+        .then(data => setReviewData(data));
 
+    }
+
+    useEffect(() => {
+        getHotelData();
+        getHotelReviews();
     }, []);
 
-    let arrayStar = [starFilled, starFilled, starFilled, starFilled, starNotFilled];
-
-    const listItems = arrayStar.map((star, index) =>
-        <div key={index}>{star}</div>
-    );
 
     let images = [teste, teste, teste];
 
@@ -73,13 +69,12 @@ const Hotel = ({loginStatus}) => {
                             <AddFav hotelData={userData._id} loginStatus={loginStatus} />
                             </div>
                             <div className='flex flex-col gap-4 p-3 ml-2 '>
-                                
-                                <h1 className='text-5xl font-bold  text-purple-500 xl:text-4xl lg:text-5xl sm:text-4xl'>{userData.name}</h1>
-                                <h1 className='text-3xl  text-gray-800 font-bold xl:text-2xl lg:text-3xl sm:text-2xl'>{userData.city}</h1>
+                                <h1 className='text-5xl font-bold  text-purple-500 xl:text-4xl lg:text-5xl sm:text-4xl m-0'>{userData.name}</h1>
+                                <h1 className='text-3xl  text-gray-800 font-bold xl:text-2xl lg:text-3xl sm:text-2xl m-0'>{userData.city}</h1>
                             </div>
                             <div className='flex ml-3 p-2 gap-3'>
                                 <div className='flex items-center'>
-                                    {listItems}
+                                    <HotelRating category={userData.category}/>
                                 </div>
                             </div>
                             <div className='p-2 ml-3'>
@@ -88,8 +83,8 @@ const Hotel = ({loginStatus}) => {
                         </div>
                         <div className='p-5 mt-3'>
                             <h1 className='font-bold text-2xl '>Small Information :</h1>
-                            <p className='pt-5'>
-                            {userData.description}
+                            <p className='pt-5 text-xl font-medium'>
+                                {userData.description}
                             </p>
                         </div>
                     </div>
@@ -144,10 +139,10 @@ const Hotel = ({loginStatus}) => {
                     <div className=' w-3/4 flex flex-col gap-10'>
                         <div className='p-2  flex flex-col gap-8'>
                         {reviewData.map((review) => (
-                        <Review reviewData={review}  />
+                            <Review reviewData={review}  key={review._id}/>
                         ))}
                         </div>
-                        <ReviewForm  userData={userData}/>
+                        { loginStatus && <ReviewForm  userData={userData}/>}
                     </div>
                 </div>
             </div>

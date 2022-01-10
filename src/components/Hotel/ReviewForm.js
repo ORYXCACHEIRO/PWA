@@ -14,32 +14,25 @@ const ReviewForm = ({ userData }) => {
   
     const [ratingData, setRatingData] = useState(null)
 
-    console.log(ratingData)
-
-    console.log(userData)
-
-
-
     const ratingChanged = (newRating) => {
-        var newRating = parseInt(newRating, 10);
+        var newRating = parseInt(newRating, 5);
         setRatingData = newRating;
     };
 
     const reviewFunc = (data) => {
-        console.log(data)
         fetch(`/hotel/${userData._id}/reviews/`, {
-            headers: { 'Content-type': 'application/json', 'x-access-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZDVmZTQwNTc4NDU4NmU1NjlhMmE4MSIsImVtYWlsIjoidGljYWRlbGlvYmV0YUBnbWFpbC5jb20iLCJyb2xlIjowLCJuYW1lIjoiSm90YSIsImlhdCI6MTY0MTg0MjAzNiwiZXhwIjoxNjQxOTI4NDM2fQ.po8PLeZLmNWvyoAcUFhV0HOIOsmEdfS19fIz3VOx7RM' },
+            headers: { 'Content-type': 'application/json'},
             method: 'POST',
             body: JSON.stringify(data)
         })
-            .then(r => r.json())
-            .then((response) => {
-                if (response.auth) {
-                }
-                else {
-                    alert("Ta dificil")
-                }
-            });
+        .then(r => r.json())
+        .then((response) => {
+            if (response.auth) {
+            }
+            else {
+                alert("Ta dificil")
+            }
+        });
     }
 
     return (
@@ -57,13 +50,11 @@ const ReviewForm = ({ userData }) => {
                         />
                     </div>
                     
-                    <input type="hidden" value={ratingData} pattern="[0-9]*" {...register('review', { required: true })}/>
+                    <input type="hidden" value={ratingData || 0} pattern="[0-5]*" {...register('review', { required: true })}/>
 
                     <div className="flex flex-col gap-2">
-
                         <label >Comment <span className="text-base font-bold">(optional)</span></label>
-                        <input type="text" {...register('coment', { required: false })} className='border-2 border-purple-500 rounded-lg pl-2' rows={4} />
-
+                        <textarea type="text" {...register('coment', { required: false })} className='border-2 border-purple-500 rounded-lg pl-2' rows={4} />
                     </div>
                     <div className="md:flex md:justify-center">
                         <button type="submit" className="bg-gray-800 md:w-3/4 px-14 py-2 rounded-lg text-white transition ease-out duration-100 hover:bg-gray-700">Send</button>
