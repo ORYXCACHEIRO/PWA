@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-const DetailsUser = () => {
+const DetailsUser = ({setRole}) => {
 
     const { userid } = useParams();
 
@@ -39,6 +39,7 @@ const DetailsUser = () => {
         .then((response) => response.json())
         .then((response) => {
             setUserData(response);
+            setRole(response.role);
         }).catch((err) => {
             notificationError('Error: ' + err);
         });

@@ -14,7 +14,7 @@ const Users = () => {
         users: [],
         pagination: {
             current: 1,
-            pageSize: 3,
+            pageSize: 4,
             total: 0
         }
     });

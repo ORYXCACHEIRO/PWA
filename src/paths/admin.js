@@ -71,11 +71,11 @@ const Admin = () => {
                     {roleResponse===2 ? <Route path="/" element={<Homepage role={roleResponse}/>}/> : <Route path="/" element={<Hotels role={roleResponse}/>}/>}
                     <Route path="/profile"  element={<Profile/>} userid={userId}/>
                     {roleResponse===2 && <Route path="/users" element={<Users/>}/> }
-                    {roleResponse===2 && <Route path="/users/:userid" element={<UsersDet />}/> }
+                    {roleResponse===2 && <Route path="/users/:userid" exact element={<UsersDet />}/> }
                     {roleResponse===2 && <Route path="/users/:userid/reviews"  element={<UserReviews />}/>}
                     {roleResponse===2 && <Route path="/users/:userid/favs"  element={<UserFavs />}/>}
                     {roleResponse===2 && <Route path="/users/:userid/reservations"  element={<UserReservations />}/>}
-                    {roleResponse===2 && <Route path="/users/:userid/workstation" element={<UserWorkStation/>}/>}
+                    {roleResponse===2 && <Route path="/users/:userid/workstations" element={<UserWorkStation/>}/>}
                     {roleResponse===2 && <Route path="/languages"  element={<Languages />}/>}
                     {roleResponse===2 && <Route path="/languages/:langid" element={<LanguageEdit />}/>}
                     {roleResponse===2 && <Route path="/comodities" element={<Comodities />}/>}
