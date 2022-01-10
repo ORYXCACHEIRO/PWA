@@ -1,5 +1,5 @@
 //import { Form, Input, Button } from "antd";
-import {FaStar, FaHotel, FaBook} from 'react-icons/fa';
+import {FaStar, FaHotel, FaBook, FaBriefcase} from 'react-icons/fa';
 import {Link, useLocation} from 'react-router-dom';
 import DetailsUser from './forms/users/Details';
 import { ToastContainer } from 'react-toastify';
@@ -36,6 +36,10 @@ const UsersDet = () => {
           <Link to={location + "/reservations"} className=" w-80 h-96 items-center justify-center flex gap-2 text-3xl font-semibold bg-gray-800 text-white rounded-lg transition ease-out duration-100 hover:bg-gray-600">
               <FaBook className=''/>
               Reservations
+          </Link>
+          <Link to={location + "/workstations"} className=" w-80 h-96 items-center justify-center flex gap-2 text-3xl font-semibold bg-gray-800 text-white rounded-lg transition ease-out duration-100 hover:bg-gray-600">
+              <FaBriefcase className=''/>
+              Workstations
           </Link>
         </div>
 

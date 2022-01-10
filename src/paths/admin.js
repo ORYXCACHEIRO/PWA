@@ -11,6 +11,7 @@ import UserReviews from "../pages/admin/UserReviews";
 import Users from "../pages/admin/Users";
 import UsersDet from "../pages/admin/UserDet";
 import UserReservations from "../pages/admin/UserReservations";
+import UserWorkStation from "../pages/admin/UserWorkStation";
 
 import Languages from "../pages/admin/Languages";
 import LanguageEdit from "../pages/admin/LanguageEdit";
@@ -26,13 +27,13 @@ import HotelComs from "../pages/admin/HotelComs";
 import HotelLangs from "../pages/admin/HotelLangs";
 import HotelGallery from "../pages/admin/HotelGallery";
 import HotelRooms from "../pages/admin/HotelRooms";
-import HotelWorkStation from "../pages/admin/HotelWorkStation";
 
 import RoomsEdit from "../pages/admin/RoomsEdit";
 import RoomCreate from "../pages/admin/RoomCreate";
 import RoomsReservations from "../pages/admin/RoomsReservations";
 import RoomsComodity from "../pages/admin/RoomsComodity";
 import RoomsGallery from "../pages/admin/RoomsGallery";
+
 
 
 const Admin = () => {
@@ -74,14 +75,14 @@ const Admin = () => {
                     {roleResponse===2 && <Route path="/users/:userid/reviews"  element={<UserReviews />}/>}
                     {roleResponse===2 && <Route path="/users/:userid/favs"  element={<UserFavs />}/>}
                     {roleResponse===2 && <Route path="/users/:userid/reservations"  element={<UserReservations />}/>}
+                    {roleResponse===2 && <Route path="/users/:userid/workstation" element={<UserWorkStation/>}/>}
                     {roleResponse===2 && <Route path="/languages"  element={<Languages />}/>}
                     {roleResponse===2 && <Route path="/languages/:langid" element={<LanguageEdit />}/>}
                     {roleResponse===2 && <Route path="/comodities" element={<Comodities />}/>}
                     {roleResponse===2 && <Route path="/comodities/:comid" element={<ComodityEdit />}/>}
                     { roleResponse===2 && <Route path="/hotels" element={<Hotels role={roleResponse}/>}/>}
                     <Route path="/hotels/create" element={<HotelCreate role={roleResponse}/>}/>
-                    {roleResponse===2 && <Route path="/hotels/:hotelid/workstation" element={<HotelWorkStation/>}/>}
-                    <Route path="/hotels/:hotelid" element={<HotelEdit role={roleResponse}/>}/>
+                    <Route path="/hotels/:hotelid" element={<HotelEdit/>}/>
                     <Route path="/hotels/:hotelid/reviews" element={<HotelReviews/>}/>
                     <Route path="/hotels/:hotelid/comodities" element={<HotelComs/>}/>
                     <Route path="/hotels/:hotelid/languages" element={<HotelLangs/>}/>
