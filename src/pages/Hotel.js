@@ -3,6 +3,8 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from 'react-responsive-carousel';
 import {FaMapMarked, FaBed, FaCheck} from 'react-icons/fa';
 import { starFilled, starNotFilled} from '../utils/icons';
+import { useEffect } from "react";
+import React, { useState } from "react";
 
 import Rooms from '../components/Hotel/Rooms';
 import Review from '../components/Hotel/Review';
@@ -10,7 +12,37 @@ import ReviewForm from '../components/Hotel/ReviewForm';
 import AddFav from '../components/Hotel/AddFav';
 
 
-const Hotel = () => {
+const Hotel = ({loginStatus}) => {
+
+
+    const url = window.location.href
+
+    let key = "";
+    key = url.split('/')[4];
+
+    
+    const [userData, setUserData] = useState([])
+    const [reviewData, setReviewData] = useState([])
+
+    useEffect(() => {
+        fetch(`/hotel/${key}`  , {
+            method: 'GET',
+            headers: { 'Accept': 'application/json' }
+        })
+        .then(response => response.json())
+        .then(data => setUserData(data))
+
+    }, []);
+
+    useEffect(() => {
+        fetch(`/hotel/${key}/reviews`  , {
+            method: 'GET',
+            headers: { 'Accept': 'application/json' }
+        })
+        .then(response => response.json())
+        .then(data => setReviewData(data))
+
+    }, []);
 
     let arrayStar = [starFilled, starFilled, starFilled, starFilled, starNotFilled];
 
@@ -38,30 +70,26 @@ const Hotel = () => {
                     <div className='w-2/4 lg:w-full'>
                         <div>
                             <div className=' flex justify-end'>
-                                <AddFav/>
+                            <AddFav hotelData={userData._id} loginStatus={loginStatus} />
                             </div>
                             <div className='flex flex-col gap-4 p-3 ml-2 '>
                                 
-                                <h1 className='text-5xl font-bold  text-purple-500 xl:text-4xl lg:text-5xl sm:text-4xl'>Hotel Cidnayaaaaaaa</h1>
-                                <h1 className='text-3xl  text-gray-800 font-bold xl:text-2xl lg:text-3xl sm:text-2xl'>Santo Tirso</h1>
+                                <h1 className='text-5xl font-bold  text-purple-500 xl:text-4xl lg:text-5xl sm:text-4xl'>{userData.name}</h1>
+                                <h1 className='text-3xl  text-gray-800 font-bold xl:text-2xl lg:text-3xl sm:text-2xl'>{userData.city}</h1>
                             </div>
                             <div className='flex ml-3 p-2 gap-3'>
                                 <div className='flex items-center'>
                                     {listItems}
                                 </div>
-                                <div className=' w-max flex  justify-center items-center gap-2 text-gray-800 text-xl font-bold'>
-                                    <span>99</span>
-                                    <FaBed className=' text-purple-400'/>
-                                </div>
                             </div>
                             <div className='p-2 ml-3'>
-                                <h1 className='flex items-center gap-4 text-xl sm:text-lg'><FaMapMarked/> <span className='font-medium'>Rua da Poupa nº33 3º Traseiras 4780-528, Santo Tirso</span></h1>
+                                <h1 className='flex items-center gap-4 text-xl sm:text-lg'><FaMapMarked/> <span className='font-medium'>{userData.adress} {userData.postalc}</span></h1>
                             </div>
                         </div>
                         <div className='p-5 mt-3'>
                             <h1 className='font-bold text-2xl '>Small Information :</h1>
                             <p className='pt-5'>
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                            {userData.description}
                             </p>
                         </div>
                     </div>
@@ -115,9 +143,11 @@ const Hotel = () => {
                     <h1 className='text-4xl font-bold p-2 md:text-2xl text-center'>Reviews :</h1>
                     <div className=' w-3/4 flex flex-col gap-10'>
                         <div className='p-2  flex flex-col gap-8'>
-                            <Review/>
+                        {reviewData.map((review) => (
+                        <Review reviewData={review}  />
+                        ))}
                         </div>
-                        <ReviewForm/>
+                        <ReviewForm  userData={userData}/>
                     </div>
                 </div>
             </div>
