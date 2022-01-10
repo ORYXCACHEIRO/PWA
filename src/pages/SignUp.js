@@ -11,26 +11,31 @@ const SignUp = () => {
 
 
     const registeruser = (data) => {
-        fetch('http://127.0.0.1:5000/auth/register', {
+
+        if(data.apply===true){
+            data.role = 1;
+        }
+        
+        fetch('/auth/register', {
             headers: { 'Content-type': 'application/json' },
             method: 'POST',
             body: JSON.stringify(data)
         })
-            .then(r => r.json())
-            .then((response) => {
-                console.log(response.auth);
-                if (response.auth) {
-                    setrt(true);
-                }
-                else {
-                    alert("Ta dificil")
-                }
-            });
-        if (rt) {
-            return <Navigate to='/' />
-        }
+        .then(r => {
+            if(r.ok){
+                    setrt(true);              
+            }
+            else {
+                alert("Ta dificil")
+            }
+        });
+            
+        
     }
 
+    if (rt) {
+        return <Navigate to='/signin' />
+    }
 
     return (
         <>
@@ -40,20 +45,27 @@ const SignUp = () => {
                     <div className="mt-10 flex justify-center">
                         <form className="w-80 flex flex-col gap-8" onSubmit={handleSubmit(submit)}>
                             <div className=" flex flex-col gap-2">
-                                <label className="font-medium text-xl">Email:</label>
+                                <label className="font-medium text-xl">Email<span className='text-red-500'>*</span>:</label>
                                 <input type="email" {...register('email', { required: true })} className='border-3 border-purple-500 rounded-lg pl-2 p-1' placeholder='email@email.com' />
                             </div>
                             <div className=" flex flex-col gap-2">
-                                <label className="font-medium text-xl">Name:</label>
+                                <label className="font-medium text-xl">Name<span className='text-red-500'>*</span>:</label>
                                 <input type="text" {...register('name', { required: true })} className='border-3 border-purple-500 rounded-lg pl-2 p-1' placeholder='example' />
                             </div>
                             <div className=" flex flex-col gap-2">
-                                <label className="font-medium text-xl">Last name:</label>
+                                <label className="font-medium text-xl">Last name<span className='text-red-500'>*</span>:</label>
                                 <input type="text" {...register('lastName', { required: true })} className='border-3 border-purple-500 rounded-lg pl-2 p-1' placeholder='example' />
                             </div>
                             <div className=" flex flex-col gap-2">
-                                <label className="font-medium text-xl">Password:</label>
+                                <label className="font-medium text-xl">Password<span className='text-red-500'>*</span>:</label>
                                 <input type="password" {...register('password', { required: true })} className='border-3 border-purple-500 rounded-lg pl-2 p-1 ' placeholder='*********' />
+                            </div>
+                            <div className=" flex flex-col gap-2">
+                                <label className="font-medium text-xl">Employee Program {"(optional)"}:</label>
+                                <div className='flex gap-3 items-center'>
+                                    <input type="checkbox" {...register('apply')} className='border-3 border-purple-500 rounded-lg pl-2 p-1 w-4 h-4' placeholder='*********' />
+                                    <span>Do you wish to apply for the employee program?</span>
+                                </div>
                             </div>
                             <button type="submit" className='bg-purple-500 text-white font-medium p-3 rounded-lg transition duration-100 ease-out hover:ease-in hover:bg-purple-300'>
                                 Sign Up

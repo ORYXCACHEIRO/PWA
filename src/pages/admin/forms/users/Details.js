@@ -65,14 +65,6 @@ const DetailsUser = () => {
                 <input className="border-2 p-2 rounded" type="email" placeholder="example@example.com" {...register('email', { required: true })} defaultValue={userData.email || ''}/>
               </div>
               <div className="flex flex-col gap-2">
-                <label className="font-medium text-lg">Type</label>
-                <select className="border-2 p-2 rounded" {...register('role', { required: true })}>
-                    <option value={userData.role || 0} selected="selected" className='bg-gray-800 text-white'>{userData.role===1 ? "Employee" : "Client"}</option>
-                    <option value="1">Employee</option>
-                    <option value="0">Client</option>
-                </select>
-              </div>
-              <div className="flex flex-col gap-2">
                 <button className="bg-gray-800 mx-8 p-2 rounded-lg text-white font-medium transition ease-out duration-100 hover:bg-gray-600" type="submit">Edit</button>
               </div>
             </form>

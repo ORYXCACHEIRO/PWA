@@ -17,7 +17,7 @@ const Recomended = ({loginStatus}) => {
             .then(response => response.json())
             .then(data => sethotelData(data))
 
-    });
+    }, []);
 
     return (
         <>
