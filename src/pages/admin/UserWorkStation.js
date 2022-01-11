@@ -160,7 +160,7 @@ const UserWorkStation = () => {
                     </div>
                     
                     {showForm && <AddWorkHotel fetchHotels={fetchAPI} dataa={data} userid={userid}/>}
-                    <Table columns={columns} className='border-2 p-1' rowKey={record => record._id} dataSource={hotels} pagination={pagination} loading={loading} onChange={handleTableChange} className='border-2 p-1 mt-5'/>
+                    <Table columns={columns} rowKey={record => record._id} dataSource={hotels} pagination={pagination} loading={loading} onChange={handleTableChange} className='border-2 p-1 mt-5'/>
                 </div>
             </div>
         </>
