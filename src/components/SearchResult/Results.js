@@ -21,7 +21,7 @@ const Result = ({ hoteis,  loginStatus}) => {
                             <div className="top-1 right-[0.15rem] absolute">
                                 <AddFav hotelData={hotel._id} loginStatus={loginStatus} />
                             </div>
-                            <Link to="/hotel/1">
+                            <Link to={"/hotel/"+hotel._id}>
                                 <div className="p-10">
                                     <img src={teste} alt="" className=" rounded-xl" />
                                 </div>
