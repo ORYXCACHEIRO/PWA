@@ -1,39 +1,96 @@
 import { Table, Space, Popconfirm } from 'antd';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import notificationSucess from '../../components/Notifications/Success';
+import { ToastContainer } from 'react-toastify';
+import notificationError from '../../components/Notifications/Error';
 
 const UserReservations = () => {
 
+    var location = useLocation().pathname;
+    const { userid } = useParams();
+    const [loading, setLoading] = useState(true);
+
+    const [data, setData] = useState({
+        reserv: [],
+            pagination: {
+                current: 1,
+                pageSize: 4,
+                total: 0
+            }
+    });
+
+    const fetchAPI = (pageSize, current) => {
+
+        const url = `/users/reservations/${userid}?`+ new URLSearchParams({
+            limit:pageSize,
+            skip: current-1
+        });
+    
+        fetch(url, {
+            headers: {'Accept': 'application/json'}
+        })
+        .then((response) => response.json())
+        .then((response) => {
+            const {reserv = [], pagination } = response;
+            setLoading(false);
+            setData({
+                reserv,
+                pagination: {
+                    current: pagination.page + 1 || 1,
+                    pageSize: pagination.pageSize || 1,
+                    total: pagination.total || 5
+                }
+            });
+        });
+    }
+
+    useEffect(() => {
+
+        fetchAPI(data.pagination.pageSize, data.pagination.current);
+  
+        return () => setData({
+            reserv: [],
+            pagination: {
+                current: 1,
+                pageSize: 10
+            }
+        });
+  
+    }, []);
+
+    const handleTableChange = (pagination) => {
+        fetchAPI(pagination.pageSize, pagination.current)
+    };
+
     const columns = [
         {
-            title: 'Hotel',
-            dataIndex: 'hotel',
-            key: 'hotel',
-            render: (text, record) => <Link to={"/admin/hotels/"+record.key}>{text}</Link>,
-        },
-        {
             title: 'Begin Date',
-            dataIndex: 'begindate',
-            key: 'begindate'
+            dataIndex: 'begin_date',
+            key: 'begin_date',
+            render: date => date.substring(0, 10)
         },
         {
             title: 'End Date',
-            dataIndex: 'enddate',
-            key: 'enddate'
+            dataIndex: 'end_date',
+            key: 'end_date',
+            render: date => date.substring(0, 10)
         },
         {
             title: 'Adults',
-            dataIndex: 'adults',
-            key: 'adults'
+            dataIndex: 'numberAdults',
+            key: 'numberAdults'
         },
         {
             title: 'Children',
-            dataIndex: 'childrenm',
-            key: 'childrenm'
+            dataIndex: 'numberChildren',
+            key: 'numberChildren'
         },
         {
             title: 'Price',
-            dataIndex: 'price',
-            key: 'price'
+            dataIndex: 'total_price',
+            key: 'total_price'
         },
         {
             title: 'Action',
@@ -49,44 +106,17 @@ const UserReservations = () => {
         }
     ];
 
-    const data = [
-        {
-            key: '1',
-            hotel: 'John Brown',
-            begindate: '23/02/2021',
-            enddate: '24/02/2021',
-            adults: '3',
-            childrenm: '1',
-            price: '150€'
-        },
-        {
-            key: '2',
-            hotel: 'Jim Green',
-            begindate: '23/02/2021',
-            enddate: '24/02/2021',
-            adults: '3',
-            childrenm: '1',
-            price: '150€'
-        },
-        {
-            key: '3',
-            hotel: 'Joe Black',
-            begindate: '23/02/2021',
-            enddate: '24/02/2021',
-            adults: '3',
-            childrenm: '1',
-            price: '150€'
-        },
-    ];
+    const {reserv, pagination } = data;
 
     return(
         <>
+            <ToastContainer/>
             <div className="h-full relative">
                 <div className=' absolute top-1/4 left-2/4 translate-x-[-50%] translate-y-[-25%]  w-full px-10 sm:px-0'>
                     <Link to="/admin/users/1" className='bg-gray-800 p-3 text-white rounded-lg text-lg sm:ml-2'>
                         Back to User
                     </Link>
-                    <Table columns={columns} dataSource={data} className='border-2 p-1 mt-5'/>
+                    <Table columns={columns} rowKey={record => record._id} dataSource={reserv} pagination={pagination} loading={loading} onChange={handleTableChange} className='border-2 p-1 mt-5'/>
                 </div>
             </div>
         </>
