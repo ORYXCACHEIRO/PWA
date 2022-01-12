@@ -7,6 +7,10 @@ import React, { useState } from "react";
 const Reservations = ({userid, reservaData}) => {
 
 
+
+
+
+
     return(
         <>
            

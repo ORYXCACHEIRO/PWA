@@ -5,7 +5,45 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Calendar } from 'antd';
 import 'antd/dist/antd.variable.min.css';
 
-const Reservation = ({closeModal}) =>  {
+import { useForm } from 'react-hook-form';
+import { useEffect } from "react";
+import { useState } from "react";
+
+const Reservation = ({closeModal, roomData, hotelData}) =>  {
+
+    const { register, handleSubmit } = useForm();
+    const submit = data => createReserva(data);
+    const [userData, setuserData] = useState([]);
+
+    const createReserva = (data) => {
+        data.id_user = userData.id
+        fetch(`/hotel/${hotelData._id}/rooms/${roomData._id}/reservations`, {
+            headers: { 'Content-type': 'application/json' },
+            method: 'POST',
+            body: JSON.stringify(data)
+        })
+            .then((response) => {
+                console.log(response)
+            });
+    }
+
+
+    useEffect(() => {
+        fetch('/auth/me', {
+            headers: { 'Accept': 'application/json' }
+        })
+            .then((response) => response.json())
+            .then((response) => {
+                if (response.auth === true) {
+                    setuserData(response.decoded)
+                }
+            }).catch((err) => {
+                alert("algo correu mal");
+            });
+    }, []);
+
+
+ 
 
     let images = [img, img, img];
 
@@ -33,8 +71,8 @@ const Reservation = ({closeModal}) =>  {
                     </div>
                     <div className='w-2/4 lg:w-full'>
                         <div className='flex flex-col gap-4 p-3 ml-2 '>
-                            <h1 className='text-4xl font-bold  text-white '>Quarto Tirsense</h1>
-                            <h1 className='text-3xl  text-purple-500 font-bold xl:text-2xl lg:text-3xl sm:text-2xl'>Hotel Cidnay</h1>
+                            <h1 className='text-4xl font-bold  text-white '>{roomData.name}</h1>
+                            <h1 className='text-3xl  text-purple-500 font-bold xl:text-2xl lg:text-3xl sm:text-2xl'>{hotelData.name}</h1>
                         </div>
                         <div className='flex flex-col mx-5 pt-5'>
                             <h1 className='text-3xl font-bold border-3 border-white  text-white p-2 text-center rounded-t-xl'>Limits</h1>
@@ -58,35 +96,32 @@ const Reservation = ({closeModal}) =>  {
                 <div className='flex lg:flex-col lg:gap-5 p-10'>
                     <div className='w-2/4 lg:w-full flex flex-col gap-8 items-center '>
                         <h1 className='text-center font-bold text-white text-2xl pt-2'>Reservation</h1>
-                        <form className='flex w-2/4 sm:w-3/4 flex-col gap-5'>
+
+
+                        <form onSubmit={handleSubmit(submit)} className='flex w-2/4 sm:w-3/4 flex-col gap-5'>
                             <div className='flex flex-col gap-3 w-full'>
                                 <label className='text-white font-bold text-lg'>Begin Date</label>
-                                <input type="date" className='p-2 w-full rounded-lg'/>
+                                <input {...register('begin_date', { required: true })} type="date" className='p-2 w-full rounded-lg'/>
                             </div>
                             <div className='flex flex-col gap-3 w-full'>
                                 <label className='text-white font-bold text-lg'>Ending Date</label>
-                                <input type="date" className='p-2 w-full rounded-lg'/>
+                                <input {...register('end_date', { required: true })} type="date" className='p-2 w-full rounded-lg'/>
                             </div>
                             <div className='flex flex-col gap-3 w-full'>
                                 <label className='text-white font-bold text-lg'>Adults</label>
-                                <select className='p-2 w-full rounded-lg'>
-                                    <option value="volvo">Volvo</option>
-                                    <option value="saab">Saab</option>
-                                    <option value="mercedes">Mercedes</option>
-                                    <option value="audi">Audi</option>
-                                </select>
+                                <input {...register('numberAdults', { required: true })} type="number" className='p-2 w-full rounded-lg'/>
                             </div>
+
                             <div className='flex flex-col gap-3 w-full'>
                                 <label className='text-white font-bold text-lg'>Children</label>
-                                <select className='p-2 w-full rounded-lg'>
-                                    <option value="volvo">Volvo</option>
-                                    <option value="saab">Saab</option>
-                                    <option value="mercedes">Mercedes</option>
-                                    <option value="audi">Audi</option>
-                                </select>
+                                <input {...register('numberChildren', { required: true })} type="number" className='p-2 w-full rounded-lg'/>
                             </div>
                             <button type='submit' className='bg-purple-500 font-medium p-2 mt-3 text-white rounded-lg transition ease-in duration-100 hover:bg-purple-400'>Send</button>
                         </form>
+
+
+
+
                     </div>
                     <div className='w-2/4 lg:w-full flex items-center p-20 md:p-5'>
                         <Calendar fullscreen={false} onPanelChange={onPanelChange} />

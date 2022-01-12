@@ -15,11 +15,14 @@ const ReviewForm = ({ userData }) => {
     const [ratingData, setRatingData] = useState(null)
 
     const ratingChanged = (newRating) => {
-        var newRating = parseInt(newRating, 5);
-        setRatingData = newRating;
+        var newRating = parseInt(newRating, 6);
+        console.log(newRating)
+        setRatingData(newRating);
     };
 
     const reviewFunc = (data) => {
+        data.review = ratingData
+        console.log(ratingData)
         fetch(`/hotel/${userData._id}/reviews/`, {
             headers: { 'Content-type': 'application/json'},
             method: 'POST',
@@ -27,10 +30,11 @@ const ReviewForm = ({ userData }) => {
         })
         .then(r => r.json())
         .then((response) => {
-            if (response.auth) {
+            if (response) {
+                console.log(response)
             }
             else {
-                alert("Ta dificil")
+                console.log(response)
             }
         });
     }
@@ -50,7 +54,6 @@ const ReviewForm = ({ userData }) => {
                         />
                     </div>
                     
-                    <input type="hidden" value={ratingData || 0} pattern="[0-5]*" {...register('review', { required: true })}/>
 
                     <div className="flex flex-col gap-2">
                         <label >Comment <span className="text-base font-bold">(optional)</span></label>
