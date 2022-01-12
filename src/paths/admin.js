@@ -22,7 +22,6 @@ import ComodityEdit from "../pages/admin/ComodityEdit";
 import Hotels from "../pages/admin/Hotels";
 import HotelCreate from "../pages/admin/HotelCreate";
 import HotelEdit from "../pages/admin/HotelEdit";
-import HotelReviews from "../pages/admin/HotelReviews";
 import HotelComs from "../pages/admin/HotelComs";
 import HotelLangs from "../pages/admin/HotelLangs";
 import HotelGallery from "../pages/admin/HotelGallery";
@@ -83,7 +82,6 @@ const Admin = () => {
                     { roleResponse===2 && <Route path="/hotels" element={<Hotels role={roleResponse}/>}/>}
                     <Route path="/hotels/create" element={<HotelCreate role={roleResponse}/>}/>
                     <Route path="/hotels/:hotelid" element={<HotelEdit/>}/>
-                    <Route path="/hotels/:hotelid/reviews" element={<HotelReviews/>}/>
                     <Route path="/hotels/:hotelid/comodities" element={<HotelComs/>}/>
                     <Route path="/hotels/:hotelid/languages" element={<HotelLangs/>}/>
                     <Route path="/hotels/:hotelid/gallery" element={<HotelGallery/>}/>

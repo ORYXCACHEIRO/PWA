@@ -113,7 +113,7 @@ const UserReservations = () => {
             <ToastContainer/>
             <div className="h-full relative">
                 <div className=' absolute top-1/4 left-2/4 translate-x-[-50%] translate-y-[-25%]  w-full px-10 sm:px-0'>
-                    <Link to="/admin/users/1" className='bg-gray-800 p-3 text-white rounded-lg text-lg sm:ml-2'>
+                    <Link to={(location + "/..")} className='bg-gray-800 p-3 text-white rounded-lg text-lg sm:ml-2'>
                         Back to User
                     </Link>
                     <Table columns={columns} rowKey={record => record._id} dataSource={reserv} pagination={pagination} loading={loading} onChange={handleTableChange} className='border-2 p-1 mt-5'/>

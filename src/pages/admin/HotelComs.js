@@ -1,12 +1,88 @@
 import { Table, Space, Popconfirm } from 'antd';
 import { FaPlus } from 'react-icons/fa';
 import AddComodity from '../../components/Hotel/admin/AddComodity';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useParams, useLocation } from 'react-router-dom';
+import notificationSucess from '../../components/Notifications/Success';
+import { ToastContainer } from 'react-toastify';
+import notificationError from '../../components/Notifications/Error';
 
 const HotelComs = () => {
 
     const [showForm, setShowForm] = useState(false);
+    var location = useLocation().pathname;
+    const [loading, setLoading] = useState(true);
+    const { hotelid } = useParams();
+
+    const [data, setData] = useState({
+        comodidades: [],
+        pagination: {
+            current: 1,
+            pageSize: 4,
+            total: 0
+        }
+    });
+
+    const fetchAPI = (pageSize, current) => {
+
+        const url = `/hotel/${hotelid}/comodities/table?` + new URLSearchParams({
+            limit:pageSize,
+            skip: current-1
+        });
+    
+        fetch(url, {
+            headers: {'Accept': 'application/json'}
+        })
+        .then((response) => response.json())
+        .then((response) => {
+            const {comodidades = [], pagination } = response;
+            setLoading(false);
+            setData({
+                comodidades,
+                pagination: {
+                    current: pagination.page + 1 || 1,
+                    pageSize: pagination.pageSize || 1,
+                    total: pagination.total || 5
+                }
+            });
+        });
+    }
+
+    useEffect(() => {
+
+        fetchAPI(data.pagination.pageSize, data.pagination.current);
+  
+        return () => setData({
+            comodidades: [],
+            pagination: {
+                current: 1,
+                pageSize: 10
+            }
+        });
+  
+    }, []);
+
+    const handleTableChange = (pagination) => {
+        fetchAPI(pagination.pageSize, pagination.current)
+    };
+
+    function handleDelete(idhotel){
+
+        fetch(`/hotel/${idhotel}`, {
+            headers: {'Content-type': 'application/json'},
+            method: 'DELETE'
+        })
+        .then(r => {
+            if(r.ok){
+                notificationSucess("Hotel deleted Successfully");
+                fetchAPI(data.pagination.pageSize, data.pagination.current);
+            } else {
+                notificationError("Error deleting hotel");
+            }
+        }).catch((err) => {
+            notificationError("Error deleting hotel");
+        });
+    }
 
     const onClickShowForm = () => {
         setShowForm(!showForm);
@@ -20,8 +96,18 @@ const HotelComs = () => {
         },
         {
             title: 'Type',
-            dataIndex: 'type',
-            key: 'type'
+            dataIndex: 'free',
+            key: 'free',
+            render: record => {
+                switch(record){
+                    case 0:
+                        return (<div className=''>Extra</div>)
+                    case 1:
+                        return (<div className=''>Free</div>)
+                    default:
+                        break;
+                }
+            }
         },
         {
             title: 'Action',
@@ -29,7 +115,7 @@ const HotelComs = () => {
             render: (text, record) => (
             
             <Space className='sm:flex sm:flex-col sm:items-center '>
-                <Popconfirm size="middle"  title="Sure to delete?" onConfirm={() => this.handleDelete(record.key)}>
+                <Popconfirm size="middle"  title="Sure to delete?" onConfirm={() => handleDelete(record._id)}>
                     <button className='bg-red-500 p-2 rounded-xl text-white font-medium'>Delete</button>
                 </Popconfirm>
             </Space>
@@ -37,26 +123,11 @@ const HotelComs = () => {
         }
     ];
 
-    const data = [
-        {
-            key: '1',
-            name: 'John Brown',
-            type: 'Free'
-        },
-        {
-            key: '2',
-            name: 'Jim Green',
-            type: 'Free'
-        },
-        {
-            key: '3',
-            name: 'Joe Black',
-            type: 'Free'
-        }
-    ];
+    const {comodidades, pagination } = data;
 
     return(
         <>
+            <ToastContainer/>
             <div className="h-full relative">
                 <div className=' absolute top-1/4 left-2/4 translate-x-[-50%] translate-y-[-25%]  w-full px-10 sm:px-0'>
                     <div className='flex gap-4'>
@@ -64,12 +135,12 @@ const HotelComs = () => {
                             Add Comodity
                             <FaPlus/>
                         </button>
-                        <Link to="/admin/hotels/1" className='bg-gray-800 p-3 text-white rounded-lg text-lg sm:ml-2 flex items-center w-max gap-2'>
+                        <Link to={(location + "/..")} className='bg-gray-800 p-3 text-white rounded-lg text-lg sm:ml-2 flex items-center w-max gap-2'>
                             Back to Hotel
                         </Link>
                     </div>
-                    {showForm && <AddComodity/>}
-                    <Table columns={columns} dataSource={data} className='border-2 p-1 mt-5'/>
+                    {showForm && <AddComodity fetchCom={fetchAPI} dataa={data} hotelid={hotelid}/>}
+                    <Table columns={columns} rowKey={record => record._id} dataSource={comodidades} pagination={pagination} loading={loading} onChange={handleTableChange} className='border-2 p-1 mt-5'/>
                 </div>
             </div>
         </>

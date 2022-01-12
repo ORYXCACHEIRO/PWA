@@ -18,8 +18,6 @@ const Hotel = ({ loginStatus }) => {
 
     const { hotelid } = useParams();
 
-
-
     const [userData, setUserData] = useState([]);
     const [reviewData, setReviewData] = useState([]);
     const [roomData, setRoomData] = useState([]);
@@ -141,14 +139,7 @@ const Hotel = ({ loginStatus }) => {
                             </div>
                         </div>
                     </div>
-
-
-                            <Comodities comodityData={comodityData} />
-
-
-
-
-
+                    <Comodities comodityData={comodityData} />
                     <div className=' w-2/4 px-5 md:w-full md:py-3'>
                         <h1 className='text-4xl font-bold p-2 md:text-2xl text-center'>Staff speaks :</h1>
                         <div className='flex flex-wrap gap-6 md:gap-3 pt-4 justify-center'>

@@ -32,7 +32,7 @@ const Comodities = () => {
 
     const fetchAPI = (pageSize, current) => {
 
-        const url = '/comodities?'+ new URLSearchParams({
+        const url = '/comodities/table?'+ new URLSearchParams({
             limit:pageSize,
             skip: current-1
         });
