@@ -1,6 +1,7 @@
 import { FaTrash } from 'react-icons/fa';
 import teste from '../../assets/exterior.jpg';
 
+import { Popconfirm } from 'antd';
 
 import { useEffect } from "react";
 import React, { useState } from "react";
@@ -28,6 +29,18 @@ const Favorites =  ({ favoriteData}) => {
     }, []);
 
 
+    function handleDelete(id){
+        console.log(id)
+        fetch(`/profile/favorites/${id}`, {
+            method: 'DELETE',
+            headers: { 'Accept': 'application/json' }
+        })
+            .then(response => response.json())
+            .then(console.log("response"))
+        
+    }
+
+
     return(
         <>
 
@@ -44,9 +57,15 @@ const Favorites =  ({ favoriteData}) => {
                             <h1 className='font-bold text-2xl text-center '><span className='text-gray-800'>{hotelData.name}</span></h1>
                             <h1 className='font-bold text-xl text-center text-white'>{hotelData.city}</h1>
                         </div>
+
                         <div className='w-max lg:w-full flex flex-col justify-center lg:items-center p-5 ml-auto '>
-                            <button type='button' className=' bg-red-500 p-4 rounded-full text-white transition duration-100 ease-out hover:bg-red-400 lg:px-28 md:px-14'><FaTrash/></button>
+                           
+                        <Popconfirm size="middle" title="Sure to delete?" onConfirm={() => handleDelete(hotelData._id)}>
+                            <button className='bg-red-500 p-2 rounded-xl text-white font-medium'>Delete</button>
+                        </Popconfirm>
                         </div>
+
+
                     </div>
                 </div>
             </div>
