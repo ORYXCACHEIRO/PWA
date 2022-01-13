@@ -11,16 +11,20 @@ import ReviewForm from '../components/Hotel/ReviewForm';
 import AddFav from '../components/Hotel/AddFav';
 import HotelRating from '../components/Hotel/HotelRating';
 import Comodities from '../components/Hotel/Comodities';
+import Languages from '../components/Hotel/Languagues';
 import { useParams } from 'react-router-dom';
 
 
 const Hotel = ({ loginStatus }) => {
 
-    const { hotelid } = useParams();
 
+
+
+    const { hotelid } = useParams();
     const [hotelData, setHotelData] = useState([]);
     const [reviewData, setReviewData] = useState([]);
     const [roomData, setRoomData] = useState([]);
+    const [languageData, setLanguageData] = useState([]);
     const [comodityData, setComodityData] = useState([]);
 
     const getHotelData = () => {
@@ -28,9 +32,8 @@ const Hotel = ({ loginStatus }) => {
         fetch(`/hotel/${hotelid}`, {
             headers: { 'Accept': 'application/json' }
         })
-        .then(response => response.json())
-        .then(data => setHotelData(data));
-
+            .then(response => response.json())
+            .then(data => setHotelData(data));
     }
 
     const getComodityData = () => {
@@ -38,18 +41,29 @@ const Hotel = ({ loginStatus }) => {
         fetch(`/hotel/${hotelid}/comodities`, {
             headers: { 'Accept': 'application/json' }
         })
-        .then(response => response.json())
-        .then(data => setComodityData(data));
+            .then(response => response.json())
+            .then(data => setComodityData(data));
 
     }
+
+    const getLanguageData = () => {
+
+        fetch(`/hotel/${hotelid}/languages`, {
+            headers: { 'Accept': 'application/json' }
+        })
+            .then(response => response.json())
+            .then(data => setLanguageData(data));
+
+    }
+
 
     const getHotelReviews = () => {
 
         fetch(`/hotel/${hotelid}/reviews`, {
             headers: { 'Accept': 'application/json' }
         })
-        .then(response => response.json())
-        .then(data => setReviewData(data));
+            .then(response => response.json())
+            .then(data => setReviewData(data));
 
     }
 
@@ -58,8 +72,8 @@ const Hotel = ({ loginStatus }) => {
         fetch(`/hotel/${hotelid}/rooms`, {
             headers: { 'Accept': 'application/json' }
         })
-        .then(response => response.json())
-        .then(data => setRoomData(data));
+            .then(response => response.json())
+            .then(data => setRoomData(data));
 
     }
 
@@ -68,7 +82,11 @@ const Hotel = ({ loginStatus }) => {
         getHotelReviews();
         getHotelRooms();
         getComodityData();
+        getLanguageData();
     }, []);
+
+
+    console.log(languageData)
 
 
     let images = [teste, teste, teste];
@@ -115,7 +133,7 @@ const Hotel = ({ loginStatus }) => {
                     </div>
                 </div>
 
-                <div className='flex px-5 md:flex-col'>     
+                <div className='flex px-5 md:flex-col'>
                     <div className=' w-2/4 px-5 md:w-full md:py-3'>
                         <h1 className='text-4xl font-bold p-2 md:text-2xl text-center'>Comodities offered :</h1>
                         <div className='flex flex-wrap gap-6 md:gap-3 pt-4 justify-center'>
@@ -127,16 +145,10 @@ const Hotel = ({ loginStatus }) => {
 
                     <div className=' w-2/4 px-5 md:w-full md:py-3'>
                         <h1 className='text-4xl font-bold p-2 md:text-2xl text-center'>Staff speaks :</h1>
-                        <div className='flex flex-wrap gap-6 md:gap-3 pt-4 justify-center'>
-                            <div className='flex items-center gap-2 p-3 text-lg'>
-                                <FaCheck />
-                                <span className='font-medium'>English</span>
-                            </div>
-                            <div className='flex items-center gap-2 p-3 text-lg'>
-                                <FaCheck />
-                                <span className='font-medium'>French</span>
-                            </div>
-                        </div>
+                        {languageData.map((language) => (
+                                    <Languages hotelData={hotelData} languageData={language}  />   
+                            ))}
+                        
                     </div>
                 </div>
 

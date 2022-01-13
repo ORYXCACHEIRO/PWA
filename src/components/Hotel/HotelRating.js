@@ -3,6 +3,8 @@ import { starFilled, starNotFilled } from '../../utils/icons';
 
 const HotelRating = ({category}) => {
 
+console.log(category)
+
     switch(category){
         case 0:
             return (<ReactStars count={5} fullIcon={starFilled} emptyIcon={starNotFilled}  size={25} activeColor="#ffd700" value={category} edit={false}/>)
