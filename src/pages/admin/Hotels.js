@@ -21,12 +21,22 @@ const Hotels = ({role}) => {
         }
     });
 
+    
     const fetchAPI = (pageSize, current) => {
 
-        const url = `/hotel?`+ new URLSearchParams({
+        var url = `/hotel/workstations?`+ new URLSearchParams({
             limit:pageSize,
             skip: current-1
         });
+
+        if(role==2){
+            url = `/hotel?`+ new URLSearchParams({
+                limit:pageSize,
+                skip: current-1
+            });
+        } 
+
+        console.log(url);
     
         fetch(url, {
             headers: {'Accept': 'application/json'}

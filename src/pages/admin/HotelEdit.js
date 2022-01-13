@@ -5,6 +5,7 @@ import notificationError from '../../components/Notifications/Error';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { ToastContainer } from 'react-toastify';
+import Select from 'react-select'
 
 const HotelEdit = () => {
 
@@ -13,7 +14,8 @@ const HotelEdit = () => {
 
     const [hotelData, setHotelData] = useState({});
     const {register, handleSubmit} = useForm();
-    
+    const [selectedValue, setSelectedValue] = useState(hotelData.recomended || 0);   
+    const [selectedValue2, setSelectedValue2] = useState(hotelData.state || 0);  
     const hotel = hotellll => editData(hotellll);
 
     if(location.substring(location.length-1, location.length)==="/"){
@@ -23,6 +25,9 @@ const HotelEdit = () => {
     const editData = (data) => {
 
         data.main_image = "aaaaaaaaaaa";
+        data.recomended = selectedValue;
+        data.state = selectedValue2;
+        console.log(data);
 
         fetch(`/hotel/${hotelid}`, {
             headers: {'Content-type': 'application/json'},
@@ -50,11 +55,33 @@ const HotelEdit = () => {
         .then((response) => response.json())
         .then((response) => {
             setHotelData(response);
+            setSelectedValue(response.recomended);
+            setSelectedValue2(response.state)
         }).catch((err) => {
             notificationError('Error: ' + err);
         });
 
     }
+
+    const handleChangeRecomended = e => {
+        setSelectedValue(e.value);
+    }
+
+    const handleChangeState = e => {
+        setSelectedValue2(e.value);
+    }
+
+    const options = [
+        { value: hotelData.recomended, label: (hotelData.recomended===1 ? "Yes": "No" ) },
+        { value: 0, label: 'No' },
+        { value: 1, label: 'Yes' }
+    ]
+
+    const options2 = [
+        { value: hotelData.state, label: (hotelData.state===1 ? "Visible": "Not Visible" ) },
+        { value: 0, label: 'Not Visible' },
+        { value: 1, label: 'Visible' }
+    ]
 
     useEffect(() => {
         getData();
@@ -103,29 +130,21 @@ const HotelEdit = () => {
                             <div className="flex flex-col gap-2">
                                 <label className="font-medium text-lg">Category</label>
                                 <select className="border-2 p-2 rounded" {...register('category', { required: true })}>
-                                    <option value={hotelData.category} className='bg-gray-800 text-white'>{hotelData.category}</option>
-                                    <option value={1}>1</option>
-                                    <option value={2}>2</option>
-                                    <option value={3}>3</option>
-                                    <option value={4}>4</option>
-                                    <option value={5}>5</option>
+                                    <option defaultValue={hotelData.category} className='bg-gray-800 text-white'>{hotelData.category}</option>
+                                    <option defaultValue={1}>1</option>
+                                    <option defaultValue={2}>2</option>
+                                    <option defaultValue={3}>3</option>
+                                    <option defaultValue={4}>4</option>
+                                    <option defaultValue={5}>5</option>
                                 </select>
                             </div>
                             <div className="flex flex-col gap-2">
                                 <label className="font-medium text-lg">Recommended</label>
-                                <select className="border-2 p-2 rounded" {...register('recomended', { required: true })}>
-                                    <option value={hotelData.recomended}> {hotelData.recomended && hotelData.recomended===1 ? "Yes" : "No"}</option>
-                                    <option value={0}>No</option>
-                                    <option value={1}>Yes</option>
-                                </select>
+                                <Select options={options} isClearable={false} isSearchable={false} value={options.filter(obj => obj.value === selectedValue)} onChange={handleChangeRecomended}/>
                             </div>
                             <div className="flex flex-col gap-2">
                                 <label className="font-medium text-lg">State</label>
-                                <select className="border-2 p-2 rounded" {...register('state', { required: true })}>
-                                    {hotelData.state && hotelData.state===1 ? <option value={1} className='bg-gray-800 text-white'>Visible</option> : <option value={0} className='bg-gray-800 text-white'>Not visible</option>}
-                                    <option value={0}>Not visible</option>
-                                    <option value={1}>Visible</option>
-                                </select>
+                                <Select options={options2} isClearable={false} isSearchable={false} value={options2.filter(obj => obj.value === selectedValue2)} onChange={handleChangeState}/>
                             </div>
                             <div className="flex gap-2 sm:flex-col sm:gap-6">
                                 <button type="submit" className="bg-gray-800 mx-4 p-3 rounded-lg text-white font-medium transition ease-out duration-100 hover:bg-gray-600  w-2/4 sm:w-full">Edit</button>
