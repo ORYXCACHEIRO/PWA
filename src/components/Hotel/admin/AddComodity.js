@@ -18,7 +18,6 @@ const AddComodity = ({fetchCom, dataa, hotelid}) => {
         })
         .then((response) => {
             if(response.ok){
-                console.log("aAAAAAAaaa")
                 notificationSucess("Comodity added");
                 fetchCom(dataa.pagination.pageSize, dataa.pagination.current);
             }
@@ -36,7 +35,6 @@ const AddComodity = ({fetchCom, dataa, hotelid}) => {
         })
         .then((response) => response.json())
         .then((response) =>{
-            console.log(response);
             setComs(response);
         }).catch((err) => {
             console.log('Error: ' + err);

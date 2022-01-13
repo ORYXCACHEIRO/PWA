@@ -66,21 +66,21 @@ const HotelComs = () => {
         fetchAPI(pagination.pageSize, pagination.current)
     };
 
-    function handleDelete(idhotel){
+    function handleDelete(idcom){
 
-        fetch(`/hotel/${idhotel}`, {
+        fetch(`/hotel/${hotelid}/comodities/${idcom}`, {
             headers: {'Content-type': 'application/json'},
-            method: 'DELETE'
+            method: 'PUT'
         })
         .then(r => {
             if(r.ok){
-                notificationSucess("Hotel deleted Successfully");
+                notificationSucess("Comodity removed Successfully");
                 fetchAPI(data.pagination.pageSize, data.pagination.current);
             } else {
-                notificationError("Error deleting hotel");
+                notificationError("Error removing comodity");
             }
         }).catch((err) => {
-            notificationError("Error deleting hotel");
+            notificationError("Error removing comodity");
         });
     }
 
