@@ -25,7 +25,7 @@ const Languages = () => {
 
     const fetchAPI = (pageSize, current) => {
 
-        const url = '/languages?'+ new URLSearchParams({
+        const url = '/languages/table?'+ new URLSearchParams({
             limit:pageSize,
             skip: current-1
         });
