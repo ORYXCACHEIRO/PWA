@@ -24,7 +24,6 @@ const HotelEdit = () => {
 
         data.main_image = "aaaaaaaaaaa";
 
-        console.log(data)
         fetch(`/hotel/${hotelid}`, {
             headers: {'Content-type': 'application/json'},
             method: 'PUT',
@@ -32,6 +31,7 @@ const HotelEdit = () => {
         })
         .then((response) => {
             if(response.ok){
+                getData();
                 notificationSucess("Hotel Edited");
             }
             else {
@@ -114,7 +114,7 @@ const HotelEdit = () => {
                             <div className="flex flex-col gap-2">
                                 <label className="font-medium text-lg">Recommended</label>
                                 <select className="border-2 p-2 rounded" {...register('recomended', { required: true })}>
-                                    {hotelData.recomended==1 ? <option value={1} className='bg-gray-800 text-white'>Yes</option> : <option value={0} className='bg-gray-800 text-white'>No</option>}
+                                    <option value={hotelData.recomended}> {hotelData.recomended && hotelData.recomended===1 ? "Yes" : "No"}</option>
                                     <option value={0}>No</option>
                                     <option value={1}>Yes</option>
                                 </select>
@@ -122,7 +122,7 @@ const HotelEdit = () => {
                             <div className="flex flex-col gap-2">
                                 <label className="font-medium text-lg">State</label>
                                 <select className="border-2 p-2 rounded" {...register('state', { required: true })}>
-                                    {hotelData.state==1 ? <option value={1} className='bg-gray-800 text-white'>Visible</option> : <option value={0} className='bg-gray-800 text-white'>Not visible</option>}
+                                    {hotelData.state && hotelData.state===1 ? <option value={1} className='bg-gray-800 text-white'>Visible</option> : <option value={0} className='bg-gray-800 text-white'>Not visible</option>}
                                     <option value={0}>Not visible</option>
                                     <option value={1}>Visible</option>
                                 </select>

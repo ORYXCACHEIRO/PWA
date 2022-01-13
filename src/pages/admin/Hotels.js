@@ -13,7 +13,7 @@ const Hotels = ({role}) => {
     const [loading, setLoading] = useState(true);
 
     const [data, setData] = useState({
-        hoteis: [],
+        hotels: [],
         pagination: {
             current: 1,
             pageSize: 4,
@@ -33,10 +33,10 @@ const Hotels = ({role}) => {
         })
         .then((response) => response.json())
         .then((response) => {
-            const {hoteis = [], pagination } = response;
+            const {hotels = [], pagination } = response;
             setLoading(false);
             setData({
-                hoteis,
+                hotels,
                 pagination: {
                     current: pagination.page + 1 || 1,
                     pageSize: pagination.pageSize || 1,
@@ -51,7 +51,7 @@ const Hotels = ({role}) => {
         fetchAPI(data.pagination.pageSize, data.pagination.current);
   
         return () => setData({
-            hoteis: [],
+            hotels: [],
             pagination: {
                 current: 1,
                 pageSize: 10
@@ -159,7 +159,7 @@ const Hotels = ({role}) => {
     }
     ];
 
-    const {hoteis, pagination } = data;
+    const {hotels, pagination } = data;
 
     return(
         <>
@@ -171,7 +171,7 @@ const Hotels = ({role}) => {
                         <FaPlus/>
                     </Link>}
                     
-                    <Table columns={columns} rowKey={record => record._id} dataSource={hoteis} pagination={pagination} loading={loading} onChange={handleTableChange} className='border-2 p-1 mt-5'/>
+                    <Table columns={columns} rowKey={record => record._id} dataSource={hotels} pagination={pagination} loading={loading} onChange={handleTableChange} className='border-2 p-1 mt-5'/>
                 </div>
             </div>
         </>
