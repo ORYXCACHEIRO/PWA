@@ -8,8 +8,6 @@ const Rooms = ({ roomData, hotelData }) => {
 
     const [modalIsOpen, setIsOpen] = useState(false);
 
-    console.log(roomData)
-
     function openModal() {
         setIsOpen(true);
     }

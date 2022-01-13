@@ -18,7 +18,7 @@ const Hotel = ({ loginStatus }) => {
 
     const { hotelid } = useParams();
 
-    const [userData, setUserData] = useState([]);
+    const [hotelData, setHotelData] = useState([]);
     const [reviewData, setReviewData] = useState([]);
     const [roomData, setRoomData] = useState([]);
     const [comodityData, setComodityData] = useState([]);
@@ -28,8 +28,8 @@ const Hotel = ({ loginStatus }) => {
         fetch(`/hotel/${hotelid}`, {
             headers: { 'Accept': 'application/json' }
         })
-            .then(response => response.json())
-            .then(data => setUserData(data));
+        .then(response => response.json())
+        .then(data => setHotelData(data));
 
     }
 
@@ -38,8 +38,8 @@ const Hotel = ({ loginStatus }) => {
         fetch(`/hotel/${hotelid}/comodities`, {
             headers: { 'Accept': 'application/json' }
         })
-            .then(response => response.json())
-            .then(data => setComodityData(data));
+        .then(response => response.json())
+        .then(data => setComodityData(data));
 
     }
 
@@ -48,8 +48,8 @@ const Hotel = ({ loginStatus }) => {
         fetch(`/hotel/${hotelid}/reviews`, {
             headers: { 'Accept': 'application/json' }
         })
-            .then(response => response.json())
-            .then(data => setReviewData(data));
+        .then(response => response.json())
+        .then(data => setReviewData(data));
 
     }
 
@@ -58,8 +58,8 @@ const Hotel = ({ loginStatus }) => {
         fetch(`/hotel/${hotelid}/rooms`, {
             headers: { 'Accept': 'application/json' }
         })
-            .then(response => response.json())
-            .then(data => setRoomData(data));
+        .then(response => response.json())
+        .then(data => setRoomData(data));
 
     }
 
@@ -91,42 +91,39 @@ const Hotel = ({ loginStatus }) => {
                     <div className='w-2/4 lg:w-full'>
                         <div>
                             <div className=' flex justify-end'>
-                                <AddFav hotelData={userData._id} loginStatus={loginStatus} />
+                                <AddFav hotelData={hotelData._id} loginStatus={loginStatus} />
                             </div>
                             <div className='flex flex-col gap-4 p-3 ml-2 '>
-                                <h1 className='text-5xl font-bold  text-purple-500 xl:text-4xl lg:text-5xl sm:text-4xl m-0'>{userData.name}</h1>
-                                <h1 className='text-3xl  text-gray-800 font-bold xl:text-2xl lg:text-3xl sm:text-2xl m-0'>{userData.city}</h1>
+                                <h1 className='text-5xl font-bold  text-purple-500 xl:text-4xl lg:text-5xl sm:text-4xl m-0'>{hotelData.name}</h1>
+                                <h1 className='text-3xl  text-gray-800 font-bold xl:text-2xl lg:text-3xl sm:text-2xl m-0'>{hotelData.city}</h1>
                             </div>
                             <div className='flex ml-3 p-2 gap-3'>
                                 <div className='flex items-center'>
-                                    <HotelRating category={userData.category} />
+                                    <HotelRating category={hotelData.category} />
                                 </div>
                             </div>
                             <div className='p-2 ml-3'>
-                                <h1 className='flex items-center gap-4 text-xl sm:text-lg'><FaMapMarked /> <span className='font-medium'>{userData.adress} {userData.postalc}</span></h1>
+                                <h1 className='flex items-center gap-4 text-xl sm:text-lg'><FaMapMarked /> <span className='font-medium'>{hotelData.adress} {hotelData.postalc}</span></h1>
                             </div>
                         </div>
                         <div className='p-5 mt-3'>
                             <h1 className='font-bold text-2xl '>Small Information :</h1>
                             <p className='pt-5 text-xl font-medium'>
-                                {userData.description}
+                                {hotelData.description}
                             </p>
                         </div>
                     </div>
                 </div>
 
-                <div className='flex px-5 md:flex-col'>
-
-
-                    <h1 className='text-4xl font-bold p-2 md:text-2xl text-center'>Comodities offered :</h1>
+                <div className='flex px-5 md:flex-col'>     
                     <div className=' w-2/4 px-5 md:w-full md:py-3'>
+                        <h1 className='text-4xl font-bold p-2 md:text-2xl text-center'>Comodities offered :</h1>
                         <div className='flex flex-wrap gap-6 md:gap-3 pt-4 justify-center'>
                             {comodityData.map((comodity) => (
-                                <Comodities comodityData={comodity} hotelData={userData} />
+                                <Comodities comodityData={comodity} hotelData={hotelData} />
                             ))}
                         </div>
                     </div>
-                    <Comodities comodityData={comodityData} />
 
                     <div className=' w-2/4 px-5 md:w-full md:py-3'>
                         <h1 className='text-4xl font-bold p-2 md:text-2xl text-center'>Staff speaks :</h1>
@@ -148,7 +145,7 @@ const Hotel = ({ loginStatus }) => {
                         <h1 className='text-4xl font-bold p-2 md:text-2xl text-center'>Rooms :</h1>
                         <div className='pt-3 flex flex-col gap-6'>
                             {roomData.map((room) => (
-                                <Rooms roomData={room} hotelData={userData} />
+                                <Rooms roomData={room} hotelData={hotelData} />
                             ))}
                         </div>
                     </div>
@@ -164,7 +161,7 @@ const Hotel = ({ loginStatus }) => {
                                 <Review reviewData={review} key={review._id} />
                             ))}
                         </div>
-                        {loginStatus && <ReviewForm userData={userData} />}
+                        {loginStatus && <ReviewForm userData={hotelData} />}
                     </div>
                 </div>
             </div>
