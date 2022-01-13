@@ -1,4 +1,4 @@
-import { Table, Tag, Space, Popconfirm } from 'antd';
+import { Table, Space, Popconfirm } from 'antd';
 import { Link, useLocation } from 'react-router-dom';
 import {useState, useEffect} from 'react';
 import notificationSucess from '../../components/Notifications/Success';

@@ -5,8 +5,6 @@ const AddFav = ({ comodityData, hotelData }) => {
 
     const [comodityRData, setComodityRData] = useState([]);
 
-    console.log(comodityRData)
-
     const getComodityData = () => {
 
         fetch(`/hotel/${hotelData._id}/comodities/${comodityData.comodity}`, {
@@ -23,7 +21,7 @@ const AddFav = ({ comodityData, hotelData }) => {
 
     return (
         <>  
-            {comodityRData.free==1 ?
+            {comodityRData.free===1 ?
             <div className='flex items-center gap-2 p-3 text-lg'>
                 <FaCheck />
                 <span className='font-medium'>{comodityRData.name}</span>

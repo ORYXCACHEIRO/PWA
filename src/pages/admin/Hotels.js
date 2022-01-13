@@ -29,7 +29,7 @@ const Hotels = ({role}) => {
             skip: current-1
         });
 
-        if(role==2){
+        if(role===2){
             url = `/hotel?`+ new URLSearchParams({
                 limit:pageSize,
                 skip: current-1

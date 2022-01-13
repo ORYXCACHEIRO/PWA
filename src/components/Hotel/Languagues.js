@@ -3,16 +3,11 @@ import { FaCheck } from 'react-icons/fa';
 
 const Languagues = ({ languageData, hotelData }) => {
 
-
-
-   
-
     const [languageRData, setLanguageRData] = useState([]);
-
 
     const getLanguageRData = () => {
 
-        fetch(`/hotel/${hotelData._id}/languages/${languageData}`, {
+        fetch(`/hotel/${hotelData._id}/languages/${languageData.language}`, {
             headers: { 'Accept': 'application/json' }
         })
             .then(response => response.json())
@@ -24,13 +19,9 @@ const Languagues = ({ languageData, hotelData }) => {
         getLanguageRData();
     }, []);
 
-    console.log(hotelData)
-    console.log(languageData)
-    console.log(languageRData)
-
     return (
         <>
-            <div className='flex flex-wrap gap-6 md:gap-3 pt-4 justify-center'>
+            <div className='flex flex-wrap gap-6 md:gap-3 pt-4 justify-center' key={languageData.language}>
 
                     <div className='flex items-center gap-2 p-3 text-lg'>
                     <FaCheck />

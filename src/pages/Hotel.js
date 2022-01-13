@@ -1,7 +1,7 @@
 import teste from '../assets/exterior.jpg';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
-import { FaMapMarked, FaCheck } from 'react-icons/fa';
+import { FaMapMarked } from 'react-icons/fa';
 import { useEffect } from "react";
 import React, { useState } from "react";
 
@@ -16,9 +16,6 @@ import { useParams } from 'react-router-dom';
 
 
 const Hotel = ({ loginStatus }) => {
-
-
-
 
     const { hotelid } = useParams();
     const [hotelData, setHotelData] = useState([]);
@@ -86,15 +83,13 @@ const Hotel = ({ loginStatus }) => {
     }, []);
 
 
-    console.log(languageData)
-
 
     let images = [teste, teste, teste];
 
     return (
         <>
             <div>
-                <div className="flex px-5 lg:flex-col">
+                <div className="flex px-5 lg:flex-col" >
                     <div className="w-2/4 lg:w-full">
                         <Carousel className='p-14' showArrows={true} showThumbs={true}>
                             {

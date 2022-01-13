@@ -11,10 +11,10 @@ import Reviews from '../components/Profile/Reviews';
 import LoginForm from '../components/Profile/LoginForm';
 
 
-const Profile = ({ }) => {
+const Profile = () => {
 
 
-    const { register, handleSubmit, handleSubmit2 } = useForm();
+    const { register, handleSubmit } = useForm();
     const [userData, setuserData] = useState([]);
     const [favoriteData, setFavoriteData] = useState([]);
     const [reviewData, setReviewData] = useState([]);
@@ -40,44 +40,37 @@ const Profile = ({ }) => {
         fetch('/auth/me', {
             headers: { 'Accept': 'application/json' }
         })
-            .then((response) => response.json())
-            .then((response) => {
-                if (response.auth === true) {
-                    setuserData(response.decoded)
-                }
-            }).catch((err) => {
-                alert("algo correu mal");
-            });
-    }, []);
+        .then((response) => response.json())
+        .then((response) => {
+            if (response.auth === true) {
+                setuserData(response.decoded)
+            }
+        }).catch((err) => {
+            alert("algo correu mal");
+        });
 
-    useEffect(() => {
-        fetch(`/profile/favorites`, {
-            method: 'GET',
-            headers: { 'Accept': 'application/json' }
-        })
-            .then(response => response.json())
-            .then(data => setFavoriteData(data))
-    }, []);
-
-    useEffect(() => {
-        fetch(`/profile/reviews/${userData.id}`, {
-            method: 'GET',
-            headers: { 'Accept': 'application/json' }
-        })
-            .then(response => response.json())
-            .then(data => setReviewData(data))
-    }, [userData.id]);
-
-    useEffect(() => {
         fetch(`/profile/reservations/${userData.id}`  , {
             method: 'GET',
             headers: { 'Accept': 'application/json' }
         })
         .then(response => response.json())
-        .then(data => setreservaData(data))
-    }, [userData.id]);
+        .then(data => setreservaData(data));
 
+        fetch(`/profile/favorites`, {
+            method: 'GET',
+            headers: { 'Accept': 'application/json' }
+        })
+        .then(response => response.json())
+        .then(data => setFavoriteData(data));
 
+        fetch(`/profile/reviews/${userData.id}`, {
+            method: 'GET',
+            headers: { 'Accept': 'application/json' }
+        })
+        .then(response => response.json())
+        .then(data => setReviewData(data));
+
+    }, []);
     
     return (
         <>

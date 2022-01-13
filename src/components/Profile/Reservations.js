@@ -1,18 +1,8 @@
-import { FaTrash } from 'react-icons/fa';
 import hotelImg from '../../assets/exterior.jpg';
-
-
 import { Popconfirm } from 'antd';
 
+const Reservations = ({ reservaData }) => {
 
-import { useEffect } from "react";
-import React, { useState } from "react";
-
-const Reservations = ({ userid, reservaData }) => {
-
-
-
-    console.log(reservaData._id)
 
     function handleDelete(id){
         console.log(id)
@@ -24,8 +14,6 @@ const Reservations = ({ userid, reservaData }) => {
             .then(console.log("response"))
         
     }
-
-
 
     return (
         <>
@@ -56,10 +44,6 @@ const Reservations = ({ userid, reservaData }) => {
                         <Popconfirm size="middle" title="Sure to delete?" onConfirm={() => handleDelete(reservaData._id)}>
                             <button className='bg-red-500 p-2 rounded-xl text-white font-medium'>Delete</button>
                         </Popconfirm>
-
-
-
-
                     </div>
                 </div>
             </div>

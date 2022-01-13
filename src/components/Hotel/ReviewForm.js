@@ -2,8 +2,6 @@ import ReactStars from "react-rating-stars-component";
 
 import { useForm } from 'react-hook-form';
 import React, { useState } from "react";
-import { Navigate } from 'react-router'
-import { stringify } from "postcss";
 
 const ReviewForm = ({ userData }) => {
 

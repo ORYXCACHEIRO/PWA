@@ -2,9 +2,6 @@ import { Table, Space, Popconfirm } from 'antd';
 import { Link, useLocation } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import notificationSucess from '../../components/Notifications/Success';
-import { ToastContainer } from 'react-toastify';
-import notificationError from '../../components/Notifications/Error';
 
 const UserReservations = () => {
 
@@ -110,7 +107,6 @@ const UserReservations = () => {
 
     return(
         <>
-            <ToastContainer/>
             <div className="h-full relative">
                 <div className=' absolute top-1/4 left-2/4 translate-x-[-50%] translate-y-[-25%]  w-full px-10 sm:px-0'>
                     <Link to={(location + "/..")} className='bg-gray-800 p-3 text-white rounded-lg text-lg sm:ml-2'>
