@@ -81,7 +81,7 @@ const Reservation = ({ closeModal, roomData, hotelData }) => {
     {
  
         t = reservaData[i]
-        console.log(reservaData[i])
+
         date = new Date(t.begin_date)
         dateend = new Date(t.end_date)
         //console.log(date.toLocaleDateString())

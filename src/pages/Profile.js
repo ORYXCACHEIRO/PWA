@@ -113,18 +113,33 @@ const Profile = () => {
                 </div>
                 <div className='w-3/4'>
                      <h1 className='text-center text-4xl font-bold p-3'>Reservations</h1>
+                     {reservaData.length < 1 &&
+                                <h2 className=' text-center text-4xl  p-3'>
+                                    No Reservations
+                                </h2>
+                            }
                 {reservaData.map((reserva) => (
                         <Reservations  reservaData={reserva} userid={userData} />
                     ))}
                 </div>
                 <div className='w-3/4'>
                 <h1 className='text-center text-4xl font-bold p-3'>Favorites</h1>
+                {favoriteData.length < 1 &&
+                                <h2 className=' text-center text-4xl  p-3'>
+                                    No Favorites
+                                </h2>
+                            }
                     {favoriteData.map((favorite) => (
                         <Favorites favoriteData={favorite} userid={userData} />
                     ))}
                 </div>
                 <div className='w-3/4'>
                 <h1 className='text-center text-4xl font-bold p-3'>Written Reviews</h1>
+                {reviewData.length < 1 &&
+                                <h2 className=' text-center text-4xl  p-3'>
+                                    No Reviews
+                                </h2>
+                            }
                     {reviewData.map((review) => (
                         <Reviews reviewData={review} userid={userData} />
                     ))}
