@@ -35,8 +35,6 @@ const Hotels = ({role}) => {
                 skip: current-1
             });
         } 
-
-        console.log(url);
     
         fetch(url, {
             headers: {'Accept': 'application/json'}

@@ -1,4 +1,4 @@
-import {FaStar, FaPhotoVideo, FaWifi, FaLanguage, FaBed} from 'react-icons/fa';
+import {FaPhotoVideo, FaWifi, FaLanguage, FaBed} from 'react-icons/fa';
 import {Link, useLocation, useParams } from 'react-router-dom';
 import notificationSucess from '../../components/Notifications/Success';
 import notificationError from '../../components/Notifications/Error';
@@ -27,7 +27,6 @@ const HotelEdit = () => {
         data.main_image = "aaaaaaaaaaa";
         data.recomended = selectedValue;
         data.state = selectedValue2;
-        console.log(data);
 
         fetch(`/hotel/${hotelid}`, {
             headers: {'Content-type': 'application/json'},
@@ -75,13 +74,13 @@ const HotelEdit = () => {
         { value: hotelData.recomended, label: (hotelData.recomended===1 ? "Yes": "No" ) },
         { value: 0, label: 'No' },
         { value: 1, label: 'Yes' }
-    ]
+    ];
 
     const options2 = [
         { value: hotelData.state, label: (hotelData.state===1 ? "Visible": "Not Visible" ) },
         { value: 0, label: 'Not Visible' },
         { value: 1, label: 'Visible' }
-    ]
+    ];
 
     useEffect(() => {
         getData();
