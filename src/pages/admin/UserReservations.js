@@ -1,6 +1,5 @@
 import { Table, Space, Popconfirm } from 'antd';
-import { Link, useLocation } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 const UserReservations = () => {
@@ -95,7 +94,7 @@ const UserReservations = () => {
             render: (text, record) => (
             
             <Space className=''>
-                <Popconfirm size="middle"  title="Sure to delete?" onConfirm={() => this.handleDelete(record.key)}>
+                <Popconfirm size="middle"  title="Sure to delete?" onConfirm={() => this.handleDelete(record._id)}>
                     <button className='bg-red-500 p-2 rounded-xl text-white font-medium'>Delete</button>
                 </Popconfirm>
             </Space>

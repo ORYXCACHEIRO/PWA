@@ -156,7 +156,7 @@ const HotelEdit = () => {
                 </div>
 
                 <div className=" w-3/4 flex flex-wrap gap-10 justify-evenly pt-10 pb-10">
-                    <Link to={location + "/gallery"} className="hidden w-80 h-96 items-center justify-center flex gap-2 text-3xl font-semibold bg-gray-800 text-white rounded-lg transition ease-out duration-100 hover:bg-gray-600">
+                    <Link to={location + "/gallery"} className=" w-80 h-96 items-center justify-center flex gap-2 text-3xl font-semibold bg-gray-800 text-white rounded-lg transition ease-out duration-100 hover:bg-gray-600">
                         <FaPhotoVideo className=''/>
                         Gallery
                     </Link>
