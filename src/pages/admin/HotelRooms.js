@@ -1,10 +1,90 @@
 import { Table, Space, Popconfirm } from 'antd';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import { FaPlus } from 'react-icons/fa';
+import { useState, useEffect } from 'react';
+import notificationSucess from '../../components/Notifications/Success';
+import { ToastContainer } from 'react-toastify';
+import notificationError from '../../components/Notifications/Error';
 
 const HotelRooms = () => {
 
-    const location = useLocation().pathname;
+    var location = useLocation().pathname;
+    const [loading, setLoading] = useState(true);
+    const { hotelid } = useParams();
+
+    const [data, setData] = useState({
+        rooms: [],
+        pagination: {
+            current: 1,
+            pageSize: 4,
+            total: 0
+        }
+    });
+
+    if(location.substring(location.length-1, location.length)==="/"){
+        location = location.slice(0, -1);
+    }
+
+    const fetchAPI = (pageSize, current) => {
+
+        var url = `/hotel/${hotelid}/rooms?`+ new URLSearchParams({
+            limit:pageSize,
+            skip: current-1
+        });
+    
+        fetch(url, {
+            headers: {'Accept': 'application/json'}
+        })
+        .then((response) => response.json())
+        .then((response) => {
+            const {rooms = [], pagination } = response;
+            setLoading(false);
+            setData({
+                rooms,
+                pagination: {
+                    current: pagination.page + 1 || 1,
+                    pageSize: pagination.pageSize || 1,
+                    total: pagination.total || 5
+                }
+            });
+        });
+    }
+
+    useEffect(() => {
+
+        fetchAPI(data.pagination.pageSize, data.pagination.current);
+  
+        return () => setData({
+            rooms: [],
+            pagination: {
+                current: 1,
+                pageSize: 10
+            }
+        });
+  
+    }, []);
+
+    const handleTableChange = (pagination) => {
+        fetchAPI(pagination.pageSize, pagination.current)
+    };
+
+    function handleDelete(idroom){
+
+        fetch(`/hotel/${hotelid}/rooms/${idroom}`, {
+            headers: {'Content-type': 'application/json'},
+            method: 'DELETE'
+        })
+        .then(r => {
+            if(r.ok){
+                notificationSucess("Room deleted Successfully");
+                fetchAPI(data.pagination.pageSize, data.pagination.current);
+            } else {
+                notificationError("Error deleting room");
+            }
+        }).catch((err) => {
+            notificationError("Error deleting room");
+        });
+    }
 
     const columns = [
         { 
@@ -14,18 +94,18 @@ const HotelRooms = () => {
         },
         {
             title: 'Adults',
-            dataIndex: 'adults',
-            key: 'adults'
+            dataIndex: 'maxAdult',
+            key: 'maxAdult'
         },
         {
             title: 'Children',
-            dataIndex: 'childrenm',
-            key: 'childrenm'
+            dataIndex: 'maxChildren',
+            key: 'maxChildren'
         },
         {
             title: 'Price',
-            dataIndex: 'price',
-            key: 'price'
+            dataIndex: 'price_per_night',
+            key: 'price_per_night'
         },
         {
           title: 'Action',
@@ -33,62 +113,36 @@ const HotelRooms = () => {
           key: 'x',
           render: (record) => (
               <Space className='sm:flex sm:flex-col sm:items-center '>
-                    <Popconfirm size="middle"  title="Sure to delete?" onConfirm={() => this.handleDelete(record.key)}>
+                    <Popconfirm size="middle"  title="Sure to delete?" onConfirm={() => handleDelete(record._id)}>
                         <button className='bg-red-500 p-2 rounded-xl text-white font-medium'>Delete</button>
                     </Popconfirm>
-                    <Link to={location+"/"+record.key} className='bg-gray-800 p-2 rounded-xl text-white font-medium'>
+                    <Link to={location+"/"+record._id} className='bg-gray-800 p-2 rounded-xl text-white font-medium'>
                         Edit
                     </Link>
               </Space>
           )
         }
     ];
-    
 
-    const data = [
-        {
-            key: '1',
-            name: 'John Brown',
-            adults: '3',
-            childrenm: '1',
-            price: '150€',
-            description: 'My name is Joe Black, I am 32 years old, living in Sidney No. 1 Lake Park.',
-        },
-        {
-            key: '2',
-            name: 'Jim Green',
-            adults: '3',
-            childrenm: '1',
-            price: '150€',
-            description: 'My name is Joe Black, I am 32 years old, living in Sidney No. 1 Lake Park.',
-        },
-        {
-            key: '3',
-            name: 'Joe Black',
-            adults: '3',
-            childrenm: '1',
-            price: '150€',
-            description: 'My name is Joe Black, I am 32 years old, living in Sidney No. 1 Lake Park.',
-        },
-    ];
+    const {rooms, pagination } = data;
+
 
     return(
         <>
+            <ToastContainer/>
             <div className="h-full relative">
-                
                 <div className=' absolute top-1/4 left-2/4 translate-x-[-50%] translate-y-[-25%]  w-full px-10 sm:px-0'>
                     <div className='flex gap-4'>
-                        <Link to="/admin/hotels/1" className='bg-gray-800 p-3 text-white rounded-lg text-lg sm:ml-2'>
+                        <Link to={(location + "/..")} className='bg-gray-800 p-3 text-white rounded-lg text-lg sm:ml-2'>
                             Back to Hotel
                         </Link>
-                        <Link to="/admin/hotels/1/rooms/create" className='bg-gray-800 p-3 text-white rounded-lg text-lg sm:ml-2 flex items-center gap-2'>
+                        <Link to={(location + "/create")} className='bg-gray-800 p-3 text-white rounded-lg text-lg sm:ml-2 flex items-center gap-2'>
                             Create Room
                             <FaPlus/>
                         </Link>
                     </div>
-                    
-                    <Table  columns={columns} dataSource={data} expandable={{
-                    expandedRowRender: record => <p style={{ margin: 0 }}>{record.description}</p>
+                    <Table  columns={columns} rowKey={record => record._id} dataSource={rooms} pagination={pagination} loading={loading} onChange={handleTableChange} expandable={{
+                    expandedRowRender: record => <p style={{ margin: 1 }}><span className='font-bold'>Description:</span> {record.descrption}</p>
                     }} className='border-2 p-1 mt-5'/>
                 </div>
             </div>

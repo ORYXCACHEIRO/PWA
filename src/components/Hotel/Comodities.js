@@ -22,7 +22,7 @@ const AddFav = ({ comodityData, hotelData }) => {
     return (
         <>  
             {comodityRData.free===1 ?
-            <div className='flex items-center gap-2 p-3 text-lg'>
+            <div className='flex items-center gap-2 p-3 text-lg' key={comodityRData._id}>
                 <FaCheck />
                 <span className='font-medium'>{comodityRData.name}</span>
                 <div className='bg-green-300 rounded-3xl px-3 py-1'>
@@ -30,7 +30,7 @@ const AddFav = ({ comodityData, hotelData }) => {
                 </div>
             </div>
             :
-            <div className='flex items-center gap-2 p-3 text-lg'>
+            <div className='flex items-center gap-2 p-3 text-lg' key={comodityRData._id}>
                 <FaCheck />
                 <span className='font-medium'>{comodityRData.name}</span>
                 <div className='bg-gray-300 rounded-3xl px-3 py-1'>
