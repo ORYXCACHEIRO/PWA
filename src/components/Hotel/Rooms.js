@@ -21,6 +21,10 @@ const Rooms = ({ roomData, hotelData }) => {
         setIsOpen(false);
     }
 
+
+
+
+
     return(
         <>
             <div className='flex bg-gray-800 lg:flex-col lg:gap-3 lg:pt-4 rounded-xl gap-5'>

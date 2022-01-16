@@ -141,9 +141,9 @@ const Hotel = ({ loginStatus }) => {
                     <div className=' w-2/4 px-5 md:w-full md:py-3'>
                         <h1 className='text-4xl font-bold p-2 md:text-2xl text-center'>Staff speaks :</h1>
                         {languageData.map((language) => (
-                                    <Languages hotelData={hotelData} languageData={language}  />   
-                            ))}
-                        
+                            <Languages hotelData={hotelData} languageData={language} />
+                        ))}
+
                     </div>
                 </div>
 
@@ -151,6 +151,13 @@ const Hotel = ({ loginStatus }) => {
                     <div className=' w-3/4 '>
                         <h1 className='text-4xl font-bold p-2 md:text-2xl text-center'>Rooms :</h1>
                         <div className='pt-3 flex flex-col gap-6'>
+
+                            {roomData.length < 1 &&
+                                <h2 className=' text-center text-4xl  p-3'>
+                                    No Rooms
+                                </h2>
+                            }
+
                             {roomData.map((room) => (
                                 <Rooms roomData={room} hotelData={hotelData} />
                             ))}
@@ -164,6 +171,13 @@ const Hotel = ({ loginStatus }) => {
                     <h1 className='text-4xl font-bold p-2 md:text-2xl text-center'>Reviews :</h1>
                     <div className=' w-3/4 flex flex-col gap-10'>
                         <div className='p-2  flex flex-col gap-8'>
+
+                        {reviewData.length < 1 &&
+                                <h2 className=' text-center text-4xl  p-3'>
+                                    No Reviews
+                                </h2>
+                            }
+
                             {reviewData.map((review) => (
                                 <Review reviewData={review} key={review._id} />
                             ))}

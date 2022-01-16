@@ -1,19 +1,22 @@
 import img from '../../assets/exterior.jpg';
-import {FaTimes} from 'react-icons/fa';
+import { FaTimes } from 'react-icons/fa';
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Calendar } from 'antd';
 import 'antd/dist/antd.variable.min.css';
+import moment from 'moment'
+import { Badge } from 'antd';
 
 import { useForm } from 'react-hook-form';
 import { useEffect } from "react";
 import { useState } from "react";
 
-const Reservation = ({closeModal, roomData, hotelData}) =>  {
+const Reservation = ({ closeModal, roomData, hotelData }) => {
 
     const { register, handleSubmit } = useForm();
     const submit = data => createReserva(data);
     const [userData, setuserData] = useState([]);
+    const [reservaData, setReservaData] = useState([]);
 
     const createReserva = (data) => {
         data.id_user = userData.id
@@ -23,12 +26,24 @@ const Reservation = ({closeModal, roomData, hotelData}) =>  {
             body: JSON.stringify(data)
         })
             .then((response) => {
-                console.log(response)
             });
     }
 
 
-    useEffect(() => {
+
+
+    const getReservaData = () => {
+
+        fetch(`/hotel/${hotelData._id}/rooms/${roomData._id}/reservations`, {
+            headers: { 'Accept': 'application/json' }
+        })
+            .then(response => response.json())
+            .then(data => setReservaData(data))
+    }
+
+
+
+    const AuthMe = () => {
         fetch('/auth/me', {
             headers: { 'Accept': 'application/json' }
         })
@@ -40,10 +55,66 @@ const Reservation = ({closeModal, roomData, hotelData}) =>  {
             }).catch((err) => {
                 alert("algo correu mal");
             });
+
+    }
+
+    useEffect(() => {
+        getReservaData();
+        AuthMe();
+
+
+        
     }, []);
 
+    
+    var t = []
+    var i = 0
+    var date = new Date();
+    var dateend = new Date();
 
+
+
+    function getListData(value) {
+        let listData;
+
+    for(i = 0; i < reservaData.length; i++)
+    {
  
+        t = reservaData[i]
+
+        date = new Date(t.begin_date)
+        dateend = new Date(t.end_date)
+        //console.log(date.toLocaleDateString())
+        if(value._d.toLocaleDateString() >= date.toLocaleDateString())
+        {
+            if(value._d.toLocaleDateString() <= dateend.toLocaleDateString())
+            {
+                listData = [
+                    { type: 'error' },
+    
+                ];
+
+            }
+            
+        }
+    }
+        return listData || [];
+    }
+
+    function dateCellRender(value) {
+        const listData = getListData(value);
+        return (
+            <ul className="events">
+                {listData.map(item => (
+                    <li key={item.content}>
+                        <Badge status={item.type} text={item.content} />
+                    </li>
+                ))}
+            </ul>
+        );
+    }
+
+
 
     let images = [img, img, img];
 
@@ -51,11 +122,13 @@ const Reservation = ({closeModal, roomData, hotelData}) =>  {
         console.log(value, mode);
     }
 
-    return(
+
+
+    return (
         <>
             <div className='w-full '>
                 <div className='flex justify-end p-4'>
-                    <button onClick={closeModal} className='text-2xl bg-red-500 p-2 text-white rounded-full transition duration-100 ease-out hover:bg-red-400'><FaTimes/></button>
+                    <button onClick={closeModal} className='text-2xl bg-red-500 p-2 text-white rounded-full transition duration-100 ease-out hover:bg-red-400'><FaTimes /></button>
                 </div>
                 <div className='flex lg:flex-col '>
                     <div className='w-2/4 lg:w-full'>
@@ -63,7 +136,7 @@ const Reservation = ({closeModal, roomData, hotelData}) =>  {
                             {
                                 images.map((url, index) => (
                                     <div key={index}>
-                                        <img src={url} className='rounded-lg' alt=''/>
+                                        <img src={url} className='rounded-lg' alt='' />
                                     </div>
                                 ))
                             }
@@ -101,30 +174,30 @@ const Reservation = ({closeModal, roomData, hotelData}) =>  {
                         <form onSubmit={handleSubmit(submit)} className='flex w-2/4 sm:w-3/4 flex-col gap-5'>
                             <div className='flex flex-col gap-3 w-full'>
                                 <label className='text-white font-bold text-lg'>Begin Date</label>
-                                <input {...register('begin_date', { required: true })} type="date" className='p-2 w-full rounded-lg'/>
+                                <input {...register('begin_date', { required: true })} type="date" className='p-2 w-full rounded-lg' />
                             </div>
                             <div className='flex flex-col gap-3 w-full'>
                                 <label className='text-white font-bold text-lg'>Ending Date</label>
-                                <input {...register('end_date', { required: true })} type="date" className='p-2 w-full rounded-lg'/>
+                                <input {...register('end_date', { required: true })} type="date" className='p-2 w-full rounded-lg' />
                             </div>
                             <div className='flex flex-col gap-3 w-full'>
                                 <label className='text-white font-bold text-lg'>Adults</label>
-                                <input {...register('numberAdults', { required: true })} type="number" className='p-2 w-full rounded-lg'/>
+                                <input {...register('numberAdults', { required: true })} type="number" className='p-2 w-full rounded-lg' />
                             </div>
 
                             <div className='flex flex-col gap-3 w-full'>
                                 <label className='text-white font-bold text-lg'>Children</label>
-                                <input {...register('numberChildren', { required: true })} type="number" className='p-2 w-full rounded-lg'/>
+                                <input {...register('numberChildren', { required: true })} type="number" className='p-2 w-full rounded-lg' />
                             </div>
                             <button type='submit' className='bg-purple-500 font-medium p-2 mt-3 text-white rounded-lg transition ease-in duration-100 hover:bg-purple-400'>Send</button>
                         </form>
 
 
 
-
                     </div>
                     <div className='w-2/4 lg:w-full flex items-center p-20 md:p-5'>
-                        <Calendar fullscreen={false} onPanelChange={onPanelChange} />
+                        <Calendar dateCellRender={dateCellRender} fullscreen={false} onPanelChange={onPanelChange} />
+
                     </div>
                 </div>
             </div>
