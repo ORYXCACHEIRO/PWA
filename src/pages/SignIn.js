@@ -44,7 +44,7 @@ const SignIn = () => {
                                 <label className="font-medium text-xl">Password:</label>
                                 <input type="password" {...register('password', { required: true })} className='border-3 border-purple-500 rounded-lg pl-2 p-1 ' placeholder='*********' />
                             </div>
-                            <button type="submit" className='bg-purple-500 text-white font-medium p-3 rounded-lg transition duration-100 ease-out hover:ease-in hover:bg-purple-300'>
+                            <button data-testid="LoginButton" type="submit" className='bg-purple-500 text-white font-medium p-3 rounded-lg transition duration-100 ease-out hover:ease-in hover:bg-purple-300 btn '>
                                 Sign In
                             </button>
                             <div className='flex flex-col gap-1'>

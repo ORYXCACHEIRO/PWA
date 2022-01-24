@@ -42,7 +42,7 @@ const Reservations = ({ reservaData }) => {
 
 
                         <Popconfirm size="middle" title="Sure to delete?" onConfirm={() => handleDelete(reservaData._id)}>
-                            <button className='bg-red-500 p-2 rounded-xl text-white font-medium'>Delete</button>
+                            <button className='bg-red-500 p-2 rounded-xl text-white font-medium btn'>Delete</button>
                         </Popconfirm>
                     </div>
                 </div>
