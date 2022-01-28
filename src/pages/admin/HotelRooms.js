@@ -27,7 +27,7 @@ const HotelRooms = () => {
 
     const fetchAPI = (pageSize, current) => {
 
-        var url = `/hotel/${hotelid}/rooms?`+ new URLSearchParams({
+        var url = `/hotel/${hotelid}/rooms/table?`+ new URLSearchParams({
             limit:pageSize,
             skip: current-1
         });

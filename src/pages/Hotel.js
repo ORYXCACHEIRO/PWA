@@ -152,12 +152,6 @@ const Hotel = ({ loginStatus }) => {
                         <h1 className='text-4xl font-bold p-2 md:text-2xl text-center'>Rooms :</h1>
                         <div className='pt-3 flex flex-col gap-6'>
 
-                            {roomData.length < 1 &&
-                                <h2 className=' text-center text-4xl  p-3'>
-                                    No Rooms
-                                </h2>
-                            }
-
                             {roomData.map((room) => (
                                 <Rooms roomData={room} hotelData={hotelData} />
                             ))}
