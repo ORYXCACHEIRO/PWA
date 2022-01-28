@@ -1,0 +1,459 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Hotel Should render correctly 1`] = `
+<div
+  className="w-full flex  items-center flex-col p-10 gap-20"
+>
+  <div
+    className=" w-3/4 bg-gray-900 h-28 rounded-xl relative flex md:flex-col md:h-max md:items-center"
+  >
+    <div
+      className="w-max"
+    >
+      <div
+        className="w-24 h-24 bg-purple-500 rounded-full mt-9 ml-8 md:ml-0 flex items-center justify-center relative"
+      >
+        <img
+          alt=""
+          className="rounded-full"
+          src="logo.svg"
+        />
+        <button
+          className="absolute bg-gray-800 text-white p-3 rounded-full -top-3 -right-2 border border-white"
+          type="button"
+        >
+          <svg
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            strokeWidth="0"
+            style={
+              Object {
+                "color": undefined,
+              }
+            }
+            viewBox="0 0 576 512"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M402.6 83.2l90.2 90.2c3.8 3.8 3.8 10 0 13.8L274.4 405.6l-92.8 10.3c-12.4 1.4-22.9-9.1-21.5-21.5l10.3-92.8L388.8 83.2c3.8-3.8 10-3.8 13.8 0zm162-22.9l-48.8-48.8c-15.2-15.2-39.9-15.2-55.2 0l-35.4 35.4c-3.8 3.8-3.8 10 0 13.8l90.2 90.2c3.8 3.8 10 3.8 13.8 0l35.4-35.4c15.2-15.3 15.2-40 0-55.2zM384 346.2V448H64V128h229.8c3.2 0 6.2-1.3 8.5-3.5l40-40c7.6-7.6 2.2-20.5-8.5-20.5H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V306.2c0-10.7-12.9-16-20.5-8.5l-40 40c-2.2 2.3-3.5 5.3-3.5 8.5z"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div
+      className="pl-8 md:pl-0 md:pt-5 flex items-end"
+    >
+      <h2
+        className="text-white text-4xl font-bold mb-4 md:mb-4"
+      />
+    </div>
+  </div>
+  <div
+    className=" h-max w-3/4 rounded-xl flex p-4 lg:flex-col relative flex-wrap lg:flex-nowrap"
+  >
+    <div
+      className="w-2/4 p-4 flex flex-col items-center lg:w-full lg:p-7 "
+    >
+      <h1
+        className="text-center text-3xl font-bold p-2"
+      >
+        Details
+      </h1>
+      <form
+        className="w-80 flex flex-col gap-6  "
+        onSubmit={[Function]}
+      >
+        <div
+          className=" flex flex-col gap-1"
+        >
+          <label
+            className="font-medium text-xl"
+          >
+            Email:
+          </label>
+          <input
+            className="border-3 border-purple-500 rounded-lg pl-2 p-1"
+            name="email"
+            onBlur={[Function]}
+            onChange={[Function]}
+            placeholder="email@email.com"
+            type="email"
+          />
+        </div>
+        <div
+          className=" flex flex-col gap-1"
+        >
+          <label
+            className="font-medium text-xl"
+          >
+            Name:
+          </label>
+          <input
+            className="border-3 border-purple-500 rounded-lg pl-2 p-1"
+            name="name"
+            onBlur={[Function]}
+            onChange={[Function]}
+            placeholder="Adelio"
+            type="text"
+          />
+        </div>
+        <div
+          className=" flex flex-col gap-1"
+        >
+          <label
+            className="font-medium text-xl"
+          >
+            Last name:
+          </label>
+          <input
+            className="border-3 border-purple-500 rounded-lg pl-2 p-1"
+            name="lastName"
+            onBlur={[Function]}
+            onChange={[Function]}
+            placeholder="Carneiro"
+            type="text"
+          />
+        </div>
+        <button
+          className="formButton bg-purple-500 text-white font-medium p-2 mr-auto ml-auto px-12 rounded-lg w-max transition duration-100 ease-out hover:ease-in hover:bg-purple-300"
+          data-testid="EditButton"
+          type="submit"
+        >
+          Edit
+        </button>
+      </form>
+    </div>
+    <div
+      className="absolute border-l-2 border-l-purple-500 h-5/6 left-2/4 top-7 lg:border-l-0 lg:border-l-transparent lg:border-b-2 lg:border-b-purple-500 lg:h-0 lg:w-5/6 lg:top-[54%] lg:left-[10%]"
+    />
+    <div
+      className="w-2/4 p-4 flex flex-col items-center lg:w-full lg:p-7 "
+    >
+      <h1
+        className="text-center text-3xl font-bold p-2"
+      >
+        Password
+      </h1>
+      <form
+        className="w-80 flex flex-col gap-7 pt-7"
+        onSubmit={[Function]}
+      >
+        <div
+          className=" flex flex-col gap-1"
+        >
+          <label
+            className="font-medium text-xl"
+          >
+            New password:
+          </label>
+          <input
+            className="border-3 border-purple-500 rounded-lg pl-2 p-1"
+            name="password"
+            onBlur={[Function]}
+            onChange={[Function]}
+            placeholder="password"
+            type="password"
+          />
+        </div>
+        <div
+          className=" flex flex-col gap-1"
+        >
+          <label
+            className="font-medium text-xl"
+          >
+            Repeat new password:
+          </label>
+          <input
+            className="border-3 border-purple-500 rounded-lg pl-2 p-1"
+            name="nPassword"
+            onBlur={[Function]}
+            onChange={[Function]}
+            placeholder="password"
+            type="password"
+          />
+        </div>
+        <button
+          className="bg-purple-500 text-white font-medium p-2 mr-auto ml-auto px-12 rounded-lg w-max transition duration-100 ease-out hover:ease-in hover:bg-purple-300"
+          type="submit"
+        >
+          Edit
+        </button>
+      </form>
+    </div>
+  </div>
+  <div
+    className="w-3/4"
+  >
+    <h1
+      className="text-center text-4xl font-bold p-3"
+    >
+      Reservations
+    </h1>
+    <h2
+      className=" text-center text-4xl  p-3"
+    >
+      No Reservations
+    </h2>
+  </div>
+  <div
+    className="w-3/4"
+  >
+    <h1
+      className="text-center text-4xl font-bold p-3"
+    >
+      Favorites
+    </h1>
+    <h2
+      className=" text-center text-4xl  p-3"
+    >
+      No Favorites
+    </h2>
+  </div>
+  <div
+    className="w-3/4"
+  >
+    <h1
+      className="text-center text-4xl font-bold p-3"
+    >
+      Written Reviews
+    </h1>
+    <h2
+      className=" text-center text-4xl  p-3"
+    >
+      No Reviews
+    </h2>
+  </div>
+</div>
+`;
+
+exports[`Profile Should render correctly 1`] = `
+<div
+  className="w-full flex  items-center flex-col p-10 gap-20"
+>
+  <div
+    className=" w-3/4 bg-gray-900 h-28 rounded-xl relative flex md:flex-col md:h-max md:items-center"
+  >
+    <div
+      className="w-max"
+    >
+      <div
+        className="w-24 h-24 bg-purple-500 rounded-full mt-9 ml-8 md:ml-0 flex items-center justify-center relative"
+      >
+        <img
+          alt=""
+          className="rounded-full"
+          src="logo.svg"
+        />
+        <button
+          className="absolute bg-gray-800 text-white p-3 rounded-full -top-3 -right-2 border border-white"
+          type="button"
+        >
+          <svg
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            strokeWidth="0"
+            style={
+              Object {
+                "color": undefined,
+              }
+            }
+            viewBox="0 0 576 512"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M402.6 83.2l90.2 90.2c3.8 3.8 3.8 10 0 13.8L274.4 405.6l-92.8 10.3c-12.4 1.4-22.9-9.1-21.5-21.5l10.3-92.8L388.8 83.2c3.8-3.8 10-3.8 13.8 0zm162-22.9l-48.8-48.8c-15.2-15.2-39.9-15.2-55.2 0l-35.4 35.4c-3.8 3.8-3.8 10 0 13.8l90.2 90.2c3.8 3.8 10 3.8 13.8 0l35.4-35.4c15.2-15.3 15.2-40 0-55.2zM384 346.2V448H64V128h229.8c3.2 0 6.2-1.3 8.5-3.5l40-40c7.6-7.6 2.2-20.5-8.5-20.5H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V306.2c0-10.7-12.9-16-20.5-8.5l-40 40c-2.2 2.3-3.5 5.3-3.5 8.5z"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div
+      className="pl-8 md:pl-0 md:pt-5 flex items-end"
+    >
+      <h2
+        className="text-white text-4xl font-bold mb-4 md:mb-4"
+      />
+    </div>
+  </div>
+  <div
+    className=" h-max w-3/4 rounded-xl flex p-4 lg:flex-col relative flex-wrap lg:flex-nowrap"
+  >
+    <div
+      className="w-2/4 p-4 flex flex-col items-center lg:w-full lg:p-7 "
+    >
+      <h1
+        className="text-center text-3xl font-bold p-2"
+      >
+        Details
+      </h1>
+      <form
+        className="w-80 flex flex-col gap-6  "
+        onSubmit={[Function]}
+      >
+        <div
+          className=" flex flex-col gap-1"
+        >
+          <label
+            className="font-medium text-xl"
+          >
+            Email:
+          </label>
+          <input
+            className="border-3 border-purple-500 rounded-lg pl-2 p-1"
+            name="email"
+            onBlur={[Function]}
+            onChange={[Function]}
+            placeholder="email@email.com"
+            type="email"
+          />
+        </div>
+        <div
+          className=" flex flex-col gap-1"
+        >
+          <label
+            className="font-medium text-xl"
+          >
+            Name:
+          </label>
+          <input
+            className="border-3 border-purple-500 rounded-lg pl-2 p-1"
+            name="name"
+            onBlur={[Function]}
+            onChange={[Function]}
+            placeholder="Adelio"
+            type="text"
+          />
+        </div>
+        <div
+          className=" flex flex-col gap-1"
+        >
+          <label
+            className="font-medium text-xl"
+          >
+            Last name:
+          </label>
+          <input
+            className="border-3 border-purple-500 rounded-lg pl-2 p-1"
+            name="lastName"
+            onBlur={[Function]}
+            onChange={[Function]}
+            placeholder="Carneiro"
+            type="text"
+          />
+        </div>
+        <button
+          className="formButton bg-purple-500 text-white font-medium p-2 mr-auto ml-auto px-12 rounded-lg w-max transition duration-100 ease-out hover:ease-in hover:bg-purple-300"
+          data-testid="EditButton"
+          type="submit"
+        >
+          Edit
+        </button>
+      </form>
+    </div>
+    <div
+      className="absolute border-l-2 border-l-purple-500 h-5/6 left-2/4 top-7 lg:border-l-0 lg:border-l-transparent lg:border-b-2 lg:border-b-purple-500 lg:h-0 lg:w-5/6 lg:top-[54%] lg:left-[10%]"
+    />
+    <div
+      className="w-2/4 p-4 flex flex-col items-center lg:w-full lg:p-7 "
+    >
+      <h1
+        className="text-center text-3xl font-bold p-2"
+      >
+        Password
+      </h1>
+      <form
+        className="w-80 flex flex-col gap-7 pt-7"
+        onSubmit={[Function]}
+      >
+        <div
+          className=" flex flex-col gap-1"
+        >
+          <label
+            className="font-medium text-xl"
+          >
+            New password:
+          </label>
+          <input
+            className="border-3 border-purple-500 rounded-lg pl-2 p-1"
+            name="password"
+            onBlur={[Function]}
+            onChange={[Function]}
+            placeholder="password"
+            type="password"
+          />
+        </div>
+        <div
+          className=" flex flex-col gap-1"
+        >
+          <label
+            className="font-medium text-xl"
+          >
+            Repeat new password:
+          </label>
+          <input
+            className="border-3 border-purple-500 rounded-lg pl-2 p-1"
+            name="nPassword"
+            onBlur={[Function]}
+            onChange={[Function]}
+            placeholder="password"
+            type="password"
+          />
+        </div>
+        <button
+          className="bg-purple-500 text-white font-medium p-2 mr-auto ml-auto px-12 rounded-lg w-max transition duration-100 ease-out hover:ease-in hover:bg-purple-300"
+          type="submit"
+        >
+          Edit
+        </button>
+      </form>
+    </div>
+  </div>
+  <div
+    className="w-3/4"
+  >
+    <h1
+      className="text-center text-4xl font-bold p-3"
+    >
+      Reservations
+    </h1>
+    <h2
+      className=" text-center text-4xl  p-3"
+    >
+      No Reservations
+    </h2>
+  </div>
+  <div
+    className="w-3/4"
+  >
+    <h1
+      className="text-center text-4xl font-bold p-3"
+    >
+      Favorites
+    </h1>
+    <h2
+      className=" text-center text-4xl  p-3"
+    >
+      No Favorites
+    </h2>
+  </div>
+  <div
+    className="w-3/4"
+  >
+    <h1
+      className="text-center text-4xl font-bold p-3"
+    >
+      Written Reviews
+    </h1>
+    <h2
+      className=" text-center text-4xl  p-3"
+    >
+      No Reviews
+    </h2>
+  </div>
+</div>
+`;

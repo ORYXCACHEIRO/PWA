@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Homepage Should render correctly 1`] = `
+Array [
+  <div
+    className="ml-4 mr-4  relative aspect-[10/5] md:aspect-[10/6] sm:aspect-[9/13] flex items-start flex-col justify-center "
+  >
+    <div
+      className="  relative ml-10 lg:ml-0"
+    >
+      <h1
+        className=" font-bold text-gray-900  text-9xl  lg:text-8xl"
+      >
+        Looking for a place?
+      </h1>
+      <h1
+        className="font-bold text-gray-900  text-9xl  lg:text-8xl"
+      >
+        Search 
+        <span
+          className="text-purple-500"
+        >
+          now!
+        </span>
+      </h1>
+    </div>
+    <div
+      className="  h-max w-2/4 sm:w-full xl:w-3/4 mt-10 "
+    >
+      <form
+        action="/search/:query"
+        className="w-full flex"
+        method="get"
+      >
+        <div
+          className="w-full flex items-center justify-center"
+        >
+          <input
+            className="border-3 border-purple-400 rounded-3xl h-14 w-4/5 ml-4 pl-3 font-bold lg:ml-16 md:ml-0 focus:outline-none focus:ring-3 focus:ring-purple-700 focus:border-transparent"
+            name="s"
+            placeholder="hotel..."
+            type="text"
+          />
+          <button
+            className="shadow-lg transition duration-300 ease-in-out bg-purple-900 font-bold text-lg p-3 pl-4 pr-4 rounded-3xl text-white m-5 hover:bg-gray-700 lg:mb-6"
+            type="submit"
+          >
+            <svg
+              className="h-6 w-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+              />
+            </svg>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>,
+  <div
+    className="ml-4 mr-4"
+  >
+    <div>
+      <h1
+        className="text-gray-900 m-5 ml-8 font-extrabold text-5xl text-center md:text-4xl"
+      >
+        Recomendations.
+      </h1>
+    </div>
+    <div
+      className="inline-flex pt-12 mr-auto ml-auto flex-wrap w-full justify-center gap-16 pb-10 lg:gap-12"
+    />
+  </div>,
+]
+`;

@@ -103,7 +103,7 @@ const Profile = () => {
                                 <label className="font-medium text-xl">Last name:</label>
                                 <input type="text" {...register('lastName', { required: true })} className='border-3 border-purple-500 rounded-lg pl-2 p-1' placeholder='Carneiro' />
                             </div>
-                            <button type="submit" className='bg-purple-500 text-white font-medium p-2 mr-auto ml-auto px-12 rounded-lg w-max transition duration-100 ease-out hover:ease-in hover:bg-purple-300'>
+                            <button data-testid="EditButton" type="submit" className='formButton bg-purple-500 text-white font-medium p-2 mr-auto ml-auto px-12 rounded-lg w-max transition duration-100 ease-out hover:ease-in hover:bg-purple-300'>
                                 Edit
                             </button>
                         </form>
